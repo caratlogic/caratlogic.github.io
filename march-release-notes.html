@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        /* Feature Card */
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Sub-list for nested items */
+        .sub-list {
+            list-style: none;
+            padding: 4px 0 0 0;
+        }
+
+        .sub-list li {
+            padding: 4px 0 4px 24px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .sub-list li::before {
+            width: 6px;
+            height: 6px;
+            background: #81c784;
+            left: 4px;
+            top: 12px;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .tag-improvement {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* Document Grid */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .doc-item {
+            background: #f8faf8;
+            border: 1px solid #e8ece8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-item .doc-icon {
+            font-size: 16px;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Introducing powerful new capabilities and refinements designed to elevate your inventory management workflow.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                March 2026 Release
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+
+        <!-- 1. Memo In and Out -->
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128221;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Memo In &amp; Memo Out Management</h2>
+            <p>End-to-end memo transaction lifecycle &mdash; from issuance to returns &mdash; now fully managed within the platform.</p>
+            <ul class="feature-list">
+                <li>Issue Memo Out consignments and process returns with <strong>auto-generated PDF documentation</strong></li>
+                <li>Record <strong>Memo-In</strong> receipts to maintain a complete inbound consignment ledger</li>
+                <li>Initiate and track <strong>Memo-In returns</strong> with full audit trail support</li>
+            </ul>
+        </div>
+
+        <!-- 2. Barcode Enhancements -->
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#9783;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Barcode Label Customization</h2>
+            <p>Greater flexibility and precision when designing barcode labels for your inventory.</p>
+            <ul class="feature-list">
+                <li>Full control over <strong>font size and style</strong> for both label headings and data values on printed barcodes</li>
+                <li>Introducing <strong>Pin Value</strong> &mdash; lock a specific attribute value to persist across an entire row, ensuring consistency in batch label printing</li>
+            </ul>
+        </div>
+
+        <!-- 3. Gems & Diamond Module Separation -->
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-improvement">Improvement</span>
+            <h2>Dedicated Gems &amp; Diamond Modules</h2>
+            <p>A refined, role-based experience that surfaces only what matters to your business vertical.</p>
+            <ul class="feature-list">
+                <li><strong>Gems users</strong> access a dedicated workspace with gem-specific features, settings, and navigation</li>
+                <li><strong>Diamond users</strong> access a dedicated workspace with diamond-specific features, settings, and navigation</li>
+            </ul>
+            <div class="highlight-box">
+                The interface now adapts to each user's inventory category &mdash; reducing clutter, minimizing errors, and delivering a more intuitive day-to-day experience.
+            </div>
+        </div>
+
+        <!-- 4. Inventory Tally -->
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Advanced Inventory Tally Filters</h2>
+            <p>Reconcile stock with greater precision using multi-criteria filtering for tally operations.</p>
+            <ul class="feature-list">
+                <li>Filter by <strong>Stock Type</strong> &mdash; Single, Parcel, or Pair</li>
+                <li>Filter by <strong>Ownership Status</strong> &mdash; Owned, Partner Store, or Memo-In</li>
+                <li>Filter by <strong>Warehouse</strong> to isolate stock by physical location</li>
+            </ul>
+        </div>
+
+        <!-- 5. PDF Documents -->
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-new">New</span>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Expanded PDF Document Suite</h2>
+            <p>Generate professional, branded documents across a wider range of business transactions &mdash; with new templates and enhanced customization.</p>
+
+            <div class="doc-grid">
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Invoice</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Memo Out</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Memo Out Returns</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Memo In Returns</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Quotations</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Credit Notes</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Payment Receipts</div>
+            </div>
+
+            <ul class="feature-list" style="margin-top: 16px;">
+                <li><strong>Stock ID placement</strong> is now configurable within templates, giving you control over where identifiers appear on each document</li>
+                <li>All documents now embed a <strong>scannable QR code</strong> &mdash; enabling instant access to the full transaction details from any printed or shared copy</li>
+            </ul>
+        </div>
+
+        <!-- 6. Referred By -->
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128101;</div>
+            <span class="tag tag-new">New</span>
+            <h2>&ldquo;Referred By&rdquo; Attribution for Contacts</h2>
+            <p>Establish clear ownership between your sales team and customer accounts to drive accountability and performance insights.</p>
+            <ul class="feature-list">
+                <li>New <strong>&ldquo;Referred By&rdquo;</strong> field available across all business contact records</li>
+                <li>Associate each customer with a designated <strong>salesperson or team member</strong> responsible for the relationship</li>
+
+            </ul>
+        </div>
+
+        <!-- 7. Global Scan -->
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128270;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Universal QR Code Scanner</h2>
+            <p>Locate any document in seconds &mdash; a persistent scanner in the application header provides instant access from every screen.</p>
+            <ul class="feature-list">
+                <li>A dedicated <strong>scan action in the global header</strong> ensures one-tap access regardless of your current workflow</li>
+                <li>Scan any CaratLogic document QR code to be <strong>navigated directly to its detail view</strong> &mdash; no manual searching required</li>
+                <li>Compatible with all generated documents including invoices, memos, quotations, and receipts</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
