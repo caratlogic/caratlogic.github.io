@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        /* Release Card */
+        .release-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .release-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .release-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .release-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .release-details h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .release-details p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .release-arrow {
+            font-size: 20px;
+            color: #2e7d32;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .tag-latest {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .release-card {
+                padding: 20px 24px;
+            }
+
+            .release-details h2 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Stay up to date with the latest features, enhancements, and improvements to CaratLogic.</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+
+        <a class="release-card" href="april-release-notes.html">
+            <div class="release-info">
+                <div class="release-icon">&#128640;</div>
+                <div class="release-details">
+                    <h2>April 2026 <span class="tag tag-latest">Latest</span></h2>
+                    <p>Barcode scanning, bulk gem import, and comprehensive audit history</p>
+                </div>
+            </div>
+            <span class="release-arrow">&rarr;</span>
+        </a>
+
+        <a class="release-card" href="march-release-notes.html">
+            <div class="release-info">
+                <div class="release-icon">&#128221;</div>
+                <div class="release-details">
+                    <h2>March 2026</h2>
+                    <p>Memo management, barcode labels, dedicated gem &amp; diamond modules, and more</p>
+                </div>
+            </div>
+            <span class="release-arrow">&rarr;</span>
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
