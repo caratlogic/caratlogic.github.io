@@ -353,10 +353,10 @@
                 <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
             </div>
             <h1>Release Notes</h1>
-            <p class="subtitle">New capabilities to streamline scanning, importing, and tracking across your gem and diamond operations.</p>
+            <p class="subtitle">Targeted refinements to measurements, media handling, pagination and memo workflows.</p>
             <div class="release-badge">
                 <span class="dot"></span>
-                March 2026 &mdash; Release 2
+                March 2026 &mdash; Release 3
             </div>
         </div>
     </div>
@@ -364,74 +364,71 @@
     <!-- Content -->
     <div class="container">
 
-        <!-- 1. Barcode Scanning for Gem & Diamond Inventory -->
+        <!-- 1. Measurements Formatting Consistency -->
         <div class="feature-card">
             <div class="feature-number">01</div>
-            <div class="feature-icon">&#9783;</div>
-            <span class="tag tag-new">New</span>
-            <h2>Barcode Scanning for Gem &amp; Diamond Inventory</h2>
-            <p>Scan barcode labels to instantly look up inventory items &mdash; the same fast, reliable scanning experience already available with QR codes, now extended to barcodes.</p>
+            <div class="feature-icon">&#128207;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Consistent Measurements Formatting</h2>
+            <p>Measurements across the application are now consistently displayed with two decimal places for clearer, more professional documentation.</p>
             <ul class="feature-list">
-                <li>Scan <strong>barcode labels</strong> directly from the global header scanner to locate gem and diamond stock in seconds</li>
-                <li>Works across <strong>both Gem and Diamond modules</strong>, automatically routing you to the correct inventory detail view</li>
-                <li>Fully compatible with the existing <strong>QR code scanning workflow</strong> &mdash; the scanner seamlessly recognizes both barcode and QR code formats</li>
-                <li>Supports scanning from <strong>printed barcode labels</strong> generated through the CaratLogic label printing system</li>
+                <li>All measurement fields now follow a standard format with two decimal places, e.g. <code>10.01 × 6.85 × 0.00</code></li>
+                <li>Ensures consistency across inventory views, certificates, and other measurement displays</li>
             </ul>
             <div class="highlight-box">
-                Whether your team uses QR codes, barcodes, or a mix of both &mdash; the universal scanner now handles it all from a single tap.
+                Standardized formatting helps avoid confusion and supports clearer communication with customers and partners.
             </div>
         </div>
 
-        <!-- 2. Bulk Import Gems for Purchase Management -->
+        <!-- 2. HEIC Support for Certificates & Media -->
         <div class="feature-card">
             <div class="feature-number">02</div>
-            <div class="feature-icon">&#128230;</div>
+            <div class="feature-icon">&#128247;</div>
             <span class="tag tag-new">New</span>
-            <h2>Bulk Import Gems for Purchase Management</h2>
-            <p>Accelerate purchase entry by importing gem inventory in bulk &mdash; eliminating repetitive manual data entry for large acquisitions.</p>
+            <h2>HEIC Format Support for Certificates &amp; Media</h2>
+            <p>Easily upload modern iPhone-style images without manual conversion.</p>
             <ul class="feature-list">
-                <li>Upload a <strong>structured file</strong> to import multiple gem records into a purchase order in a single operation</li>
+                <li>Support added for <strong>HEIC image files</strong> when uploading certificate images and media assets</li>
+                <li>Reduces the need to convert HEIC files to JPEG/PNG before upload</li>
             </ul>
         </div>
 
-        <!-- 3. Audit History -->
+        <!-- 3. Pagination Behavior Fixes -->
         <div class="feature-card">
             <div class="feature-number">03</div>
-            <div class="feature-icon">&#128336;</div>
-            <span class="tag tag-new">New</span>
-            <h2>Comprehensive Audit History</h2>
-            <p>Full change-tracking is now available across core modules &mdash; giving you complete visibility into who changed what, and when.</p>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-improvement">Improved</span>
+            <h2>Consistent Pagination Across Tables</h2>
+            <p>Pagination state is now preserved when navigating between list and detail views, so you always return to the same page you were working on.</p>
             <ul class="feature-list">
-                <li>Every create, update, and delete action is recorded with <strong>user, timestamp, and field-level detail</strong></li>
-                <li>Audit history is accessible directly from the detail view of each record &mdash; <strong>no separate reports required</strong></li>
+                <li>Resolved an issue where returning from a detail view reset table pagination back to page 1</li>
+                <li>Applied consistently across all modules that use paginated tables</li>
             </ul>
-
-            <p style="margin-top: 16px;">Audit history is now available across the following modules:</p>
-
-            <div class="doc-grid">
-                <div class="doc-item"><span class="doc-icon">&#128142;</span> Gem Inventory</div>
-                <div class="doc-item"><span class="doc-icon">&#128101;</span> Business Contacts</div>
-                <div class="doc-item"><span class="doc-icon">&#128462;</span> Invoices</div>
-                <div class="doc-item"><span class="doc-icon">&#128462;</span> Quotations</div>
-                <div class="doc-item"><span class="doc-icon">&#128221;</span> Memo Out</div>
-                <div class="doc-item"><span class="doc-icon">&#128221;</span> Memo In</div>
-                <div class="doc-item"><span class="doc-icon">&#128257;</span> Returns</div>
-            </div>
-
-            <div class="highlight-box">
-                Audit history strengthens compliance, simplifies dispute resolution, and provides a trustworthy record of every change across your business-critical data.
-            </div>
         </div>
 
-        <!-- 4. Bug Fixes & Enhancements -->
+        <!-- 4. Measurements on Barcode Labels -->
         <div class="feature-card">
             <div class="feature-number">04</div>
-            <div class="feature-icon">&#128736;</div>
+            <div class="feature-icon">&#128441;</div>
             <span class="tag tag-enhanced">Enhanced</span>
-            <h2>Bug Fixes &amp; Enhancements</h2>
-            <p>Continued refinements to improve stability and usability across the platform.</p>
+            <h2>Measurements on Barcode Labels</h2>
+            <p>Barcode label PDFs now use the same standardized measurements format as the rest of the application.</p>
             <ul class="feature-list">
-                <li><strong>Gem Inventory Detail Page</strong> &mdash; added missing information to the gem inventory detail view for more complete and accurate stock records</li>
+                <li>Updated barcode label PDF generation to use the new two-decimal measurements formatting</li>
+                <li>Ensures <strong>on-label measurements</strong> match what you see in the system</li>
+            </ul>
+        </div>
+
+        <!-- 5. Supplier Visibility in Memo In -->
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128101;</div>
+            <span class="tag tag-improvement">Improved</span>
+            <h2>Supplier Dropdown Company Names in Memo In</h2>
+            <p>Supplier selection in Memo In is now clearer and easier to use.</p>
+            <ul class="feature-list">
+                <li>Updated the <strong>supplier dropdown</strong> in Memo In to display the supplier’s company name</li>
+                <li>Makes it easier to identify the correct supplier when multiple contacts share similar personal names</li>
             </ul>
         </div>
 
@@ -446,3 +443,4 @@
 
 </body>
 </html>
+
