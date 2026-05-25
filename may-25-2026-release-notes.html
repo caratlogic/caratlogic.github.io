@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .sub-list {
+            list-style: none;
+            padding: 4px 0 0 0;
+        }
+
+        .sub-list li {
+            padding: 4px 0 4px 24px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .sub-list li::before {
+            width: 6px;
+            height: 6px;
+            background: #81c784;
+            left: 4px;
+            top: 12px;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .doc-item {
+            background: #f8faf8;
+            border: 1px solid #e8ece8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-item .doc-icon {
+            font-size: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Faster inventory tally and search, instant PDF access, richer line item descriptions, memo media export, and price code support across inventory workflows.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                May 25, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128230;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Improved Inventory Tally &amp; Advanced Search</h2>
+            <p>Inventory tally and advanced search workflows have been refined to provide faster scanning operations and more accurate inventory filtering across gems and diamonds.</p>
+            <ul class="feature-list">
+                <li>Barcode scanner input now remains <strong>automatically focused</strong> during inventory tally operations &mdash; including after scan validation or error dialogs</li>
+                <li>Advanced search color filtering now supports both <strong>single and multi-select matching</strong> with improved result accuracy</li>
+                <li>Gem and diamond inventory searches now return more reliable results when filtering by <strong>color combinations</strong></li>
+                <li>Backend filtering enhancements ensure consistent matching behavior across inventory and tally modules</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now perform high-volume tally operations and advanced stock searches with fewer interruptions and more dependable results.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#129534;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Instant PDF Open After Document Creation</h2>
+            <p>Document workflows now support immediate PDF access after successful creation &mdash; reducing extra navigation and verification steps.</p>
+            <ul class="feature-list">
+                <li>Added <strong>Confirm &amp; Open</strong> support for:</li>
+            </ul>
+            <div class="doc-grid">
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Invoices</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Proforma Invoices</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Credit Notes</div>
+                <div class="doc-item"><span class="doc-icon">&#128221;</span> Memo Out (Consignment)</div>
+            </div>
+            <ul class="feature-list" style="margin-top: 16px;">
+                <li>Generated PDFs automatically open in a <strong>new browser tab</strong> after document creation</li>
+                <li>Backend PDF processing updated to ensure documents are instantly available for viewing and sharing</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now create, verify, and share transaction documents faster without manually reopening generated records.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#129513;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Flexible Description Column in Invoice &amp; Memo PDFs</h2>
+            <p>Invoice and memo out templates now support optional description visibility for cleaner and more customizable customer-facing documents.</p>
+            <ul class="feature-list">
+                <li>Show or hide the <strong>Description column</strong> directly from PDF preview and print settings</li>
+                <li>Description visibility is supported across both <strong>invoice and memo out PDFs</strong></li>
+                <li>Line item descriptions are now optional during document generation workflows</li>
+                <li>PDF rendering automatically adjusts based on template visibility settings</li>
+            </ul>
+            <div class="highlight-box">
+                Businesses can now generate more minimal or more detailed transaction documents depending on customer and operational requirements.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Richer Default Item Descriptions</h2>
+            <p>Automatically generated line item descriptions now include additional inventory attributes for clearer and more informative transaction records.</p>
+            <ul class="feature-list">
+                <li>Default descriptions now include details such as:
+                    <ul class="sub-list">
+                        <li>Origin</li>
+                        <li>Treatment</li>
+                        <li>Color</li>
+                        <li>Cut</li>
+                        <li>Related inventory attributes</li>
+                    </ul>
+                </li>
+                <li>Applies automatically when adding gems or diamonds with <strong>empty descriptions</strong> to invoices and memo outs</li>
+                <li>Frontend and backend description generation behavior is now fully aligned</li>
+            </ul>
+            <div class="highlight-box">
+                Documents now provide richer inventory detail automatically &mdash; reducing repetitive manual description entry.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128176;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Improved Cost &amp; Selling Price Toggle Handling</h2>
+            <p>Price toggle behavior has been refined to preserve edited pricing values while switching between cost and selling modes.</p>
+            <ul class="feature-list">
+                <li>Cost price and selling price values are now maintained <strong>independently per line item</strong></li>
+                <li>Switching pricing modes no longer overwrites manually edited values</li>
+                <li>Inventory pricing behavior remains consistent across transaction workflows</li>
+                <li>Backend price basis handling updated for more reliable price population</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now switch pricing views more confidently without losing custom pricing adjustments.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128193;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Memo Out Media Export</h2>
+            <p>Memo out transactions now support exporting all related certificates, images, and videos into a single downloadable ZIP file.</p>
+            <ul class="feature-list">
+                <li>Export media for all memo out line items in <strong>one operation</strong></li>
+                <li>ZIP files automatically organize content by <strong>product and media type</strong></li>
+                <li>Includes certificates, images, and videos associated with inventory items</li>
+                <li>Download progress feedback added during export generation</li>
+            </ul>
+            <div class="highlight-box">
+                Sharing consignment media with customers and partners is now faster and significantly more organized.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#129309;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Improved Business Contact Details</h2>
+            <p>Business contact detail pages have been reorganized to improve visibility and consistency across customer and company information.</p>
+            <ul class="feature-list">
+                <li>Contact information is now grouped into dedicated sections including:
+                    <ul class="sub-list">
+                        <li>Personal</li>
+                        <li>Company</li>
+                        <li>Address</li>
+                        <li>Additional Information</li>
+                    </ul>
+                </li>
+                <li>Improved display consistency for secondary email and phone numbers, business phone, VAT and tax details, verification status, and notes and referral information</li>
+                <li>Address formatting updated for cleaner presentation and easier review</li>
+            </ul>
+            <div class="highlight-box">
+                Business contact records are now easier to navigate and better suited for sales, finance, and operational workflows.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#127912;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Color Code Support in Inventory Settings</h2>
+            <p>Inventory settings now support configurable color codes for better visual representation across gem and diamond inventory.</p>
+            <ul class="feature-list">
+                <li>Added support for <strong>hex-based color codes</strong> within inventory attribute settings</li>
+                <li>Supports both shorthand and standard hex color formats</li>
+                <li>Inventory tables now display configured background colors for color attributes</li>
+                <li>Color codes can be managed directly from settings create and edit workflows</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now visually identify inventory color attributes more efficiently across listing and inventory screens.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#127991;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Price Code Support Across Inventory &amp; Barcode Labels</h2>
+            <p>Price codes are now supported throughout inventory workflows, imports, exports, and barcode label generation.</p>
+            <ul class="feature-list">
+                <li>Added price code support for <strong>gem and diamond inventory records</strong></li>
+                <li>Available across inventory forms, detail pages, and barcode configurations</li>
+                <li>Included in CSV and Excel import/export workflows</li>
+                <li>Price code fields can now be added to <strong>barcode and QR label templates</strong></li>
+            </ul>
+            <div class="highlight-box">
+                Price reference handling is now more flexible and better integrated into inventory and labeling operations.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Additional Improvements</h2>
+            <p>Additional refinements have been introduced across transactions, reporting, inventory sorting, and PDF workflows.</p>
+            <ul class="feature-list">
+                <li>Proforma invoice exchange rates are now preserved during <strong>final invoice conversion</strong></li>
+                <li>VAT number display corrected within tenant PDF headers</li>
+                <li>Memo return PDFs and emails now support optional return date visibility</li>
+                <li>Business contact stock calculations now use transaction line-level data for improved accuracy</li>
+                <li>Added <strong>total carat sorting</strong> support across inventory listings</li>
+                <li>Price code support added to inventory Excel import and export workflows</li>
+            </ul>
+            <div class="highlight-box">
+                These improvements continue to enhance accuracy, flexibility, and consistency across day-to-day inventory operations.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
