@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .doc-item {
+            background: #f8faf8;
+            border: 1px solid #e8ece8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-item .doc-icon {
+            font-size: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Platform-wide dark mode, a complete UI redesign, rebuilt dashboard, refreshed inventory and financial workflows, and expanded media export.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                June 6, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#127769;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Dark Mode Across the Entire Platform</h2>
+            <p>Dark mode is now available across all CaratLogic modules, providing a consistent viewing experience throughout the application.</p>
+            <ul class="feature-list">
+                <li>Switch between <strong>Light and Dark mode</strong> using the theme toggle in the top navigation</li>
+                <li>Theme preference is automatically saved and restored on future sign-ins</li>
+                <li>Supported across inventory, financial operations, business contacts, partner management, exhibitions, settings, and shared inventory pages</li>
+                <li>Public gem and diamond detail links also support dark mode</li>
+            </ul>
+            <div class="highlight-box">
+                Users can now work comfortably in different lighting conditions without sacrificing usability or consistency.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#127912;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Complete User Interface Redesign</h2>
+            <p>The entire application has been redesigned with a more modern and consistent user experience across all modules.</p>
+            <ul class="feature-list">
+                <li>Updated navigation, layouts, typography, spacing, and visual styling</li>
+                <li>Redesigned sidebar with improved workflow organization</li>
+                <li>Updated top navigation with breadcrumbs, notifications, scanner access, and profile controls</li>
+                <li>Consistent page layouts across inventory, financial operations, contacts, settings, and reporting</li>
+            </ul>
+            <div class="highlight-box">
+                The platform now provides a more unified experience with reduced learning effort between modules.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Redesigned Dashboard Experience</h2>
+            <p>The dashboard has been rebuilt to provide better visibility into inventory and business performance.</p>
+            <ul class="feature-list">
+                <li>New <strong>KPI cards</strong> for inventory and sales metrics</li>
+                <li>Interactive charts for stock status, ownership, warehouse distribution, and inventory types</li>
+                <li>Invoice analytics with configurable date ranges</li>
+                <li>Manual refresh controls for retrieving the latest information</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now access key business insights faster from a single centralized view.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Inventory Management Experience</h2>
+            <p>Gem and diamond inventory workflows have been redesigned to improve usability and efficiency.</p>
+            <ul class="feature-list">
+                <li>Improved inventory listings with enhanced filtering and advanced search</li>
+                <li>Multi-select filters for ownership, status, stock type, and warehouse</li>
+                <li>Redesigned add and edit workflows with clearer section organization</li>
+                <li>Enhanced inventory detail pages with media, certificates, ownership, expenses, and audit history</li>
+            </ul>
+            <div class="highlight-box">
+                Inventory management is now faster and easier across the entire stock lifecycle.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128208;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Layout Management Improvements</h2>
+            <p>Layout management has been redesigned with updated listing, creation, and detail workflows.</p>
+            <ul class="feature-list">
+                <li>Improved layout creation and editing experience</li>
+                <li>Enhanced layout detail pages with consolidated inventory information</li>
+                <li>Better media handling and status visibility</li>
+                <li>Streamlined workflow for managing grouped inventory layouts</li>
+            </ul>
+            <div class="highlight-box">
+                Layouts can now be managed more efficiently throughout the trading process.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#129309;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Business Contacts &amp; Partner Management</h2>
+            <p>Customer and partnership management workflows have been refreshed across all major screens.</p>
+            <ul class="feature-list">
+                <li>Redesigned business contact listing, detail, creation, and import pages</li>
+                <li>Improved partner management views and navigation</li>
+                <li>Enhanced visibility of partnership information and financial details</li>
+                <li>Consistent interface across customer and partner workflows</li>
+            </ul>
+            <div class="highlight-box">
+                Relationship management is now more organized and easier to navigate.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128179;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Financial Operations Redesign</h2>
+            <p>Financial workflows have been updated to provide a more consistent transaction management experience.</p>
+            <ul class="feature-list">
+                <li>Redesigned invoice, quotation, memo out, memo in, and credit note workflows</li>
+                <li>Improved payment creation and payment detail views</li>
+                <li>Updated customer wallet management screens</li>
+                <li>Enhanced purchase order, supplier invoice, and expense management pages</li>
+            </ul>
+            <div class="highlight-box">
+                Financial operations now follow a more consistent workflow across all transaction types.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#128193;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Media Export Across Inventory &amp; Transactions</h2>
+            <p>Media export is now available across inventory and financial modules.</p>
+            <ul class="feature-list">
+                <li>Export images, videos, and certificates as a <strong>single ZIP file</strong></li>
+                <li>Supported for:</li>
+            </ul>
+            <div class="doc-grid">
+                <div class="doc-item"><span class="doc-icon">&#128142;</span> Gems</div>
+                <div class="doc-item"><span class="doc-icon">&#128142;</span> Diamonds</div>
+                <div class="doc-item"><span class="doc-icon">&#128208;</span> Layouts</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Invoices</div>
+                <div class="doc-item"><span class="doc-icon">&#128462;</span> Proformas</div>
+                <div class="doc-item"><span class="doc-icon">&#128221;</span> Memo Out</div>
+                <div class="doc-item"><span class="doc-icon">&#128221;</span> Memo In</div>
+            </div>
+            <ul class="feature-list" style="margin-top: 16px;">
+                <li>Progress tracking during export generation</li>
+                <li>Organized ZIP structure for easier sharing and archiving</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now download and share inventory media more efficiently from a single action.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Settings &amp; Template Management</h2>
+            <p>Configuration screens have been redesigned to provide a more consistent administration experience.</p>
+            <ul class="feature-list">
+                <li>Updated gem, diamond, and barcode settings</li>
+                <li>Improved template configuration workflows</li>
+                <li>Enhanced barcode and QR label customization</li>
+                <li>Consistent tabbed layout across settings modules</li>
+            </ul>
+            <div class="highlight-box">
+                Administrative tasks are now easier to manage with a standardized configuration interface.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#127760;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Public Inventory Sharing Pages</h2>
+            <p>Shared gem and diamond detail pages have been redesigned to provide a more professional customer experience.</p>
+            <ul class="feature-list">
+                <li>Updated card-based layout for public inventory pages</li>
+                <li>Dedicated media tabs for images, videos, and certificates</li>
+                <li>Certificate preview and download support</li>
+                <li>Dark mode available on public pages</li>
+            </ul>
+            <div class="highlight-box">
+                Customers can now view shared inventory through a cleaner and more modern interface.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">11</div>
+            <div class="feature-icon">&#9889;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Performance &amp; Responsiveness Improvements</h2>
+            <p>Application performance has been improved across common workflows.</p>
+            <ul class="feature-list">
+                <li>Faster navigation between frequently used modules</li>
+                <li>Improved data loading and caching behavior</li>
+                <li>Automatic refresh of related screens after data changes</li>
+                <li>Enhanced loading indicators and feedback during page transitions</li>
+            </ul>
+            <div class="highlight-box">
+                Daily operations now feel faster and more responsive throughout the platform.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">12</div>
+            <div class="feature-icon">&#128736;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Additional User Experience Improvements</h2>
+            <p>Several usability improvements have been introduced across the application.</p>
+            <ul class="feature-list">
+                <li>Consistent action menus throughout inventory and transaction tables</li>
+                <li>Improved empty-state messaging</li>
+                <li>Updated confirmation dialogs</li>
+                <li>Enhanced date picker experience</li>
+                <li>Refined badges and status indicators</li>
+                <li>Added <strong>Out of Stock</strong> inventory status support</li>
+            </ul>
+            <div class="highlight-box">
+                These refinements improve usability and consistency across everyday workflows.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
