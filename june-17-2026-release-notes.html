@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Automatic partner stone creation, safer inventory deletion, improved carat editing, barcode quantity labels, and clearer inventory allocation visibility.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                June 17, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#129309;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Automatic Partner Stone Record Creation</h2>
+            <p>Partner stone records are now created automatically when adding gems or diamonds with Partner Stone selected as the ownership type.</p>
+            <ul class="feature-list">
+                <li>A partner stone record is automatically created when creating a gem or diamond with <strong>Partner Stone</strong> ownership</li>
+                <li>Newly created records appear immediately in the Partner Management module</li>
+                <li>Partner details, contributions, and profit-sharing information can be added later</li>
+                <li>Eliminates the need to manually create partnership records after inventory creation</li>
+            </ul>
+            <div class="highlight-box">
+                Partnership inventory is now tracked from the moment it is created, ensuring no records are missed.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128737;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Safer Inventory Deletion</h2>
+            <p>Inventory deletion rules have been strengthened to prevent accidental removal of gems and diamonds involved in transactions.</p>
+            <ul class="feature-list">
+                <li>Gems and diamonds can only be deleted when their <strong>entire carat quantity</strong> is still available</li>
+                <li>Deletion is blocked if any portion of the inventory has been sold or reserved</li>
+                <li>Clear validation messages explain why deletion is not permitted</li>
+                <li>Inventory can still be archived when permanent deletion is not allowed</li>
+            </ul>
+            <div class="highlight-box">
+                This ensures historical sales and reservation data remain protected and consistent.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Zero Available Carats Support During Editing</h2>
+            <p>Gem and diamond inventory can now be updated with 0 Available Carats when editing existing records.</p>
+            <ul class="feature-list">
+                <li>Available Carats can be set to zero for fully sold or fully reserved inventory</li>
+                <li>Inventory status is automatically updated based on availability, including <strong>Sold</strong>, <strong>Memo Out</strong>, and <strong>Out of Stock</strong></li>
+                <li>Items are archived automatically when applicable</li>
+                <li>Minimum carat validation continues to apply when creating new inventory records</li>
+            </ul>
+            <div class="highlight-box">
+                This provides better support for inventory that has been completely allocated while preserving accurate stock status.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#127991;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>In-Stock Quantity on Barcode Labels</h2>
+            <p>Barcode labels can now display the available piece quantity alongside carat weight.</p>
+            <ul class="feature-list">
+                <li>Added support for displaying <strong>In Stock Quantity</strong> on gem and diamond barcode labels</li>
+                <li>Can be enabled independently from Settings &rarr; Barcode</li>
+                <li>Displays the number of available pieces directly on printed labels</li>
+                <li>Particularly useful for parcels, sets, and pairs where quantity is an important identifier</li>
+            </ul>
+            <div class="highlight-box">
+                Barcode labels now provide more complete inventory information at a glance.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#9999;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Clearer Available Carats Labeling</h2>
+            <p>The carat field on gem and diamond edit forms has been renamed to improve clarity during inventory updates.</p>
+            <ul class="feature-list">
+                <li><strong>Total Weight</strong> has been renamed to <strong>Available Carats</strong> on edit screens</li>
+                <li>Makes it clear that users are editing the currently available quantity</li>
+                <li>Helps distinguish available stock from the historical total carat amount</li>
+                <li>Supported across both gem and diamond inventory forms</li>
+            </ul>
+            <div class="highlight-box">
+                The updated labeling reduces confusion and provides a more intuitive editing experience.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Carat Summary During Inventory Editing</h2>
+            <p>Edit forms now provide a quick summary of carat distribution to give better visibility into inventory usage.</p>
+            <ul class="feature-list">
+                <li>Displays <strong>Sold Carats</strong>, <strong>Reserved Carats</strong>, and <strong>Total Carats</strong> directly below the Available Carats field</li>
+                <li>Provides a complete view of inventory allocation while editing</li>
+                <li>Eliminates the need to navigate to other screens to verify stock usage</li>
+                <li>Available across both gem and diamond inventory</li>
+            </ul>
+            <div class="highlight-box">
+                Users can now understand inventory availability and allocation at a glance while making updates.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
