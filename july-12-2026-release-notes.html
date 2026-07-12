@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">Tenant-controlled email notifications, stronger CSV import validation, more reliable split inventory media, clearer currency handling, and consignment workflow improvements.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                July 12, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128231;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Tenant-Controlled Email Notifications</h2>
+            <p>A new Settings page lets each tenant enable or disable automatic customer emails for key consignment and invoice events.</p>
+            <ul class="feature-list">
+                <li>New <strong>Settings &rarr; Email Notifications</strong> page to manage automatic customer emails</li>
+                <li>Per-event toggles for Memo Out Created, Cancelled, Partially Returned, and Returned</li>
+                <li>Invoice Created toggle reserved for future automatic sends</li>
+                <li>Automatic emails default to <strong>off</strong> and only send when the matching toggle is enabled</li>
+                <li>Manual <strong>Send Email</strong> actions always deliver, regardless of toggle settings</li>
+            </ul>
+            <div class="highlight-box">
+                Tenants now control which automatic emails go out, while manual sends remain available whenever needed.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Stronger CSV Import Validation</h2>
+            <p>Import-column alias preferences are now validated to prevent conflicting mappings and import errors.</p>
+            <ul class="feature-list">
+                <li>Aliases must be unique within each section</li>
+                <li>Validation rules adapt by module type</li>
+                <li>Improved schema support for string-array alias values</li>
+            </ul>
+            <div class="highlight-box">
+                CSV imports are more reliable, with clearer validation before conflicting column aliases can cause issues.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128247;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>More Reliable Inventory Media on Split</h2>
+            <p>Inventory media handling has been improved so split items retain their images correctly.</p>
+            <ul class="feature-list">
+                <li>Media URLs are normalized in diamond and gem inventory API responses</li>
+                <li>Split inventory now copies media objects so child items keep their images</li>
+                <li>Description and notes have been removed from inventory search filters</li>
+            </ul>
+            <div class="highlight-box">
+                Split inventory items now keep their media intact, reducing missing-image issues after stock splits.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128176;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Clearer Currency Handling for PDFs &amp; Emails</h2>
+            <p>Currency conversion for PDFs and emails has been reworked for consistency between live and tenant exchange rates.</p>
+            <ul class="feature-list">
+                <li>Exchange-rate retrieval supports a source option: <strong>live rates</strong> or <strong>tenant rates</strong></li>
+                <li>PDF and email currency conversion now follow the same conversion logic</li>
+                <li>Invoice footer display data is aligned with the selected conversion source</li>
+                <li>Same currency behavior across emails and PDFs</li>
+            </ul>
+            <div class="highlight-box">
+                Documents and emails now show currency amounts consistently, whether using live or tenant-configured rates.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128230;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Consignment (Memo Out) Improvements</h2>
+            <p>Consignment workflows now include better filtering, safer deletion rules, and partial-return email support.</p>
+            <ul class="feature-list">
+                <li>Multi-select status filtering on consignment listings</li>
+                <li>Deletion limited to consignments in <strong>cancelled</strong> status</li>
+                <li>Partial-return notification email when some items remain outstanding</li>
+                <li>Rich-text notes normalized for cleaner email content</li>
+                <li>Share button removed from Consignment detail pages</li>
+            </ul>
+            <div class="highlight-box">
+                Consignment management is safer and clearer, with better status control and improved return notifications.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#129309;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Partner Stone Capital Contribution UX</h2>
+            <p>Partner stone flows make capital contributions easier to enter, with clearer defaults and layout polish.</p>
+            <ul class="feature-list">
+                <li><strong>profitPercent</strong> is optional and defaults to 0</li>
+                <li>New capital contribution input with an amount-vs-percent toggle</li>
+                <li>Integrated into Add and Edit partner stone flows</li>
+                <li>Improved labels and layout for a clearer partnership setup experience</li>
+            </ul>
+            <div class="highlight-box">
+                Partner stone setup is more flexible, especially when capturing capital contributions and profit-sharing details.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Credit Notes &amp; Invoices</h2>
+            <p>Detail page actions and display polish for credit notes and invoices.</p>
+            <ul class="feature-list">
+                <li>Share button removed from Credit Note and Invoice detail pages</li>
+                <li>Uppercase display issue fixed</li>
+            </ul>
+            <div class="highlight-box">
+                Financial detail pages are cleaner, with more consistent text display.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#127991;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Exhibition Status Field Removed</h2>
+            <p>The persisted exhibition status field has been removed end-to-end for a simpler exhibition data model.</p>
+            <ul class="feature-list">
+                <li>Status field removed across migration, indexing, and application layers</li>
+                <li>Related enum, DTO, and service cleanup completed</li>
+            </ul>
+            <div class="highlight-box">
+                Exhibition records are simpler and no longer carry a redundant status field.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
