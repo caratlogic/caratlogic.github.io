@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2e7d32;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin: 26px 0 10px;
+            padding-bottom: 7px;
+            border-bottom: 1px solid #e8ece8;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .locate {
+            background: #f7faf8;
+            border: 1px solid #e8ece8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .locate span {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            margin-bottom: 2px;
+        }
+
+        .locate strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .stage-strip {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0;
+            margin-bottom: 18px;
+        }
+
+        .stage-strip li {
+            display: flex;
+            align-items: baseline;
+            gap: 7px;
+            padding: 7px 12px;
+            background: #f7faf8;
+            border: 1px solid #e8ece8;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #444;
+            white-space: nowrap;
+        }
+
+        .stage-strip li b {
+            font-size: 11px;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>Release Notes</h1>
+            <p class="subtitle">A new manufacturing register from rough to finished goods, per-feature activity log control, saved and resumable inventory tallies, cancellable memo out services, and in-app support.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                August 14, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#127981;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Manufacturing</h2>
+            <p>Follow a rough lot all the way from the supplier to finished goods. Record who worked it at every step, what it weighed going in and coming out, and exactly where the weight went. Gems and diamonds each get their own register.</p>
+
+            <div class="locate">
+                <span>Where to find it</span>
+                <strong>Manufacturing</strong> in the sidebar &mdash; Gem Manufacturing and Diamond Manufacturing.
+            </div>
+
+            <h3>Nine stages, one lot</h3>
+            <ul class="stage-strip">
+                <li><b>01</b> Rough</li>
+                <li><b>02</b> Sorting</li>
+                <li><b>03</b> Preforming</li>
+                <li><b>04</b> Cutting</li>
+                <li><b>05</b> Treatment</li>
+                <li><b>06</b> Polishing</li>
+                <li><b>07</b> Grading &amp; QC</li>
+                <li><b>08</b> Certification</li>
+                <li><b>09</b> Inventory</li>
+            </ul>
+            <p>Register a lot at the Rough stage and move it forward as work is completed. Nothing is forced &mdash; a lot can skip a stage that does not apply to your process, and stages you never fill in simply stay empty.</p>
+
+            <h3>What you record at each stage</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Stage</th><th>What it captures</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Rough</td><td>Carats, quantity, supplier, origin, cost price per carat, rough number, rough shape, visible inclusions</td></tr>
+                        <tr><td class="label">Sorting</td><td>Quality grade, rejected pieces</td></tr>
+                        <tr><td class="label">Preforming</td><td>Target shape</td></tr>
+                        <tr><td class="label">Cutting</td><td>Method, pieces produced</td></tr>
+                        <tr><td class="label">Treatment</td><td>Treatment type, temperature, duration, filler or oil used</td></tr>
+                        <tr><td class="label">Polishing</td><td>Table %, depth %, crown angle, pavilion angle, polish grade, symmetry grade</td></tr>
+                        <tr><td class="label">Grading &amp; QC</td><td>Colour, clarity, cut quality, QC passed</td></tr>
+                        <tr><td class="label">Certification</td><td>Lab reports &mdash; one or several per lot</td></tr>
+                        <tr><td class="label">Inventory</td><td>Final stock ID, final price</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Every stage also records the work itself: <strong>vendor, machine or tool, start and completion dates, time spent, quantity, weight in, weight out, weight loss, defects observed and notes</strong>. Vendor and supplier are picked from your business contacts rather than typed, and origin comes from your own material settings.</p>
+
+            <h3>Weights, numbering and custom fields</h3>
+            <ul class="feature-list">
+                <li><strong>Weights work themselves out.</strong> You only enter weight out &mdash; weight in is carried forward from the previous stage automatically, starting from the rough carats, and weight loss is calculated for you. Skip a stage and the chain still holds, picking up from the last weight actually recorded.</li>
+                <li><strong>Rough numbers are assigned for you.</strong> Leave the field blank and the next number in sequence is used, in the form <strong>RL-00001</strong>; type your own in and yours is used instead.</li>
+                <li>Gems and diamonds number independently, so both registers can hold an RL-00042 without clashing. Duplicates are caught regardless of capitalisation &mdash; RL-00001 and rl-00001 count as the same number.</li>
+                <li><strong>Your own fields</strong> can be added to any stage from the Custom fields panel: text, long text, email, phone, number, date, time, dropdown, radio buttons, checkbox, multi-select, toggle, image, file and documents-with-expiry. Gem and diamond registers keep separate field sets.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Set your fields up first.</strong> A lot takes a copy of your custom fields at the moment it is created. Adding or changing a field later applies to new lots only &mdash; existing lots keep the fields they were created with, and those can still be edited on the lot itself. If you are about to register a batch of lots, define your fields beforehand.
+            </div>
+
+            <h3>Certificates, timeline and the register</h3>
+            <ul class="feature-list">
+                <li><strong>Lab certificates.</strong> The Certification stage holds as many lab reports as a lot needs &mdash; each with the lab, report number, a link, an issue date, and the report files attached. Lots certified before this release carry their existing certificate across automatically.</li>
+                <li><strong>Traceability timeline.</strong> Open a lot and a timeline sits beside the stage form showing its full journey: each step it took, the date, the carats in and out, the loss, and the piece count. Skipped stages collapse &mdash; a lot that went straight from rough to cutting reads <strong>Rough &rarr; Cutting</strong>.</li>
+                <li><strong>The register at a glance.</strong> The lot list opens with four live figures for the material you are viewing: active lots, carat in pipeline, total carat loss and lots ready for inventory.</li>
+                <li>Filter by stage, and search by rough number, supplier, origin, rough shape or the notes and vendor recorded against any stage. Deleting a lot removes it from the register; the stage data you captured is retained.</li>
+            </ul>
+
+            <div class="highlight-box">
+                Rough to finished goods in one register, with weight loss accounted for at every step and full traceability on each lot.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Activity Log Management</h2>
+            <p>Activity logging is no longer all or nothing. Decide which parts of the system keep a record of who changed what and when, review that record feature by feature, and clear out history you no longer need to hold.</p>
+
+            <div class="locate">
+                <span>Where to find it</span>
+                <strong>Settings &rarr; Log Management</strong>. Available to administrators.
+            </div>
+
+            <h3>Twenty features, five groups</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Group</th><th>Features you can log</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Sales &amp; Billing</td><td>Invoice, Proforma, Credit Note, Quotation, Payment</td></tr>
+                        <tr><td class="label">Inventory</td><td>Gem Inventory, Diamond Inventory, Layout, Partner Stone, Inventory Tally</td></tr>
+                        <tr><td class="label">Consignment &amp; Procurement</td><td>Memo Out, Memo In, Purchase Order</td></tr>
+                        <tr><td class="label">Master Data</td><td>Business Contact, Warehouse</td></tr>
+                        <tr><td class="label">Configuration</td><td>Gem Settings, Diamond Settings, Warehouse Settings, Barcode Settings, Tenant Preference</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Each feature is a card with a switch and a line explaining what gets recorded, so it is clear what you are turning on before you turn it on.</p>
+
+            <h3>Making changes</h3>
+            <ul class="feature-list">
+                <li>Switch features on or off freely &mdash; nothing is applied until you press <strong>Save changes</strong>. A bar appears at the foot of the screen showing how many changes are waiting, with the option to discard them.</li>
+                <li>Search by name, or narrow the list to only what is currently on or off.</li>
+                <li><strong>Enable all</strong> and <strong>Disable all</strong> cover everything at once; each group also has its own turn-all-on and turn-all-off.</li>
+                <li>The header keeps a running count &mdash; <strong>14 of 20 on</strong> &mdash; alongside when the settings were last changed.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Switching a feature off</strong> stops new entries from being recorded. Everything already recorded stays exactly where it is and remains searchable. Clearing history is a separate action you have to choose deliberately.
+            </div>
+
+            <h3>Reviewing what happened</h3>
+            <ul class="feature-list">
+                <li>Each card links through to that feature's history: when it happened, what the action was, a plain summary of the change, and who made it.</li>
+                <li>Open a row to see the individual fields that changed, each as <strong>Field &middot; old value &rarr; new value</strong>, plus any notes and a reference code you can copy if you ever need to raise it with support.</li>
+                <li>Narrow the list by action, by user, or to a date range, and choose 25, 50 or 100 entries per page.</li>
+            </ul>
+
+            <h3>Clearing history</h3>
+            <ul class="feature-list">
+                <li><strong>Selected entries</strong> &mdash; tick the rows you want gone and delete just those.</li>
+                <li><strong>One feature</strong> &mdash; clear that feature's entire history. The confirmation makes clear this covers everything, not only the rows currently on screen.</li>
+                <li><strong>Everything</strong> &mdash; clear all history across all features in one action, from the main Log Management screen. Your logging settings are left untouched.</li>
+                <li>Every one of these is permanent and cannot be undone, so each is behind a confirmation that tells you exactly what will be removed. You are shown how many entries were deleted when it completes.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Not yet in the list.</strong> Manufacturing lots do keep an activity record, but Manufacturing is not yet one of the twenty features you can switch on and off here. It is on the way in a following update.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128290;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Saved Inventory Tallies</h2>
+            <p>A stock count is now a saved record rather than something living in one browser. Start a count on the shop floor, pick it up later at a desk, and keep the finished result to refer back to.</p>
+
+            <div class="locate">
+                <span>Where to find it</span>
+                <strong>Inventory Tally</strong> in the sidebar.
+            </div>
+
+            <h3>Every count is kept</h3>
+            <p>Each count gets its own reference (like <strong>TLY-25-1000</strong>) and records who started it, when, and the filters that set its scope. Items sit in three groups as you work:</p>
+            <ul class="feature-list">
+                <li><strong>Matched</strong> &mdash; counted, and agreeing with the system.</li>
+                <li><strong>Discrepancy</strong> &mdash; counted, but the carats found differ from the record.</li>
+                <li><strong>Pending</strong> &mdash; in scope, not yet counted.</li>
+                <li>More than one count can be open at a time, so two people can work two areas of the strongroom in parallel without treading on each other.</li>
+            </ul>
+
+            <h3>The count list</h3>
+            <ul class="feature-list">
+                <li>All your counts in one place, with tabs for gems and diamonds, a filter for in-progress versus completed, and search.</li>
+                <li>In-progress counts resume where you left off. Completed ones open read-only, so a finished count can be reviewed but never accidentally altered.</li>
+                <li>Counts you no longer want can be deleted.</li>
+            </ul>
+
+            <h3>Counting</h3>
+            <ul class="feature-list">
+                <li><strong>Built for a scanner.</strong> The scan field puts itself back in focus after every error or prompt, so an operator can keep scanning without reaching for the mouse. A scan that will not go through sounds an alert.</li>
+                <li><strong>Rejected scans tell you why.</strong> Scan something outside the count's scope and you are told which filter excluded it &mdash; for example, "Status is Reserved &mdash; the tally only counts Available" &mdash; instead of a flat refusal.</li>
+                <li><strong>Progress is always visible</strong> as <strong>142 of 380 tallied</strong> with a percentage and a bar split into matched, discrepancy and pending.</li>
+                <li><strong>Your work saves itself</strong> as you go. Navigating away asks whether you meant to, and either way nothing counted is lost.</li>
+                <li><strong>The scope locks once counting begins</strong> and can only be reopened by resetting the count, so the goalposts cannot move halfway through.</li>
+            </ul>
+
+            <h3>Counting parcels by carat</h3>
+            <p>Switch on <strong>Tally with carat input</strong> when you start a count and scanning a parcel or set lot asks how many carats are physically there &mdash; available and reserved. Enter less or more than the record shows, or accept the lot in full with one click. Single and pair items always match in full, so they are never interrupted. Anything that does not agree with the system lands in Discrepancy with both figures side by side.</p>
+
+            <h3>Finishing up</h3>
+            <ul class="feature-list">
+                <li><strong>Reset</strong> puts every item back to Pending and clears what was counted, keeping each item's details. The scope becomes editable again for a fresh start.</li>
+                <li><strong>Complete</strong> closes the count and timestamps it. It moves to your completed list, read-only from then on.</li>
+                <li><strong>Export to Excel</strong> produces a workbook with separate sheets for matched, discrepancy and not-tallied items, using your full gem or diamond column layout.</li>
+            </ul>
+
+            <div class="highlight-box">
+                Stock counts survive a closed browser, resume where they left off, and stay on record once completed.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128230;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Cancelling Services on a Memo Out</h2>
+            <p>Certification, handling and any other service billed alongside the stones can now be cancelled individually. A memo no longer stays open because of a charge you were never going to collect.</p>
+
+            <div class="locate">
+                <span>Where to find it</span>
+                The row menu beside any service line on a <strong>memo out</strong> detail page.
+            </div>
+
+            <h3>Cancelling a service</h3>
+            <p>Open the memo, find the service line, and choose <strong>Cancel service</strong> from its row menu. You are asked to confirm, with the service named and a reminder that it will come off the outstanding total. Once cancelled the line stays on screen &mdash; dimmed, marked <strong>Cancelled</strong>, with its amount greyed out &mdash; so you keep a record of what was originally sent out, but it no longer counts towards anything. The option is hidden once a memo has been cancelled or returned.</p>
+
+            <h3>What a cancelled service stops affecting</h3>
+            <ul class="feature-list">
+                <li>The memo's total.</li>
+                <li>The services subtotal on the memo screen.</li>
+                <li>The memo out PDF, where the line and its amount drop off.</li>
+                <li>The lines carried over when you convert the memo into an invoice.</li>
+            </ul>
+
+            <h3>Services that cancel themselves</h3>
+            <ul class="feature-list">
+                <li><strong>Returning a memo in full</strong> cancels its outstanding services &mdash; they are not carried onto the return.</li>
+                <li><strong>Invoicing a memo</strong> with its service lines included cancels them on the memo, so the memo can close cleanly. This applies whether you invoice all of it or part of it.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>When a memo now closes.</strong> A memo out is marked Returned once nothing is left outstanding on it &mdash; that is, once the remaining stones and any live service lines together come to zero. Previously it closed as soon as every stone was returned or invoiced, so a memo with all its stones back but a service still on it now stays open until that service is invoiced or cancelled. Return notification emails follow the same signal, so customers are notified when the memo genuinely closes.
+            </div>
+
+            <h3>More reliable returns</h3>
+            <p>Returning a memo was made more robust in the same update. If the return document or its notification email runs into trouble, the return itself still goes through &mdash; the paperwork catches up rather than the whole action failing.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128172;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Contact Support</h2>
+            <p>Getting help no longer means leaving the product to hunt for a form. Support is now one click away from any screen in Inventory.</p>
+
+            <div class="locate">
+                <span>Where to find it</span>
+                Your <strong>profile menu</strong>, below Profile and Roles.
+            </div>
+
+            <ul class="feature-list">
+                <li>Opens in a new tab, so whatever you were working on is left untouched.</li>
+                <li>You arrive already signed in &mdash; there is no second login to get through.</li>
+                <li>The issue types you are offered are scoped to Inventory, so you are choosing from things that actually relate to what you were doing rather than the full platform list.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#9888;</div>
+            <span class="tag tag-enhanced">Please note</span>
+            <h2>Things That Changed</h2>
+            <p>Three points worth passing on to your team before they notice them on their own.</p>
+            <ul class="feature-list">
+                <li><strong>Memo outs now close on value, not on stone count.</strong> A memo with every stone back but a live service line stays Not returned until that service is invoiced or cancelled. Anyone who bills services on memo should know about the new Cancel service action.</li>
+                <li><strong>Manufacturing custom fields apply to new lots only.</strong> Set your fields up before registering a batch of lots &mdash; adding one afterwards will not appear on lots that already exist.</li>
+                <li><strong>Turning off activity logging does not erase history.</strong> It only stops new entries. If you need past records gone, clear them explicitly &mdash; and note that clearing cannot be undone.</li>
+            </ul>
+            <div class="highlight-box">
+                Everything in this release is already live in your account &mdash; no action is needed to switch it on.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
