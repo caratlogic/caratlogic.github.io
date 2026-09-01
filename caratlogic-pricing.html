@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CaratLogic — Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<style>
+:root{
+  --primary:#2c6f4b; --primary-rgb:46,125,50; --cream:250,247,240;
+  --s900:#0F172A; --s700:#334155; --s600:#475569; --s500:#64748B; --s400:#94A3B8;
+  --s200:#E2E8F0; --s100:#F1F5F9; --s50:#F8FAFC;
+  --r2:1.125rem; --r3:1.375rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:#fff; color:var(--s900);
+  font-family:'Plus Jakarta Sans',ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; line-height:1.5;
+}
+.page{max-width:1240px; margin:0 auto; padding:0 40px}
+h1,h2,h3,p,ul{margin:0} ul{list-style:none; padding:0}
+
+/* header */
+.top{display:flex; align-items:center; justify-content:space-between; padding:34px 0 0}
+.top .logo{height:38px; width:auto; color:var(--s900); display:block}
+.top .meta{font-size:12px; font-weight:600; color:var(--s400); letter-spacing:.08em; text-transform:uppercase}
+
+/* hero */
+.hero{text-align:center; padding:56px 0 52px}
+.hero .kicker{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--primary); background:rgba(var(--primary-rgb),.09); border:1px solid rgba(var(--primary-rgb),.16);
+  padding:7px 15px; border-radius:999px; margin-bottom:20px}
+.hero h1{font-size:52px; font-weight:800; letter-spacing:-.025em; line-height:1.08; color:var(--s900)}
+.hero p{margin-top:14px; font-size:19px; color:var(--s500); font-weight:500}
+
+/* plan cards */
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:stretch}
+.card{position:relative; overflow:hidden; border-radius:var(--r3); padding:38px 34px 34px; display:flex; flex-direction:column;
+  background:linear-gradient(175deg, rgba(var(--primary-rgb),0.10) 0%, rgba(var(--primary-rgb),0.03) 40%, rgba(var(--cream),0.6) 100%);
+  border:1px solid rgba(var(--primary-rgb),0.10)}
+.card.hi{background:linear-gradient(175deg, rgba(var(--primary-rgb),0.18) 0%, rgba(var(--primary-rgb),0.06) 40%, rgba(var(--cream),0.7) 100%);
+  border:1.5px solid rgba(var(--primary-rgb),0.25); box-shadow:0 18px 46px -24px rgba(var(--primary-rgb),.45)}
+.badge{position:absolute; top:0; right:0; background:var(--primary); color:#fff; font-size:10px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; padding:7px 16px; border-bottom-left-radius:var(--r2); border-top-right-radius:var(--r3)}
+.pname{color:var(--s600); font-size:14px; font-weight:600; letter-spacing:.02em; margin-bottom:18px}
+.pricerow{display:flex; align-items:baseline; gap:1px; margin-bottom:10px; color:var(--s900)}
+.cur,.amt,.dot{font-size:44px; font-weight:800; letter-spacing:-.03em; line-height:1}
+.per{color:var(--s400); font-size:16px; font-weight:500; margin-left:7px}
+.pdesc{color:var(--s500); font-size:14px; font-weight:500; line-height:1.6; margin-bottom:26px; min-height:44px}
+.divider{height:1px; background:rgba(15,23,42,.10); margin-bottom:26px}
+.plist{display:flex; flex-direction:column; gap:14px; margin-bottom:32px; flex-grow:1}
+.plist li{display:flex; align-items:center; gap:11px; font-size:14px; font-weight:700; color:var(--s700)}
+.plist li b{font-weight:800; color:var(--s900)}
+.cta{margin-top:auto; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:7px; width:100%;
+  padding:15px 20px; border-radius:var(--r2); font-size:14px; font-weight:700; letter-spacing:.01em;
+  background:var(--s900); color:#fff}
+.cta.primary{background:var(--primary); box-shadow:0 10px 26px -10px rgba(var(--primary-rgb),.55)}
+
+/* check icon */
+.ck{width:19px; height:19px; flex:0 0 auto}
+.ck circle{fill:var(--primary)} .ck path{stroke:#fff}
+.ck.opt circle{fill:none; stroke:var(--primary); stroke-width:18} .ck.opt path{stroke:var(--primary)}
+.dash{display:inline-block; width:14px; height:2px; border-radius:2px; background:var(--s200)}
+
+/* comparison table */
+.compare{padding:86px 0 0}
+.shead{display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:26px; flex-wrap:wrap}
+.shead h2{font-size:32px; font-weight:800; letter-spacing:-.02em; color:var(--s900)}
+.shead .legend{display:flex; gap:20px; align-items:center; font-size:12.5px; font-weight:600; color:var(--s500)}
+.shead .legend span{display:flex; align-items:center; gap:7px}
+table{width:100%; border-collapse:collapse; border:1px solid var(--s200); border-radius:var(--r2); overflow:hidden}
+thead th{background:var(--s50); border-bottom:1px solid var(--s200); padding:16px 20px; text-align:center;
+  font-size:15px; font-weight:800; color:var(--s900); width:150px}
+thead th:first-child{text-align:left; width:auto; font-size:12px; font-weight:700; color:var(--s400);
+  letter-spacing:.12em; text-transform:uppercase}
+thead th .tp{display:block; font-size:12px; font-weight:600; color:var(--s500); margin-top:2px}
+thead th.hi{background:rgba(var(--primary-rgb),.07); color:var(--primary)}
+tr.grp th{background:#fff; border-top:1px solid var(--s200); border-bottom:1px solid var(--s200);
+  padding:13px 20px; text-align:left; font-size:11.5px; font-weight:800; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--primary)}
+tr.grp th .hint{float:right; text-transform:none; letter-spacing:0; font-weight:600; color:var(--s400); font-size:12px}
+tbody th{text-align:left; padding:15px 20px; font-weight:400; border-bottom:1px solid var(--s100)}
+tbody td{text-align:center; padding:15px 20px; border-bottom:1px solid var(--s100); vertical-align:middle}
+tbody td b{font-size:13.5px; font-weight:800; color:var(--s900)}
+tbody tr:last-child th, tbody tr:last-child td{border-bottom:0}
+tbody tr.scope{background:var(--s50)}
+.fn{display:block; font-size:14.5px; font-weight:700; color:var(--s900)}
+.fd{display:block; font-size:12.5px; font-weight:500; color:var(--s500); margin-top:2px; line-height:1.45}
+.foot{margin-top:14px; font-size:12.5px; color:var(--s400); font-weight:500}
+
+/* kyc */
+.kyc{margin-top:88px; border-radius:var(--r3); padding:46px 44px;
+  background:linear-gradient(175deg, rgba(var(--primary-rgb),0.13) 0%, rgba(var(--primary-rgb),0.04) 45%, rgba(var(--cream),0.65) 100%);
+  border:1px solid rgba(var(--primary-rgb),0.14)}
+.kyc .tagline{font-size:11px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--primary)}
+.kyc h2{font-size:30px; font-weight:800; letter-spacing:-.02em; margin-top:9px; color:var(--s900)}
+.kyc .lede{margin-top:11px; font-size:15px; color:var(--s600); font-weight:500; max-width:74ch; line-height:1.65}
+.kgrid{display:grid; grid-template-columns:1fr 1fr; gap:16px 34px; margin-top:30px}
+.kgrid li{display:flex; gap:11px; align-items:flex-start}
+.kgrid .kt{display:block; font-size:14px; font-weight:700; color:var(--s900)}
+.kgrid .kd{display:block; font-size:12.5px; font-weight:500; color:var(--s500); margin-top:2px; line-height:1.5}
+
+/* footer */
+.foot-cta{margin:74px 0 0; padding:34px 0 46px; border-top:1px solid var(--s200);
+  display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap}
+.foot-cta h3{font-size:20px; font-weight:800; color:var(--s900)}
+.foot-cta p{font-size:14px; color:var(--s500); font-weight:500; margin-top:5px}
+.foot-cta .contact{text-align:right; font-size:14px; font-weight:700; color:var(--primary)}
+.foot-cta .contact a{display:block; color:var(--primary); text-decoration:none}
+.foot-cta .contact a.mail{color:var(--s500); font-weight:600; font-size:13px; margin-top:2px}
+.foot-cta .contact span{display:block; font-size:12px; font-weight:600; color:var(--s400); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px}
+
+@media print{
+  @page{size:A3 portrait; margin:12mm}
+  body{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .compare,.kyc{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <div class="logo-wrap"><svg class="logo" role="img" aria-label="CaratLogic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 1000 331.8" xml:space="preserve">
+<style type="text/css">
+	.cl-st0{fill:url(#cl-grad-0);}
+	.cl-st4{enable-background:new    ;}
+	.cl-st5{fill:currentColor;}
+</style>
+<g>
+	<g>
+			<linearGradient id="cl-grad-0" gradientUnits="userSpaceOnUse" x1="0" y1="1828.05" x2="267.7" y2="1828.05" gradientTransform="matrix(1 0 0 1 0 -1666)">
+			<stop  offset="0" style="stop-color:#198E48"/>
+			<stop  offset="1" style="stop-color:#30754E"/>
+		</linearGradient>
+		<polygon class="cl-st0" points="267.7,0 93.1,0 0,84.1 208,324.1 208,228.8 86.7,84.1 115.6,56.5 213.2,56.5 		"/>
+			<linearGradient id="cl-grad-1" gradientUnits="userSpaceOnUse" x1="73.2" y1="1813.3" x2="219.4" y2="1813.3" gradientTransform="matrix(1 0 0 1 0 -1666)">
+			<stop  offset="0" style="stop-color:#33B568"/>
+			<stop  offset="1" style="stop-color:#1B4C2F"/>
+		</linearGradient>
+		<polygon style="fill:url(#cl-grad-1);" points="108.3,50 73.2,83.4 208,244.6 
+			208.4,229.2 87.1,84.5 116,56.9 213.5,56.9 219.4,50 		"/>
+	</g>
+	<g>
+			<linearGradient id="cl-grad-2" gradientUnits="userSpaceOnUse" x1="216.7" y1="1828.05" x2="342.7" y2="1828.05" gradientTransform="matrix(1 0 0 1 0 -1666)">
+			<stop  offset="0" style="stop-color:#198E48"/>
+			<stop  offset="1" style="stop-color:#30754E"/>
+		</linearGradient>
+		<polygon style="fill:url(#cl-grad-2);" points="282.4,0 216.7,65.6 216.7,324.1 
+			342.7,182.4 342.7,89 281.1,166.5 		"/>
+			<linearGradient id="cl-grad-3" gradientUnits="userSpaceOnUse" x1="323.3821" y1="1709.8599" x2="253.1623" y2="1788.1799" gradientTransform="matrix(1 0 0 1 0 -1666)">
+			<stop  offset="0" style="stop-color:#33B568"/>
+			<stop  offset="1" style="stop-color:#1B4C2F"/>
+		</linearGradient>
+		<polygon style="fill:url(#cl-grad-3);" points="274.5,7.9 273.3,190.2 
+			342.7,103.6 342.7,89 281.1,166.5 282.4,0 		"/>
+	</g>
+</g>
+<g class="cl-st4">
+	<path class="cl-st5" d="M484.1,129.9l2.2,26.9c-12.7,8.4-24.6,10.7-43.1,10.7c-36.3,0-59.8-25.8-59.8-62.2c0-36.5,23.4-62.2,59.8-62.2
+		c17.7,0,32.2,1.7,43.1,10.5l-2.2,26.9h-2.6c-7.2-25.8-21.5-34.8-38.2-34.8c-18.6,0-33.2,10-33.2,59.6c0,50.1,15.2,59.6,33.2,59.6
+		c17.2,0,35-12.4,38.2-35H484.1z"/>
+	<path class="cl-st5" d="M607.2,165.9H563v-2.6c11.4,0,6-14.1,4-18.9l-5.5-13.8h-42.7c-2.4,6.9-11.5,33.8,14.1,32.7v2.6h-40.5v-2.6
+		c5.5-0.2,9.8,0,25.7-40.1l29.5-78.5h2.2c31.7,76,43.2,105.4,43.2,105.4c5.7,13.8,9.6,12.9,14.3,13.3L607.2,165.9L607.2,165.9z
+		 M560.4,128L539,74.3L519.2,128H560.4z"/>
+	<path class="cl-st5" d="M726.9,165.9h-14.5c-26.5-0.2-22.9-0.2-33.9-37.5c-5.2-17.9-21.9-17.9-24.1-17.9h-8.1v36
+		c0,11.9,4.8,16.9,12.1,16.9v2.6H614v-2.6c7.4,0,11.5-4.8,11.5-17.9V61.6c0-10.7-4-14.3-11.5-14.3v-2.6h37.7c34.3,0,56,4.1,56,32.9
+		c0,22.2-13.4,29.6-32.9,31.3c11.4-0.3,24.1,4,32.7,38.4c3.4,13.1,15,15.7,19.5,16L726.9,165.9L726.9,165.9z M651.7,47.3h-5.3v60.6
+		h5.3c18.3,0,32.4,0,32.4-30.3C684.1,46.9,669.3,47.3,651.7,47.3z"/>
+	<path class="cl-st5" d="M845.8,165.9h-44.3v-2.6c11.4,0,6-14.1,4-18.9l-5.5-13.8h-42.7c-2.4,6.9-11.5,33.8,14.1,32.7v2.6h-40.5v-2.6
+		c5.5-0.2,9.8,0,25.7-40.1L786,44.7h2.2c31.7,76,43.2,105.4,43.2,105.4c5.7,13.8,9.6,12.9,14.3,13.3L845.8,165.9L845.8,165.9z
+		 M798.9,128l-21.4-53.7L757.8,128H798.9z"/>
+	<path class="cl-st5" d="M951.5,44.7v32.6H949c-1-29.5-33.8-30-35-30h-6.7v99.9c0,11.5,6.4,16.2,13.6,16.2v2.6h-48.2v-2.6
+		c7.2,0,13.6-4.7,13.6-16.2V47.3h-6.7c-2.6,0-33.8,0.5-34.8,30h-2.6V44.7H951.5z"/>
+</g>
+<g class="cl-st4">
+	<path class="cl-st5" d="M446.7,243.7v23.9H388v-1.7c4.7,0,6.9-4.5,6.9-12v-52.7c0-6.7-3.1-9.6-7.8-9.6V190h30.5v1.7
+		c-4.7,0-9.1,1.9-9.1,9.8v64.4h4c5.9,0,29.9,0,32.7-22.3h1.5V243.7z"/>
+	<path class="cl-st5" d="M551.6,268.6c-24.2,0-36.9-17.3-36.9-39.2c0-21.8,12.7-40.3,36.9-40.3s36.9,18.5,36.9,40.3
+		C588.5,251.3,575.8,268.6,551.6,268.6z M551.6,190.7c-13.1,0-21.1,8.5-21.1,38.7c0,30.3,8,37.6,21.1,37.6c13,0,20.9-7.3,20.9-37.6
+		C572.5,199.2,564.6,190.7,551.6,190.7z"/>
+	<path class="cl-st5" d="M727.6,236.7v1.7c-6.4,0-7.5,1.5-7.5,25.6c-6.8,2.6-16.5,4.6-28.3,4.6c-23.8,0-37.6-17.8-37.6-39.8
+		c0-21.9,13.8-39.8,37.6-39.8c12.3,0,21,1.5,27.9,6.1l-0.8,18.3h-3.1c-2.4-17.7-11-22.7-24-22.7c-12.6,0-20.4,7.8-20.4,38.1
+		s8,38.1,20.4,38.1c12.9,0,16.4-2.3,16.4-12.3c0-15.8-2.3-16.2-9.1-16.2v-1.7L727.6,236.7L727.6,236.7z"/>
+	<path class="cl-st5" d="M822.9,190v1.7c-4.7,0-8.6,2.4-8.6,9.3v54c0,7.5,4,10.9,8.6,10.9v1.7h-30.7v-1.7c4.7,0,8.6-3.4,8.6-10.9v-54.1
+		c0-6.8-3.7-9.3-8.6-9.3V190H822.9z"/>
+	<path class="cl-st5" d="M952.5,244.6l1.4,17.2c-8.2,5.4-15.8,6.8-27.5,6.8c-23.2,0-38.2-16.5-38.2-39.8c0-23.4,15-39.8,38.2-39.8
+		c11.3,0,20.6,1.1,27.5,6.7l-1.4,17.2h-1.7c-4.6-16.5-13.8-22.3-24.5-22.3c-11.9,0-21.3,6.4-21.3,38.1c0,32.1,9.7,38.1,21.3,38.1
+		c11,0,22.4-7.9,24.5-22.4h1.7V244.6z"/>
+</g>
+</svg></div>
+    <span class="meta">Pricing &middot; 2026</span>
+  </div>
+
+  <section class="hero">
+    <span class="kicker">Inventory management for the gem &amp; diamond trade</span>
+    <h1>Simple pricing. Every feature included.</h1>
+    <p>Choose your stone program and your team size &mdash; the platform itself is never cut down.</p>
+  </section>
+
+  <section class="cards">
+
+      <article class="card">
+        
+        <p class="pname">Basic Package</p>
+        <div class="pricerow"><span class="cur">&euro;</span><span class="amt">150</span><span class="dot">.00</span><span class="per">/Month</span></div>
+        <p class="pdesc">One stone program for a small desk.</p>
+        <div class="divider"></div>
+        <ul class="plist">
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gem <b>or</b> Diamond module</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Up to <b>3</b> active users</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All 9 core platform features</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Custom roles &amp; permissions</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited stones &amp; documents</span></li>
+        </ul>
+        <a class="cta" href="https://caratlogic.com/contact">Book a Demo <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+
+      <article class="card">
+        
+        <p class="pname">Standard Package</p>
+        <div class="pricerow"><span class="cur">&euro;</span><span class="amt">200</span><span class="dot">.00</span><span class="per">/Month</span></div>
+        <p class="pdesc">One stone program for a full team.</p>
+        <div class="divider"></div>
+        <ul class="plist">
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gem <b>or</b> Diamond module</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Up to <b>7</b> active users</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All 9 core platform features</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Custom roles &amp; permissions</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited stones &amp; documents</span></li>
+        </ul>
+        <a class="cta" href="https://caratlogic.com/contact">Book a Demo <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+
+      <article class="card hi">
+        <span class="badge">Most complete</span>
+        <p class="pname">Premium Package</p>
+        <div class="pricerow"><span class="cur">&euro;</span><span class="amt">250</span><span class="dot">.00</span><span class="per">/Month</span></div>
+        <p class="pdesc">Both stone programs, plus compliance.</p>
+        <div class="divider"></div>
+        <ul class="plist">
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gem <b>and</b> Diamond modules</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Up to <b>7</b> active users</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All 17 platform features</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>KYC application</b> included</span></li>
+          <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited stones &amp; documents</span></li>
+        </ul>
+        <a class="cta primary" href="https://caratlogic.com/contact">Book a Demo <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </article>
+  </section>
+
+  <section class="compare">
+    <div class="shead">
+      <h2>What each plan includes</h2>
+      <div class="legend">
+        <span><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg> Included</span>
+        <span><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg> In the module you choose</span>
+        <span><span class="dash" aria-hidden="true"></span> Not included</span>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Basic<span class="tp">&euro;150/mo</span></th>
+          <th>Standard<span class="tp">&euro;200/mo</span></th>
+          <th class="hi">Premium<span class="tp">&euro;250/mo</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="scope">
+          <th scope="row"><span class="fn">Inventory modules</span><span class="fd">Which stone programs run inside your company.</span></th>
+          <td><b>Gem or Diamond</b></td>
+          <td><b>Gem or Diamond</b></td>
+          <td><b>Gem + Diamond</b></td>
+        </tr>
+        <tr class="scope">
+          <th scope="row"><span class="fn">Active users</span><span class="fd">Named people who can sign in, each with their own role.</span></th>
+          <td><b>3</b></td><td><b>7</b></td><td><b>7</b></td>
+        </tr>
+        <tr class="scope">
+          <th scope="row"><span class="fn">KYC application</span><span class="fd">Customer &amp; supplier onboarding, sharing the same login.</span></th>
+          <td><span class="dash" aria-hidden="true"></span></td><td><span class="dash" aria-hidden="true"></span></td><td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr class="grp"><th colspan="4">Gem Module<span class="hint">4 features</span></th></tr>
+
+        <tr>
+          <th scope="row"><span class="fn">Gem Inventory Management</span><span class="fd">Manage and track your complete gem inventory.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Gem Settings</span><span class="fd">Manage gem attributes such as type, color, shape, and more.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Gem Barcode Settings</span><span class="fd">Configure barcode settings for gems.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Gem Manufacturing</span><span class="fd">Manage gem manufacturing processes, lots, and production stages.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr class="grp"><th colspan="4">Diamond Module<span class="hint">4 features</span></th></tr>
+
+        <tr>
+          <th scope="row"><span class="fn">Diamond Inventory Management</span><span class="fd">Manage and track your complete diamond inventory.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Diamond Settings</span><span class="fd">Manage diamond attributes such as shape, color, polish, and more.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Diamond Barcode Settings</span><span class="fd">Configure barcode settings for diamonds.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Diamond Manufacturing</span><span class="fd">Manage diamond manufacturing processes, lots, and production stages.</span></th>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck opt" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr class="grp"><th colspan="4">Core Platform &mdash; in every plan<span class="hint">9 features</span></th></tr>
+
+        <tr>
+          <th scope="row"><span class="fn">Business Contacts</span><span class="fd">Manage customers, partners, suppliers, and other business contacts.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Sales Management</span><span class="fd">Access and manage invoices, quotations, and consignments.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Payments</span><span class="fd">Record and track payments made against invoices.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Customer Wallets</span><span class="fd">Log manual debits and credits for each customer account.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Email Template Configuration</span><span class="fd">Configure and update the email templates used by the system.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Purchase Management</span><span class="fd">Create and manage purchase orders, suppliers, and purchase statuses.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Warehouse Management</span><span class="fd">Manage inventory, stock movements, and warehouse operations in real time.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Email Notifications</span><span class="fd">Toggle automatic customer emails for invoices and memo out events.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="fn">Log Management</span><span class="fd">Choose which features record an audit trail, and review or delete recorded logs.</span></th>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="foot">Basic and Standard licence one stone program &mdash; gem or diamond. Premium runs both in the same company. Every plan includes all nine core platform features, with no caps on stones, invoices, documents or exports.</p>
+  </section>
+
+  <section class="kyc">
+    <span class="tagline">Included with Premium</span>
+    <h2>The KYC Application</h2>
+    <p class="lede">A separate compliance product that sits alongside the inventory system and shares the same login. Design your own due-diligence questionnaires, invite counterparties by email to a secure browser portal with no account to create, and move each submission through review to approval &mdash; with chasing, renewal and document-expiry alerts running on their own.</p>
+    <ul class="kgrid">
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Build your own KYC forms</span><span class="kd">Supplier, partner, broker or customer questionnaires with 15 question types.</span></span></li>
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Ready-made supplier template</span><span class="kd">An eight-page questionnaire covering licences, financials, supply chain and RJC compliance.</span></span></li>
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Email invites, no login</span><span class="kd">Contacts complete the form in a secure browser portal with a one-time emailed passcode.</span></span></li>
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Secure document upload</span><span class="kd">Licences, certificates and incorporation papers go straight into private encrypted storage.</span></span></li>
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Ten-stage review workflow</span><span class="kd">Move each submission to Approved, Conditionally Approved, Rejected or More Info Required.</span></span></li>
+      <li><svg class="ck full" viewBox="0 0 256 256" aria-hidden="true"><circle cx="128" cy="128" r="112"/><path d="M177.6 94.4 116 156l-37.6-37.6" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="kt">Automated chase &amp; renewal</span><span class="kd">Unfinished KYC is chased on your cadence; documents raise expiry alerts before they lapse.</span></span></li>
+    </ul>
+  </section>
+
+  <div class="foot-cta">
+    <div>
+      <h3>See it against your own stock</h3>
+      <p>We load a sample of your parcels and run a live session on your data &mdash; gem, diamond, or both.</p>
+    </div>
+    <div class="contact"><span>Book a demo</span><a href="https://caratlogic.com/contact">caratlogic.com/contact</a><a class="mail" href="mailto:hello@caratlogic.com">hello@caratlogic.com</a></div>
+  </div>
+
+</div>
+</body>
+</html>
