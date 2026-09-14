@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic KYC - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic">
+            </div>
+            <h1>KYC &mdash; Release Notes</h1>
+            <p class="subtitle">Introducing CaratLogic KYC, a new product for collecting and reviewing Know Your Customer information from your business contacts. This release adds a notification centre, submission email alerts, bulk invitations, repeat and annual KYC cycles, and role-based access.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                September 14, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128276;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Notification Centre in the Dashboard</h2>
+            <p>The bell in the top bar shows an unread count and opens a panel listing recent activity.</p>
+            <ul class="feature-list">
+                <li>A <strong>KYC review required</strong> notification appears every time a business contact submits their KYC</li>
+                <li>Each notification names the company and the contact who submitted</li>
+                <li>Mark items read or unread one at a time, or clear the whole list in a single action</li>
+                <li>Read state is tracked per user, so marking something read doesn't change the list for colleagues</li>
+            </ul>
+            <div class="highlight-box">
+                Submissions surface in the dashboard as they arrive, with each reviewer keeping their own view of what's been read.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128231;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Email Alerts When a Contact Submits</h2>
+            <p>Nominate the colleagues who should be emailed the moment a contact submits their KYC.</p>
+            <ul class="feature-list">
+                <li>A new settings page to add, edit and remove recipient addresses</li>
+                <li>Everyone on the list receives the same alert</li>
+                <li>The email names the contact, their company and the submission status, and links straight to the review screen</li>
+                <li>Separate from the confirmation email the contact receives</li>
+                <li>No alerts are sent until you add the first recipient</li>
+            </ul>
+            <div class="highlight-box">
+                Reviewers hear about a submission without having to watch the dashboard.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128233;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Bulk KYC Invitations</h2>
+            <p>Select several business contacts from the list and send KYC invitations to all of them in one action.</p>
+            <ul class="feature-list">
+                <li>Up to <strong>100 contacts</strong> per send</li>
+                <li>Choose which form and version to send, exactly as with a single invitation</li>
+                <li>Each contact is reported back individually, so you can see which invitations went out and which need another attempt</li>
+            </ul>
+            <div class="highlight-box">
+                Onboarding a whole book of contacts no longer means sending invitations one at a time.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128279;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Links That Last</h2>
+            <p>Verification links now stay valid for <strong>30 days</strong> instead of 30 minutes.</p>
+            <ul class="feature-list">
+                <li>Applies to both invitation emails and reminder emails</li>
+                <li>A contact who doesn't reach the form straight away no longer has to ask for a fresh link</li>
+            </ul>
+            <div class="highlight-box">
+                Fewer expired-link requests, and fewer invitations that have to be resent.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128220;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Full Submission History</h2>
+            <p>A business contact can now complete KYC more than once on the same form, and every submission is kept.</p>
+            <ul class="feature-list">
+                <li>Previously the latest record replaced what came before</li>
+                <li>You can now look back at what a contact submitted in earlier rounds</li>
+            </ul>
+            <div class="highlight-box">
+                Repeat and annual KYC now build a record over time instead of overwriting it.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-new">New</span>
+            <h2>New Cycles Start on Their Own</h2>
+            <p>Once a KYC is closed &mdash; submitted, approved, conditionally approved, rejected or expired &mdash; the next time the contact opens their portal they begin a fresh cycle.</p>
+            <ul class="feature-list">
+                <li>The new cycle is prefilled with their previous answers, so they only need to update what has changed</li>
+                <li>A KYC that is still in progress simply carries on where it left off, exactly as before</li>
+            </ul>
+            <div class="highlight-box">
+                Annual renewals start themselves, with no re-keying of information that hasn't changed.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Submissions List for Reviewers</h2>
+            <p>A paginated list of submissions for working through a review queue.</p>
+            <ul class="feature-list">
+                <li>Narrow to a single contact, a particular form, or one or more KYC statuses</li>
+                <li>Show only those that have actually been submitted</li>
+                <li>Doubles as the submission history for an individual contact</li>
+            </ul>
+            <div class="highlight-box">
+                One screen for both the review queue and a contact's past submissions.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#128269;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Filter by Several Statuses at Once</h2>
+            <p>The contact list now accepts more than one KYC status in the filter.</p>
+            <ul class="feature-list">
+                <li>Combine statuses such as <strong>Submitted</strong> and <strong>Resubmitted</strong> in a single view</li>
+                <li>Replaces filtering by one status at a time</li>
+            </ul>
+            <div class="highlight-box">
+                Everything awaiting attention can be seen in one list.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#128272;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Role-Based Access</h2>
+            <p>Access is now controlled per area: Dashboard, KYC Forms, Settings, and Email Template Configuration.</p>
+            <ul class="feature-list">
+                <li>Each area can be set to <strong>no access</strong>, <strong>view only</strong>, or <strong>full access</strong></li>
+                <li>Users without access don't see the screen at all</li>
+                <li>Users with view-only access can open the screen, but its controls are disabled</li>
+            </ul>
+            <div class="highlight-box">
+                Sensitive KYC data and configuration can be limited to the people who need them.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Product Switcher</h2>
+            <p>A switcher in the top bar for moving between CaratLogic products without signing in again.</p>
+            <div class="highlight-box">
+                KYC sits alongside your other CaratLogic products, one sign-in away.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">11</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Settings Split into Dedicated Pages</h2>
+            <p>Reminder settings and email setup are now separate pages rather than tabs.</p>
+            <ul class="feature-list">
+                <li>Each sits alongside the new submission alert recipients page</li>
+            </ul>
+            <div class="highlight-box">
+                Settings are easier to find now that each area has its own page.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">12</div>
+            <div class="feature-icon">&#10024;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Smaller Improvements</h2>
+            <ul class="feature-list">
+                <li>Light and dark theme toggle on the public KYC form, so contacts can pick either</li>
+                <li>The business contact add and edit screens were reorganised, with consistent country and state selectors</li>
+                <li>Refreshed branding and logo across the platform</li>
+                <li>Fixed downloading documents from the KYC review screen</li>
+                <li>Fixed the footer on the public KYC form</li>
+                <li>The submission success screen now returns the contact to the home page</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory-dev.caratlogic.com/assets/caratlogic_logo-CIyUjQ8O.png" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
