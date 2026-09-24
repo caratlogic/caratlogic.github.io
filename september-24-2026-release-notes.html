@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .shot {
+            margin-top: 20px;
+        }
+
+        .shot a {
+            display: block;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fafbfa;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .shot figcaption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Inventory &mdash; Release Notes</h1>
+            <p class="subtitle">This release adds configurable line descriptions for documents, bulk import templates built from each tenant's own settings, source tracking for Memo In inventory, wider audit history, and consistent country field names.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                September 24, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128221;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Custom Line Description Configuration</h2>
+            <p>Default item descriptions can now be configured directly from the Default Template settings.</p>
+            <ul class="feature-list">
+                <li>Select up to <strong>5 inventory fields</strong> to make up the line description for gems and diamonds</li>
+                <li>Fields can be selected and ordered independently for <strong>Invoices</strong>, <strong>Quotations</strong>, <strong>Memo Out</strong>, and <strong>Memo Returns</strong></li>
+                <li>Supports standard inventory fields as well as custom fields</li>
+                <li>Empty values and &ldquo;-&rdquo; placeholders are automatically skipped, while certificate fields use the first available certificate value</li>
+                <li>Manually entered descriptions are always preserved and are never overwritten</li>
+            </ul>
+            <figure class="shot">
+                <a href="september-24-2026-images/line-description-fields.jpg" target="_blank"><img src="september-24-2026-images/line-description-fields.jpg" alt="Template Settings page showing Line Description Fields for Gem and Diamond with Customize buttons" loading="lazy"></a>
+                <figcaption>Line Description Fields in Template Configurations &rarr; Defaults</figcaption>
+            </figure>
+            <figure class="shot">
+                <a href="september-24-2026-images/gem-description-fields.jpg" target="_blank"><img src="september-24-2026-images/gem-description-fields.jpg" alt="Gem Description Fields panel with Stock ID, CaratLogic ID and Gem Type selected" loading="lazy"></a>
+                <figcaption>Choosing and ordering gem description fields</figcaption>
+            </figure>
+            <div class="highlight-box">
+                Default descriptions now provide more flexibility while keeping manually entered customer-specific descriptions intact.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Tenant-Specific Bulk Import Templates</h2>
+            <p>Gem and diamond bulk import templates now automatically reflect each tenant's inventory configuration.</p>
+            <ul class="feature-list">
+                <li><strong>Download Template</strong> now generates the Excel template based on the tenant's own attribute settings</li>
+                <li>Dropdown values are populated using the tenant's configured inventory attributes</li>
+                <li>Custom fields are included in the generated template</li>
+                <li>Bulk imports now support importing values for custom fields</li>
+                <li>Custom field columns are matched and displayed during import validation</li>
+            </ul>
+            <div class="highlight-box">
+                Bulk imports are now better aligned with each tenant's inventory setup, reducing manual template adjustments before importing data.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Improved Memo In Tracking &amp; Search</h2>
+            <p>Memo In workflows now provide better visibility into the source of inventory and more flexible search options.</p>
+            <ul class="feature-list">
+                <li>Gem and diamond detail pages now show whether the inventory originated from <strong>Memo In</strong> or <strong>Purchase</strong></li>
+                <li>Source information includes a direct link to the related Memo In or Purchase record</li>
+                <li>Memo In search now supports <strong>Memo In Number</strong>, <strong>Supplier Name</strong>, <strong>Supplier Email</strong> and <strong>Stock ID</strong></li>
+                <li>Search placeholder updated to indicate Stock ID support</li>
+            </ul>
+            <div class="highlight-box">
+                Teams can now trace inventory back to its source and locate Memo In records using the information they already have.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128338;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Expanded Audit History</h2>
+            <p>Audit history now captures changes to custom inventory fields and provides additional event information.</p>
+            <ul class="feature-list">
+                <li>Changes to custom fields on gems and diamonds are now recorded during creation and editing</li>
+                <li>Audit entries now include event and customer information</li>
+                <li>Internal KYC workflow events are excluded from audit history</li>
+                <li>Relevant customer and contact events remain visible for users</li>
+            </ul>
+            <div class="highlight-box">
+                Audit history now provides a more complete record of inventory and customer-related changes without exposing internal workflow events.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Standardized Origin &amp; Manufacturing Country Fields</h2>
+            <p>Inventory field names have been standardized across the platform to provide consistent terminology.</p>
+            <ul class="feature-list">
+                <li><strong>Origin / Origins</strong> is now displayed as <strong>Origin Country</strong></li>
+                <li><strong>Mine</strong> on diamond inventory is now displayed as <strong>Manufacturing Country</strong></li>
+                <li>Updated across inventory tables, detail pages, filters, and column preferences</li>
+                <li>Changes also apply to barcode fields, role-based column restrictions, import templates, import aliases, dashboards, and document line items</li>
+            </ul>
+            <div class="highlight-box">
+                Field naming is now consistent across inventory, reporting, imports, and customer-facing documents.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
