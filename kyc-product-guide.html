@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic KYC - Product Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        /* Section headings */
+        .section-head {
+            margin: 48px 0 20px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-head .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: #2e7d32;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-head h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin: 4px 0 8px;
+        }
+
+        .section-head p {
+            font-size: 15px;
+            color: #555;
+            max-width: 720px;
+        }
+
+        /* Cards */
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            position: relative;
+            scroll-margin-top: 20px;
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 8px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 60px;
+        }
+
+        .feature-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 18px 0 6px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 8px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 6px 0 6px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong,
+        .steps li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Numbered steps */
+        .steps {
+            list-style: none;
+            counter-reset: step;
+            padding: 0;
+            margin-bottom: 8px;
+        }
+
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 6px 0 6px 38px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background: #2e7d32;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warn-box {
+            background: #fff8e1;
+            border-left: 3px solid #f9a825;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #7a5a00;
+            line-height: 1.6;
+        }
+
+        /* Screenshots */
+        .shot {
+            margin-top: 20px;
+        }
+
+        .shot a {
+            display: block;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fafbfa;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .shot.narrow a {
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .shot figcaption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* Table of contents */
+        .toc {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 8px 24px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            background: #f0f7f3;
+            color: #2e7d32;
+        }
+
+        .toc span {
+            color: #2e7d32;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 10px 12px;
+            border-bottom: 2px solid #e8ece8;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eef1ee;
+            color: #444;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .s-grey { background: #eef1f4; color: #546e7a; }
+        .s-orange { background: #fff3e0; color: #e65100; }
+        .s-blue { background: #e3f2fd; color: #1565c0; }
+        .s-red { background: #ffebee; color: #c62828; }
+        .s-green { background: #e8f5e9; color: #2e7d32; }
+
+        kbd {
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            background: #f3f5f3;
+            border: 1px solid #e0e5e0;
+            border-radius: 5px;
+            padding: 1px 6px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        @media (max-width: 640px) {
+            .header-content,
+            .container {
+                padding: 0 16px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .section-head h2 {
+                font-size: 22px;
+            }
+
+            .feature-card {
+                padding: 24px 20px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>KYC &mdash; Product Guide</h1>
+            <p class="subtitle">A step-by-step guide for new users. CaratLogic KYC collects and verifies information from anyone you work with: customers (KYC), suppliers (KYS), employees (KYE), vendors, partners and more. Learn how to build your own forms, send them out, review what comes back, and keep records current.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                Beginner's guide &middot; September 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Contents -->
+        <div class="feature-card">
+            <h3>In this guide</h3>
+            <ul class="toc">
+                <li><a href="#basics"><span>0</span>KYC basics &amp; getting started</a></li>
+                <li><a href="#dashboard"><span>1</span>Dashboard</a></li>
+                <li><a href="#contact-side"><span>2</span>What your contact sees</a></li>
+                <li><a href="#review"><span>3</span>Review Submissions</a></li>
+                <li><a href="#forms"><span>4</span>Forms Management</a></li>
+                <li><a href="#settings"><span>5</span>Settings</a></li>
+                <li><a href="#templates"><span>6</span>Email Template Configuration</a></li>
+                <li><a href="#faq"><span>7</span>Common questions</a></li>
+            </ul>
+            <div class="highlight-box">
+                Screenshots come from our test environment, so names and numbers in them are sample data. Some screens may look slightly different in your account as the product is updated.
+            </div>
+        </div>
+
+        <!-- 0. Basics -->
+        <div class="section-head" id="basics">
+            <div class="eyebrow">Section 0</div>
+            <h2>KYC basics &amp; getting started</h2>
+            <p>CaratLogic KYC is a general tool for collecting and verifying information. You design the forms yourself, so the same process works for any check. You send a form, the other person fills it in, and your team reviews it.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">0.1</div>
+            <h3>One product, many kinds of checks</h3>
+            <p>Each check is simply a form you build in <a href="#forms">Forms Management</a>. Create one form per check, name it clearly, and assign whichever form fits the person you are checking.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Check</th><th>Who it's for</th><th>What the form might collect</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>KYC</strong> &mdash; Know Your Customer</td><td>Customers and buyers</td><td>Company registration, tax and trade details, owners, ID and address proof</td></tr>
+                        <tr><td><strong>KYS</strong> &mdash; Know Your Supplier</td><td>Suppliers and manufacturers</td><td>Business licences, certifications, sourcing and compliance declarations, bank details</td></tr>
+                        <tr><td><strong>KYE</strong> &mdash; Know Your Employee</td><td>Employees and new hires</td><td>ID documents, address proof, qualifications, emergency contacts, signed policies</td></tr>
+                        <tr><td><strong>Vendors, partners, brokers</strong></td><td>Anyone else you work with</td><td>Agreements, insurance certificates, documents with expiry dates</td></tr>
+                        <tr><td><strong>Your own check</strong></td><td>Anyone</td><td>Whatever questions and documents you need</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">
+                Everything in this guide (assigning forms, statuses, reviews, reminders and emails) works the same way whatever the form is for. Screens use the word "KYC" throughout, but read it as "the check you sent".
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">0.2</div>
+            <h3>How a request works</h3>
+            <p>Every request follows the same path, whether it is KYC, KYS, KYE or your own check:</p>
+            <ol class="steps">
+                <li><strong>You add a business contact</strong> on the Dashboard: a supplier, customer, partner, broker or vendor.</li>
+                <li><strong>You assign a form</strong> (for example your KYC, KYS or KYE form) to the contact. They receive an email with a secure verification link.</li>
+                <li><strong>The contact verifies their email</strong> with a one-time code (OTP), then fills in the form and submits it.</li>
+                <li><strong>Your team gets an alert</strong> in the notification bell, and by email if you have set that up.</li>
+                <li><strong>A reviewer checks the submission</strong> and chooses Approve, Conditionally Approve, Request Information or Reject. The contact is emailed the result.</li>
+                <li><strong>Reminders run automatically.</strong> Contacts who haven't finished are reminded. Approved contacts are asked to renew their KYC when the renewal period is up.</li>
+            </ol>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">0.3</div>
+            <h3>First-time setup checklist</h3>
+            <p>If you are an administrator setting up KYC for the first time, do these steps in order before sending your first form:</p>
+            <ol class="steps">
+                <li><strong>Connect your email server</strong> in <kbd>Settings &rsaquo; Email Setup</kbd>, so invitations are sent from your company's address. <a href="#email-setup">See 5.2</a></li>
+                <li><strong>Add the people who should be alerted</strong> about new submissions in <kbd>Settings &rsaquo; KYC Submission Notifications</kbd>. <a href="#recipients">See 5.3</a></li>
+                <li><strong>Check the reminder settings</strong>. The defaults are weekly reminders and yearly renewal. <a href="#reminders">See 5.1</a></li>
+                <li><strong>Prepare your forms</strong> in Forms Management: one for each check you run, such as KYC for customers and KYS for suppliers. Publish them and set the one you use most as the default. <a href="#forms">See Section 4</a></li>
+                <li><strong>Adjust the email wording</strong> in Email Template Configuration if you want to. <a href="#templates">See Section 6</a></li>
+                <li><strong>Add a contact and assign the form.</strong> <a href="#add-contact">See 1.4</a> and <a href="#assign">1.5</a></li>
+            </ol>
+            <div class="highlight-box">
+                Can't see a menu item, or are its buttons greyed out? Access is set per area (Dashboard, KYC Forms, Settings, Email Template Configuration) as <strong>No access</strong>, <strong>View only</strong> or <strong>Full access</strong>. Ask your administrator to change it.
+            </div>
+        </div>
+
+        <div class="feature-card" id="statuses">
+            <div class="feature-number">0.4</div>
+            <h3>KYC statuses explained</h3>
+            <p>Every contact has a KYC status. It tells you where the contact is in the process and what needs to happen next.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Status</th><th>What it means</th><th>Next step</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="status s-grey">Not Required</span></td><td>The contact has been added, but no KYC form has been sent yet. Every new contact starts here.</td><td>Assign a form when KYC is needed.</td></tr>
+                        <tr><td><span class="status s-orange">In Progress</span></td><td>A form has been sent and the contact hasn't submitted it yet.</td><td>Wait for the contact. Automatic reminders will follow up.</td></tr>
+                        <tr><td><span class="status s-blue">Submitted</span></td><td>The contact has completed and submitted the form.</td><td>Review the submission.</td></tr>
+                        <tr><td><span class="status s-blue">Under Review</span></td><td>The submission is being checked by your team.</td><td>Complete the review.</td></tr>
+                        <tr><td><span class="status s-orange">Info Required</span></td><td>A reviewer asked the contact for more details (Additional Information Required).</td><td>Wait for the contact to update and resubmit.</td></tr>
+                        <tr><td><span class="status s-blue">Resubmitted</span></td><td>The contact sent the extra information you asked for.</td><td>Review the updated submission.</td></tr>
+                        <tr><td><span class="status s-green">Approved</span></td><td>KYC passed. The record is locked and no further changes can be made.</td><td>Nothing. A renewal reminder is sent when the renewal period ends.</td></tr>
+                        <tr><td><span class="status s-green">Cond. Approved</span></td><td>Approved with conditions. The contact can still update and resubmit.</td><td>Follow up on the conditions noted in the review.</td></tr>
+                        <tr><td><span class="status s-red">Rejected</span></td><td>KYC did not pass.</td><td>Start a new request if the contact should try again.</td></tr>
+                        <tr><td><span class="status s-red">Expired</span></td><td>The KYC is no longer current.</td><td>Send a new KYC request.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 1. Dashboard -->
+        <div class="section-head" id="dashboard">
+            <div class="eyebrow">Section 1</div>
+            <h2>Dashboard</h2>
+            <p>The Dashboard is where you spend most of your time. It lists all your business contacts with their KYC status, and it is where you add contacts, send forms and open reviews.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.1</div>
+            <h3>Dashboard overview and status summary</h3>
+            <p>Two areas make up the Dashboard. The <strong>status cards</strong> at the top show how many contacts are in each KYC status. The <strong>contact list</strong> below shows each contact's ID, company, contact details, contact type and actions.</p>
+            <ul class="feature-list">
+                <li><strong>Total Contacts</strong> shows everyone in your list. The other cards count one status each, from Not Required through to Expired.</li>
+                <li><strong>Click a status card</strong> to show only the contacts in that status. This is the quickest way to find work, for example everything that is <em>Submitted</em>.</li>
+                <li><strong>Click a Contact ID</strong> to open that contact's details.</li>
+                <li>The top bar holds the product switcher, light/dark theme toggle, notification bell and your profile menu.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image1.jpg" target="_blank"><img src="kyc-guide-images/image1.jpg" alt="Dashboard with KYC status cards and the business contact list" loading="lazy"></a>
+                <figcaption>Dashboard: status cards and contact list</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.2</div>
+            <h3>Search and filters</h3>
+            <p>Use the search bar and filters to find contacts quickly.</p>
+            <ul class="feature-list">
+                <li><strong>Search</strong> by contact name, company or email.</li>
+                <li><strong>KYC Status</strong> filter: select one or more statuses. For example, choose Submitted and Resubmitted together to see everything waiting for review.</li>
+                <li><strong>Contact Types</strong> filter: show only suppliers, customers, partners, brokers or vendors.</li>
+                <li><strong>Reset all</strong> clears the search and every filter.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image2.jpg" target="_blank"><img src="kyc-guide-images/image2.jpg" alt="KYC status filter with several statuses selected" loading="lazy"></a>
+                <figcaption>Filtering the contact list by KYC status</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.3</div>
+            <h3>Notifications</h3>
+            <p>The bell icon in the top bar shows a count of unread notifications. When a contact submits their KYC, a <strong>KYC review required</strong> notification appears with the company and contact name.</p>
+            <ul class="feature-list">
+                <li>Click a notification to go to the review.</li>
+                <li>Mark notifications as read or unread one at a time, mark them all as read, or clear the list.</li>
+                <li>Read status is personal. Marking something as read doesn't change your colleagues' view.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image3.jpg" target="_blank"><img src="kyc-guide-images/image3.jpg" alt="Notification panel open from the bell icon" loading="lazy"></a>
+                <figcaption>Notification panel</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card" id="add-contact">
+            <div class="feature-number">1.4</div>
+            <h3>Add a business contact</h3>
+            <p>Before you can send a KYC form, the company must exist as a business contact.</p>
+            <ol class="steps">
+                <li>Click <kbd>+ Add Business Contact</kbd> at the top right of the Dashboard.</li>
+                <li>Fill in the company, address, tax, currency and contact person details. Fields marked as required must be filled before you can save.</li>
+                <li>Choose the <strong>contact type</strong>: Supplier, Customer, Partner, Broker or Vendor. A contact can have more than one type. Customer is selected by default.</li>
+                <li>Enter a <strong>primary email</strong>. This is where the KYC invitation goes, and the contact uses it to verify themselves.</li>
+                <li>Save. The new contact appears in the list with status <span class="status s-grey">Not Required</span>.</li>
+            </ol>
+            <div class="highlight-box">
+                Adding a contact doesn't send them anything. Nothing reaches the contact until you assign a form.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image4.jpg" target="_blank"><img src="kyc-guide-images/image4.jpg" alt="Add Business Contact form" loading="lazy"></a>
+                <figcaption>Add Business Contact</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card" id="assign">
+            <div class="feature-number">1.5</div>
+            <h3>Contact actions and assigning a form</h3>
+            <p>Click the <kbd>&middot;&middot;&middot;</kbd> menu at the end of a contact's row to see what you can do with that contact:</p>
+            <ul class="feature-list">
+                <li><strong>View</strong>: open the contact's details.</li>
+                <li><strong>Edit</strong>: update the contact's details.</li>
+                <li><strong>Fill KYC</strong>: fill in and submit the form yourself on the contact's behalf, for example when they send the details by phone or on paper. It counts as a normal submission, so the usual emails and notifications are sent.</li>
+                <li><strong>Review KYC</strong>: open the contact's latest submission.</li>
+                <li><strong>Assign Form</strong>: send a KYC form to this contact.</li>
+                <li><strong>Delete</strong>: permanently remove the contact. You will be asked to confirm, and this can't be undone.</li>
+            </ul>
+            <div class="warn-box">
+                Once a contact is <strong>Approved</strong>, their KYC is locked. Fill KYC and Assign Form are not available for approved contacts.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image5.jpg" target="_blank"><img src="kyc-guide-images/image5.jpg" alt="Row action menu showing View, Edit, Fill KYC, Review KYC, Assign Form and Delete" loading="lazy"></a>
+                <figcaption>Row action menu</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.6</div>
+            <h3>Select several contacts at once</h3>
+            <p>To send the same form to many contacts, tick the checkbox beside each one. A count of selected contacts appears below the table. You can then run one action for all of them from the <kbd>Operations</kbd> menu.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image6.jpg" target="_blank"><img src="kyc-guide-images/image6.jpg" alt="Contact list with several rows selected" loading="lazy"></a>
+                <figcaption>Selecting several contacts</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.7</div>
+            <h3>Assign a form to several contacts</h3>
+            <p>With your contacts selected, open <kbd>Operations</kbd> and choose <strong>Assign Form</strong>. The number next to it tells you how many contacts will receive the form.</p>
+            <ul class="feature-list">
+                <li>You can send to up to <strong>100 contacts</strong> at a time.</li>
+                <li>You get a result for each contact, so you can see which invitations went out and which need another attempt.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image7.jpg" target="_blank"><img src="kyc-guide-images/image7.jpg" alt="Operations menu with Assign Form for the selected contacts" loading="lazy"></a>
+                <figcaption>Operations &rsaquo; Assign Form</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">1.8</div>
+            <h3>The Assign KYC Form popup</h3>
+            <p>The popup is the same whether you assign to one contact or to many. Every selected contact gets the same form and version, and each contact gets their own personal verification link.</p>
+            <ol class="steps">
+                <li><strong>Select form</strong> and <strong>Version</strong>. Only published, active versions appear in the list. Or tick <strong>Use the default form instead</strong>.</li>
+                <li>Keep <strong>Notify customer via email</strong> ticked to email the invitation to the contact.</li>
+                <li>Check the <strong>recipients</strong> list.</li>
+                <li>Click <kbd>Assign Form &amp; Send</kbd>. The contact's status changes to <span class="status s-orange">In Progress</span>.</li>
+            </ol>
+            <h4>What the contact receives</h4>
+            <ul class="feature-list">
+                <li>A <strong>verification link that works for 30 days</strong>.</li>
+                <li>After they verify their email, <strong>24 hours of form access</strong>. If that runs out, they verify again with a new code using the same link.</li>
+            </ul>
+            <div class="highlight-box">
+                Sending the same form and version again to a contact who is still In Progress keeps their saved answers. Sending a different form or version, or re-sending after a KYC has been closed, starts a fresh KYC round. Earlier answers are prefilled where possible.
+            </div>
+            <figure class="shot narrow">
+                <a href="kyc-guide-images/image8.jpg" target="_blank"><img src="kyc-guide-images/image8.jpg" alt="Assign KYC Form popup with form, version, notification and recipient options" loading="lazy"></a>
+                <figcaption>Assign KYC Form popup</figcaption>
+            </figure>
+        </div>
+
+        <!-- 2. Contact side -->
+        <div class="section-head" id="contact-side">
+            <div class="eyebrow">Section 2</div>
+            <h2>What your contact sees</h2>
+            <p>Knowing your contact's side of the process helps you answer their questions. Contacts don't need a CaratLogic account. They only need access to the email address you have on file for them.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">2.1</div>
+            <h3>Verifying and filling in the form</h3>
+            <ol class="steps">
+                <li>The contact opens the invitation email and clicks <strong>Start Verification</strong>.</li>
+                <li>They enter their email address, which must match the primary email on their contact record, and request a one-time code.</li>
+                <li>A <strong>6-digit code</strong> arrives by email. It is valid for 15 minutes. They can request a new one after 60 seconds.</li>
+                <li>After entering the code, they fill in the form page by page with <strong>Previous</strong> and <strong>Next</strong>. Each page is saved when they click Next, so they can stop and come back later.</li>
+                <li>On the last page they click <strong>Submit</strong>. Your team is alerted, and the contact receives a confirmation email.</li>
+            </ol>
+            <div class="warn-box">
+                After <strong>5 wrong codes</strong> the link stops working, and you need to send the contact a new invitation. If a contact says their link has expired, assign the form again. They will get a fresh 30-day link.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">2.2</div>
+            <h3>When you ask for more information</h3>
+            <p>If a reviewer chooses <strong>Request Information</strong>, the contact receives an email with your comment and an <strong>Update Submission</strong> button. This link is valid for <strong>7 days</strong>. The contact verifies again, edits their answers and resubmits, and the status changes to <span class="status s-blue">Resubmitted</span>.</p>
+            <p>A <strong>Conditionally Approved</strong> email also includes a <strong>Resubmit KYC</strong> button, so the contact can respond to your conditions.</p>
+        </div>
+
+        <!-- 3. Review -->
+        <div class="section-head" id="review">
+            <div class="eyebrow">Section 3</div>
+            <h2>Review Submissions</h2>
+            <p>Review Submissions is your compliance team's work queue. Here you find submitted KYCs, check the answers and documents, and record a decision.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">3.1</div>
+            <h3>Find a submission</h3>
+            <p>The list shows each submission's company, contact details, contact types, KYC form and version, submission date and status.</p>
+            <ul class="feature-list">
+                <li><strong>Search</strong> by contact name, company, email, phone number or Contact ID.</li>
+                <li>Click <kbd>Review</kbd> on a row to open the submission.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image9.jpg" target="_blank"><img src="kyc-guide-images/image9.jpg" alt="Review Submissions list with search" loading="lazy"></a>
+                <figcaption>Review Submissions list</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">3.2</div>
+            <h3>Check the submission details</h3>
+            <p>The top of the review screen shows the company, the current status, which form was used, when it was submitted and how many pages were completed. Below that, each section of the form can be expanded to show the contact's answers and uploaded documents.</p>
+            <div class="highlight-box">
+                Tip: open every section and look at each uploaded document before you decide. Documents can be downloaded from this screen.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image10.jpg" target="_blank"><img src="kyc-guide-images/image10.jpg" alt="Review KYC Submission screen with expandable form sections" loading="lazy"></a>
+                <figcaption>Review KYC Submission</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">3.3</div>
+            <h3>Submission history</h3>
+            <p>Every KYC round is kept, including earlier years and resubmissions. Click <kbd>History</kbd> to see all of a contact's submissions, newest first. The <strong>Current</strong> label marks the active one, so you can tell it apart from older rounds or older form versions.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image11.jpg" target="_blank"><img src="kyc-guide-images/image11.jpg" alt="Submission history panel listing earlier submissions" loading="lazy"></a>
+                <figcaption>Submission history</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">3.4</div>
+            <h3>Record your decision</h3>
+            <p>When you've finished checking, open <kbd>Review Actions</kbd> and choose one of the following:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Action</th><th>Use it when</th><th>The contact receives</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Approve</strong></td><td>Everything is correct and complete.</td><td>An Approved email. The KYC is now locked.</td></tr>
+                        <tr><td><strong>Conditionally Approve</strong></td><td>You can accept it now, but something still needs to be followed up.</td><td>An email with your notes and a Resubmit KYC button.</td></tr>
+                        <tr><td><strong>Request Information</strong></td><td>Details or documents are missing or unclear.</td><td>An email with your notes and a 7-day Update Submission link.</td></tr>
+                        <tr><td><strong>Reject</strong></td><td>The KYC can't be accepted.</td><td>A Rejected email with your notes.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top:14px">For every action except Approve, a box appears where you can add a note. The note is included in the email, so write it for the contact.</p>
+            <div class="highlight-box">
+                Review Actions only appear when a submission is waiting for a decision (Submitted, Under Review, Info Required or Resubmitted), and only for users with full Dashboard access.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image12.jpg" target="_blank"><img src="kyc-guide-images/image12.jpg" alt="Review Actions menu with Approve, Conditionally Approve, Request Information and Reject" loading="lazy"></a>
+                <figcaption>Review Actions</figcaption>
+            </figure>
+        </div>
+
+        <!-- 4. Forms -->
+        <div class="section-head" id="forms">
+            <div class="eyebrow">Section 4</div>
+            <h2>Forms Management</h2>
+            <p>Forms Management is where you decide what the product checks. Build a separate form for each purpose, such as a KYC form for customers, a KYS form for suppliers and a KYE form for employees. Every form keeps a full version history.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.1</div>
+            <h3>How form versions work</h3>
+            <p>If you understand this, the rest of Forms Management is straightforward:</p>
+            <ul class="feature-list">
+                <li><strong>Draft</strong>: a version you are still editing. Contacts can't receive a draft. Each form can have only one draft at a time.</li>
+                <li><strong>Published</strong>: a finished version that can be sent to contacts. Published versions <strong>can't be changed</strong>. To change one, click Edit, which creates a new draft from it, and then publish that draft as the next version.</li>
+                <li><strong>Default</strong>: the version that is preselected when you assign a form. Publishing a new version <strong>doesn't</strong> change the default automatically. Set it yourself.</li>
+            </ul>
+            <div class="highlight-box">
+                This design keeps existing submissions safe. A contact's answers always stay linked to the exact version they filled in, even after you change the form.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.2</div>
+            <h3>The form list</h3>
+            <p>The list shows every KYC form with its latest version, who created it and when it was last updated. Use the search bar to find a form by name. The <strong>Default</strong> label shows which form is used for new assignments.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image13.jpg" target="_blank"><img src="kyc-guide-images/image13.jpg" alt="Forms Management list with search and Default label" loading="lazy"></a>
+                <figcaption>Forms Management list</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.3</div>
+            <h3>Create a form</h3>
+            <ol class="steps">
+                <li>Click <kbd>Create Form</kbd>.</li>
+                <li>Enter a <strong>form name</strong> and, if you like, a description. Each form name must be unique, so name forms by purpose, for example "Supplier KYS" or "Employee KYE".</li>
+                <li>A <strong>version 1 draft</strong> is created and opens in the form editor.</li>
+            </ol>
+            <figure class="shot">
+                <a href="kyc-guide-images/image14.jpg" target="_blank"><img src="kyc-guide-images/image14.jpg" alt="Create Form dialog with name and description" loading="lazy"></a>
+                <figcaption>Create Form</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.4</div>
+            <h3>The form editor</h3>
+            <p>The editor is where you build the form. Each <strong>page</strong> appears as a tab across the top, and the contact moves through the pages with Next and Previous.</p>
+            <ul class="feature-list">
+                <li><kbd>Add page</kbd> adds a new tab. <kbd>Add Field</kbd> adds a question to the current page.</li>
+                <li><kbd>Save changes</kbd> saves your draft. Save often.</li>
+                <li><kbd>Publish</kbd> makes this version available to send. It is enabled once the draft has been saved.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image15.jpg" target="_blank"><img src="kyc-guide-images/image15.jpg" alt="Form editor with page tabs, Add page, Add Field, Save changes and Publish" loading="lazy"></a>
+                <figcaption>Form editor</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.5</div>
+            <h3>Form menu: rename or reset</h3>
+            <p>The menu next to <kbd>Publish</kbd> has two options:</p>
+            <ul class="feature-list">
+                <li><strong>Rename form</strong>: change the form's title.</li>
+                <li><strong>Reset form to default</strong>: replace the draft with the standard starting layout.</li>
+            </ul>
+            <div class="warn-box">
+                Reset replaces everything in the current draft. Only use it if you want to start over.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image16.jpg" target="_blank"><img src="kyc-guide-images/image16.jpg" alt="Form menu with Rename form and Reset form to default" loading="lazy"></a>
+                <figcaption>Form menu</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.6</div>
+            <h3>Page menu: rename, clear or delete</h3>
+            <p>Each page tab has its own menu with <strong>Rename page</strong>, <strong>Clear all fields</strong> and <strong>Delete page</strong>. Options that don't apply are greyed out. For example, you can't delete the last page, because every form needs at least one.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image17.jpg" target="_blank"><img src="kyc-guide-images/image17.jpg" alt="Page menu with Rename page, Clear all fields and Delete page" loading="lazy"></a>
+                <figcaption>Page menu</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.7</div>
+            <h3>Add and set up fields</h3>
+            <p>Click <kbd>Add Field</kbd> and fill in the <strong>Label</strong> (the question), <strong>Field Type</strong>, an optional <strong>Placeholder</strong> (example text shown in the box) and an optional <strong>Description</strong> (help text, which can be formatted).</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Field type</th><th>Use it for</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Text / Text Area</td><td>Short answers (up to 500 characters) or longer answers (up to 5,000 characters)</td></tr>
+                        <tr><td>Email / Phone / Number</td><td>Answers that are checked for the right format</td></tr>
+                        <tr><td>Date / Time</td><td>Dates can be limited to past-only or future-only</td></tr>
+                        <tr><td>Dropdown / Radio Group / Multi Select</td><td>Choosing from options you list. Multi Select allows more than one choice.</td></tr>
+                        <tr><td>Checkbox / Toggle</td><td>Yes/no answers and declarations</td></tr>
+                        <tr><td>Image</td><td>Photos: JPEG, PNG, GIF or WebP, up to 5 MB</td></tr>
+                        <tr><td>File</td><td>Documents: PDF, Word or Excel, up to 10 MB</td></tr>
+                        <tr><td>Docs with Expiry</td><td>Documents that expire, such as passports or licences. The contact also enters the expiry date, and automatic reminders are sent before it passes.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Field switches</h4>
+            <ul class="feature-list">
+                <li><strong>Required</strong>: the contact must answer this field before they can move on.</li>
+                <li><strong>Visible</strong>: whether the field is shown on the form.</li>
+                <li><strong>Editable</strong>: whether the contact can change the value. Turn it off for values you fill in for them.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image18.jpg" target="_blank"><img src="kyc-guide-images/image18.jpg" alt="Add Field panel with label, type, placeholder, description and switches" loading="lazy"></a>
+                <figcaption>Add Field</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.8</div>
+            <h3>Manage fields and save your draft</h3>
+            <p>Each field appears as a card. On the card you can switch <strong>Required</strong> on or off, show or hide the field, edit it, or delete it.</p>
+            <ul class="feature-list">
+                <li><kbd>Save changes</kbd> stores your edits in the draft.</li>
+                <li><kbd>Discard</kbd> removes any edits you haven't saved yet.</li>
+                <li><kbd>Publish</kbd> makes this version ready to send.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image19.jpg" target="_blank"><img src="kyc-guide-images/image19.jpg" alt="Field cards with Required switch and edit, visibility and delete controls" loading="lazy"></a>
+                <figcaption>Field cards</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.9</div>
+            <h3>Version history</h3>
+            <p>Click a form in the list to expand it and see all of its published versions with their version numbers and publish dates. The <strong>Latest</strong> label marks the newest version, and the <strong>Default</strong> label marks the one used for new assignments. They are not always the same version.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image20.jpg" target="_blank"><img src="kyc-guide-images/image20.jpg" alt="Expanded form showing version history with Latest and Default labels" loading="lazy"></a>
+                <figcaption>Version history</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.10</div>
+            <h3>Version actions</h3>
+            <p>Each version has its own menu:</p>
+            <ul class="feature-list">
+                <li><strong>Preview</strong>: see the form exactly as a contact would.</li>
+                <li><strong>Edit</strong>: start a new draft based on this version. The published version itself doesn't change.</li>
+                <li><strong>Duplicate</strong>: copy this version into a brand-new form. This is useful for building, say, a supplier form from your customer form.</li>
+                <li><strong>Set as default</strong>: use this version for new assignments.</li>
+                <li><strong>Deactivate</strong>: stop the version being sent to new contacts. Contacts who are already filling it in can still submit. You can reactivate it later. You can't deactivate the default version, so set a different default first.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image21.jpg" target="_blank"><img src="kyc-guide-images/image21.jpg" alt="Version menu with Preview, Edit, Duplicate, Set as default and Deactivate" loading="lazy"></a>
+                <figcaption>Version actions</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">4.11</div>
+            <h3>Preview a form</h3>
+            <p>Preview shows the form as your contact will see it. Nothing you type in preview is saved. Before you send a new version, use it to check the page order, labels, required markers (<strong>*</strong>) and the Previous/Next buttons.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image22.jpg" target="_blank"><img src="kyc-guide-images/image22.jpg" alt="Form preview as seen by a business contact" loading="lazy"></a>
+                <figcaption>Form preview</figcaption>
+            </figure>
+        </div>
+
+        <!-- 5. Settings -->
+        <div class="section-head" id="settings">
+            <div class="eyebrow">Section 5</div>
+            <h2>Settings</h2>
+            <p>Settings control automatic reminders, how often KYC must be renewed, which email server sends your emails, and who on your team is told about new submissions.</p>
+        </div>
+
+        <div class="feature-card" id="reminders">
+            <div class="feature-number">5.1</div>
+            <h3>Reminder settings</h3>
+            <ul class="feature-list">
+                <li><strong>KYC Mail Frequency</strong>: how often reminders are sent. The options are Weekly (default), Biweekly and Monthly.</li>
+                <li><strong>KYC Renewal Interval</strong>: how long an approval lasts before the contact is asked to renew. The options are 30, 90, 180, 365 (default) or 730 days.</li>
+                <li><strong>Auto-Reminders</strong>: turns all automatic reminder emails on or off.</li>
+                <li><kbd>Reset to defaults</kbd> restores Weekly and 365 days.</li>
+            </ul>
+            <h4>What Auto-Reminders sends</h4>
+            <ul class="feature-list">
+                <li><strong>Unfinished KYC</strong>: contacts who are In Progress or Info Required get a reminder at your chosen frequency, with a fresh 30-day link.</li>
+                <li><strong>Renewal</strong>: Approved and Conditionally Approved contacts get a renewal reminder once their renewal interval has passed.</li>
+                <li><strong>Expiring documents</strong>: contacts whose Docs with Expiry uploads expire within 30 days, or have already expired, are asked to upload new ones.</li>
+            </ul>
+            <div class="warn-box">
+                Turning Auto-Reminders off stops <strong>all three</strong> kinds of reminder, including document expiry reminders.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image23.jpg" target="_blank"><img src="kyc-guide-images/image23.jpg" alt="Reminder Settings with mail frequency, renewal interval and Auto-Reminders toggle" loading="lazy"></a>
+                <figcaption>Reminder Settings</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card" id="email-setup">
+            <div class="feature-number">5.2</div>
+            <h3>Email setup</h3>
+            <p>Connect KYC to your company's email server (SMTP) so invitations and notifications come from your own address. You need these details from your IT team or email provider:</p>
+            <ul class="feature-list">
+                <li><strong>SMTP server</strong> and <strong>port</strong></li>
+                <li><strong>Username</strong> and <strong>password</strong></li>
+                <li><strong>Sender email</strong> and <strong>sender name</strong>: the address and name your contacts see in their inbox.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image24.jpg" target="_blank"><img src="kyc-guide-images/image24.jpg" alt="Email Setup page with SMTP fields" loading="lazy"></a>
+                <figcaption>Email Setup</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card" id="recipients">
+            <div class="feature-number">5.3</div>
+            <h3>Submission notification recipients</h3>
+            <p>List the colleagues who should get an email when a contact submits their KYC. The email names the contact and company, and it links straight to the review screen.</p>
+            <ul class="feature-list">
+                <li>Add, edit or remove addresses at any time.</li>
+                <li>Everyone on the list receives the same alert.</li>
+                <li>The list starts <strong>empty</strong>, so no submission emails are sent until you add at least one address.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image25.jpg" target="_blank"><img src="kyc-guide-images/image25.jpg" alt="KYC Submission Notification recipients list" loading="lazy"></a>
+                <figcaption>KYC Submission Notification recipients</figcaption>
+            </figure>
+        </div>
+
+        <!-- 6. Templates -->
+        <div class="section-head" id="templates">
+            <div class="eyebrow">Section 6</div>
+            <h2>Email Template Configuration</h2>
+            <p>Change the wording of the emails your contacts receive at each stage of KYC, and see a live preview as you type.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">6.1</div>
+            <h3>Lifecycle email templates</h3>
+            <p>Each template in the left menu belongs to one step of the KYC process:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Template</th><th>Sent when</th><th>Button in email</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>KYC Invitation</strong></td><td>You assign a form to a contact</td><td>Start Verification</td></tr>
+                        <tr><td><strong>Submitted</strong></td><td>The contact submits or resubmits</td><td>&mdash;</td></tr>
+                        <tr><td><strong>Additional Information Required</strong></td><td>A reviewer chooses Request Information</td><td>Update Submission</td></tr>
+                        <tr><td><strong>Approved</strong></td><td>A reviewer approves</td><td>&mdash;</td></tr>
+                        <tr><td><strong>Rejected</strong></td><td>A reviewer rejects</td><td>&mdash;</td></tr>
+                        <tr><td><strong>Conditionally Approved</strong></td><td>A reviewer conditionally approves</td><td>Resubmit KYC</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top:14px">The one-time code email, reminder emails and document-expiry emails are standard system messages and can't be edited here.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">6.2</div>
+            <h3>Edit a template and preview it</h3>
+            <p>Each template has four parts you can edit:</p>
+            <ul class="feature-list">
+                <li><strong>Greeting</strong>, such as "Hello". The contact's name is added after it automatically.</li>
+                <li><strong>Summary Heading</strong>: the large title at the top of the email.</li>
+                <li><strong>Message</strong> and <strong>Notes</strong>: the body text, with bold, italic, headings, lists, colours and highlights.</li>
+            </ul>
+            <p>You don't need to type placeholders. The company name, dates, reviewer comments and button are added automatically, and the <strong>Email Preview</strong> on the right shows the finished email. Click <kbd>Save</kbd> to keep your changes, or <kbd>Reset to Defaults</kbd> to go back to the original wording.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image26.jpg" target="_blank"><img src="kyc-guide-images/image26.jpg" alt="KYC Invitation template editor with live email preview" loading="lazy"></a>
+                <figcaption>Template editor and live preview</figcaption>
+            </figure>
+        </div>
+
+        <!-- 7. FAQ -->
+        <div class="section-head" id="faq">
+            <div class="eyebrow">Section 7</div>
+            <h2>Common questions</h2>
+        </div>
+
+        <div class="feature-card">
+            <h4 style="margin-top:0">Can I use this for things other than customer KYC?</h4>
+            <p>Yes. Build a form for any check, such as KYS for suppliers, KYE for employees, or vendor and partner onboarding. Then assign it to the right contact. Choose the matching <strong>contact type</strong> when you add the person, so you can filter by it later.</p>
+
+            <h4>My contact says their link has expired.</h4>
+            <p>Invitation links last 30 days, and Request Information links last 7 days. Assign the form again to send a new link. If it is the same form and version, their saved answers are kept.</p>
+
+            <h4>My contact isn't receiving the code.</h4>
+            <p>The code goes to the primary email on the contact record, so check that it is correct. Ask them to check their spam folder. If none of your emails arrive, check <a href="#email-setup">Email Setup</a>.</p>
+
+            <h4>I need to change a form that has already been sent.</h4>
+            <p>Click <strong>Edit</strong> on the version, make your changes, and publish them as a new version. Then choose <strong>Set as default</strong>. Contacts who already have the old version can finish it as normal.</p>
+
+            <h4>Why can't I assign a form to this contact?</h4>
+            <p>Check three things: the contact might already be Approved, which locks their KYC; they might not have a primary email; or the form or version might be deactivated.</p>
+
+            <h4>Nobody on my team was told about a new submission.</h4>
+            <p>The notification bell always shows new submissions. Email alerts are only sent to addresses on the <a href="#recipients">KYC Submission Notification</a> list.</p>
+
+            <h4>The buttons on a screen are greyed out.</h4>
+            <p>You probably have view-only access to that area. Ask your administrator for full access.</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
