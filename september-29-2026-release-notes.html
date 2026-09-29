@@ -168,6 +168,13 @@
             padding-right: 50px;
         }
 
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
         .feature-card p {
             font-size: 15px;
             color: #555;
@@ -235,6 +242,21 @@
             font-size: 13px;
             color: #2e7d32;
             line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
         }
 
         .footer {
@@ -316,7 +338,7 @@
                 <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
             </div>
             <h1>Inventory &amp; Transactions &mdash; Release Notes</h1>
-            <p class="subtitle">This release adds Excel upload for invoice and memo out line items, links certificate numbers to lab verification pages, simplifies diamond color requirements, renames intensity settings, and cleans up media when items are permanently deleted.</p>
+            <p class="subtitle">This release adds Excel export for invoices, proformas, quotations and memo outs, lets you choose which columns your clients see, extends Excel line item upload to every sales document, pushes lab-grown diamonds to VDB automatically, links certificate numbers to lab verification pages, simplifies diamond color requirements, renames intensity settings, and cleans up media when items are permanently deleted.</p>
             <div class="release-badge">
                 <span class="dot"></span>
                 September 28&ndash;29, 2026
@@ -328,21 +350,120 @@
 
         <div class="feature-card">
             <div class="feature-number">01</div>
-            <div class="feature-icon">&#128228;</div>
+            <div class="feature-icon">&#9745;</div>
             <span class="tag tag-new">New</span>
-            <h2>Upload Invoice &amp; Memo Out Line Items from Excel</h2>
-            <p>You can now add many stones to an invoice or memo out at once from a spreadsheet.</p>
+            <h2>Choose What Goes into Product Details</h2>
+            <p><strong>Where:</strong> Template Configurations &rarr; <strong>Excel Exports</strong></p>
+            <p>You can now pick which columns your clients see in the new <strong>Product details (.xlsx)</strong> export, separately for gems and diamonds. Your choice applies to every invoice, proforma, quotation and memo out.</p>
             <ul class="feature-list">
-                <li>An <strong>Upload items</strong> button is on the <strong>Invoice</strong> list, the <strong>Memo Out</strong> list, and the <strong>Create Invoice</strong> and <strong>Create Memo Out</strong> pages. On the create pages you need to select a customer first.</li>
-                <li>Download the template (<strong>add_line_items_template.xlsx</strong>). <strong>Item Type</strong> (gem or diamond) and <strong>Stock ID</strong> are required. Description, Quantity, Carats, Selling Price Per Carat and Total Price are optional.</li>
-                <li>An empty cell uses the stone's own value. If you give only a <strong>Total Price</strong>, the price per carat is calculated from it. If you give both prices, <strong>Selling Price Per Carat</strong> is used.</li>
-                <li>You review every row before anything is added. Rows are rejected if the stone is not found, is archived, or is not <strong>In Stock</strong> or on <strong>Memo Out</strong>. Duplicate rows and stones already on the document are skipped.</li>
-                <li>One document can hold up to <strong>100 stones</strong>. When you go back to the page, everything you had already entered is still there.</li>
+                <li>Required columns are always exported and shown as locked.<br><strong>Gems:</strong> Stock Prefix, Stock Sequence, Gem Type, Total Weight.<br><strong>Diamonds:</strong> Stock Prefix, Stock Sequence, Stock Type, Shape, Weight, Clarity, Color, Fancy Color.</li>
+                <li><strong>Cost Price Per Carat</strong> is off by default, so cost prices never reach a client unless you turn them on.</li>
+                <li>Your additional fields can be exported too, and they're <strong>on by default</strong>.</li>
+                <li>You can search for a column, or show or hide a whole section at once. These settings don't affect the <strong>Line items</strong> file.</li>
             </ul>
+            <div class="warning-box">
+                <strong>&#9888; Every column left on here is visible to your client.</strong> If you turn on <strong>Cost Price Per Carat</strong>, your cost prices go to every client who receives a Product details file. Internal columns such as <strong>Price Code</strong>, <strong>Discount %</strong>, <strong>Status</strong>, <strong>Treatment Notes</strong> and your <strong>additional fields</strong> are exported too when they're on. Review both the Gem and Diamond tabs and turn off anything your clients shouldn't see before you send your first file.
+            </div>
+            <figure class="shot">
+                <a href="september-29-2026-images/excel-exports-gem.png" target="_blank"><img src="september-29-2026-images/excel-exports-gem.png" alt="Excel Export Columns page on the Gem tab, with locked required columns and checkboxes for inventory columns" loading="lazy"></a>
+                <figcaption>Excel Exports, Gem tab</figcaption>
+            </figure>
         </div>
 
         <div class="feature-card">
             <div class="feature-number">02</div>
+            <div class="feature-icon">&#128229;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Export a Document to Excel</h2>
+            <p><strong>Where:</strong> Document details &rarr; <strong>Download</strong>, or the row menu in any list &rarr; <strong>PDF</strong></p>
+            <p>Every invoice, proforma, quotation and memo out can now be downloaded as two Excel files, next to its PDF.</p>
+            <ul class="feature-list">
+                <li><strong>Line items (.xlsx)</strong> uses the same columns as the upload template, services included. You can download it from one document and upload it into another.</li>
+                <li><strong>Product details (.xlsx)</strong> is made for sending to clients. It has one sheet for gems and one for diamonds.</li>
+                <li>In Product details, each stone's details come first, followed by <strong>Currency</strong>, <strong>Selling Price Per Carat</strong>, <strong>Total Price (exc. tax)</strong>, the tax columns (VAT, SGST, CGST, IGST, UTGST) and <strong>Total Price (inc. tax)</strong>. Each Stock ID links to the stone's page.</li>
+                <li>Download options are now named after the document and file type, e.g. <strong>Invoice (.pdf)</strong>. Quotation rows now have the same PDF menu as invoices.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Check your columns before sending Product details to a client.</strong> The file contains every column turned on in <strong>Template Configurations &rarr; Excel Exports</strong>. If <strong>Cost Price Per Carat</strong> or other internal fields (such as Price Code, Discount % or your additional fields) are turned on, your client will see them. Set up the columns first &mdash; see the section above.
+            </div>
+            <figure class="shot">
+                <a href="september-29-2026-images/download-menu.png" target="_blank"><img src="september-29-2026-images/download-menu.png" alt="Download menu on an invoice with Invoice (.pdf), Line items (.xlsx) and Product details (.xlsx) options" loading="lazy"></a>
+                <figcaption>Download menu on an invoice</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128228;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Upload Line Items to Any Sales Document</h2>
+            <p><strong>Where:</strong> Transactions or Memo Out &rarr; <strong>Upload items</strong></p>
+            <p>Excel upload now works on invoices, proformas, quotations and memo outs. Fill in the template, upload it, check the rows, and add them in one step.</p>
+            <ul class="feature-list">
+                <li><strong>Upload items</strong> is on the list pages and on the create pages. On a create page, select a customer first.</li>
+                <li>Download the template (<strong>add_line_items_template.xlsx</strong>). For stones, <strong>Item Type</strong> (gem or diamond) and <strong>Stock ID</strong> are required. Description, Quantity, Carats, Selling Price Per Carat and Total Price are optional. An empty cell uses the stone's own value.</li>
+                <li><strong>Services.</strong> Set Item Type to <strong>service</strong> and fill in a Description and a Total Price. It's added alongside your stones.</li>
+                <li><strong>Rows without a price are kept.</strong> If neither the sheet nor the stone has a price, the row is added at 0 with a <strong>&ldquo;No price set&rdquo;</strong> warning, and you can set the price on the next page.</li>
+                <li><strong>Split parcels and sets.</strong> To sell a parcel in groups, put its Stock ID on several rows. The rows are checked together against the pieces and carats left. If they add up to more, the message shows under the Quantity or Carats cell that's over.</li>
+                <li><strong>Your sheet's price always wins</strong>, whether the page is showing cost or selling prices. If you give only a Total Price, the price per carat is calculated from it.</li>
+                <li><strong>Fix rows before adding.</strong> You can edit any cell in the review table, and each problem shows under the cell it belongs to. If you click Add with unsaved edits, you're asked whether to save them first.</li>
+                <li>Rows are rejected if the stone is not found, is archived, or is not <strong>In Stock</strong> or on <strong>Memo Out</strong>.</li>
+                <li><strong>Up to 500 lines per document</strong> (was 100). Bulk actions from the gem and diamond lists get the same limit.</li>
+            </ul>
+            <figure class="shot">
+                <a href="september-29-2026-images/upload-review-table.png" target="_blank"><img src="september-29-2026-images/upload-review-table.png" alt="Import review table with valid gem, diamond and service rows and price warnings under the price cells" loading="lazy"></a>
+                <figcaption>Import review table</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Send Your Lab-Grown Diamonds to VDB Automatically</h2>
+            <p><strong>Where:</strong> App Integrations &rarr; <strong>VDB Config</strong> (admins only)</p>
+            <p>CaratLogic can now upload your inventory to VDB's SFTP server on a schedule, so your VDB listings stay up to date without manual uploads.</p>
+
+            <h3>Set it up once</h3>
+            <ul class="feature-list">
+                <li>Enter VDB's SFTP details: <strong>host</strong>, <strong>port</strong>, <strong>username</strong>, and a <strong>password</strong> or <strong>private key</strong>.</li>
+                <li>Choose the <strong>remote directory</strong> and how often to push: every <strong>1, 6, 12 or 24 hours</strong>.</li>
+                <li>Pick the inventory to send. Each goes as its own CSV file, and you can give each one a custom file path.</li>
+                <li>When you save, CaratLogic tests the connection and checks the folders exist, so a typo is caught straight away.</li>
+                <li>Passwords and keys are stored encrypted and never shown again. To keep a saved one, leave the field blank.</li>
+                <li>To pause without losing your settings, turn off <strong>Push enabled</strong>.</li>
+            </ul>
+
+            <h3>What gets sent</h3>
+            <ul class="feature-list">
+                <li>Lab-grown diamonds that are <strong>In Stock</strong> (listed on VDB as <strong>On-hand</strong>) or on <strong>Memo Out</strong> (listed as <strong>Unavailable</strong>). Archived and deleted stones are left out.</li>
+                <li>The file uses VDB's own lab-grown template. It includes grading, measurements and proportions; selling price per carat and total price; up to 6 images and a video; certificate lab, number and link; and stone location, taken from the warehouse address.</li>
+                <li>Each file is uploaded under a temporary name and swapped in when complete, so VDB never picks up a half-written file.</li>
+            </ul>
+            <div class="highlight-box">
+                Natural diamonds and gems can already be selected, but they will only be sent once VDB's templates for them are added.
+            </div>
+
+            <h3>Push now</h3>
+            <p>Admins can send an update right away from <strong>Diamond Inventory &rarr; More Actions &rarr; Push to VDB</strong>. It runs in the background while you keep working.</p>
+
+            <h3>Push logs</h3>
+            <p>The <strong>Push logs</strong> tab on VDB Config shows every push:</p>
+            <ul class="feature-list">
+                <li>when it ran</li>
+                <li>whether it was scheduled or manual, and who started it</li>
+                <li>its result: <strong>Success</strong>, <strong>Partial</strong>, <strong>Failed</strong> or <strong>Interrupted</strong></li>
+                <li>for each file, the rows uploaded or the error</li>
+            </ul>
+            <ul class="feature-list">
+                <li>Summary cards show the last push, the next scheduled push, your success rate, and how many pushes failed or partly failed.</li>
+                <li>Filter by status, inventory or date range. History is kept for a year.</li>
+                <li>If a scheduled push fails, it is retried within the hour instead of waiting a full interval.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
             <div class="feature-icon">&#128279;</div>
             <span class="tag tag-new">New</span>
             <h2>Certificate Numbers Link to the Lab's Verification Page</h2>
@@ -355,7 +476,7 @@
         </div>
 
         <div class="feature-card">
-            <div class="feature-number">03</div>
+            <div class="feature-number">06</div>
             <div class="feature-icon">&#128142;</div>
             <span class="tag tag-enhanced">Changed</span>
             <h2>Diamonds: Color Grade or Fancy Color, Not Both</h2>
@@ -367,7 +488,7 @@
         </div>
 
         <div class="feature-card">
-            <div class="feature-number">04</div>
+            <div class="feature-number">07</div>
             <div class="feature-icon">&#9881;</div>
             <span class="tag tag-enhanced">Changed</span>
             <h2>Settings Renamed</h2>
@@ -379,7 +500,7 @@
         </div>
 
         <div class="feature-card">
-            <div class="feature-number">05</div>
+            <div class="feature-number">08</div>
             <div class="feature-icon">&#128465;</div>
             <span class="tag tag-enhanced">Changed</span>
             <h2>Media Is Removed When an Item Is Permanently Deleted</h2>
@@ -387,6 +508,18 @@
             <div class="highlight-box">
                 Files linked from outside CaratLogic are never touched. If the file cleanup fails, the item is still deleted.
             </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#10024;</div>
+            <span class="tag tag-enhanced">Improved</span>
+            <h2>Other Improvements</h2>
+            <ul class="feature-list">
+                <li><strong>Export all gems or diamonds</strong> now works for any inventory size. Before, exports of more than 1,000 stones failed. When an export does fail, the message now says why.</li>
+                <li>Line tables on review and details pages now show about five rows and scroll, with the header and total kept in view.</li>
+                <li>Quotation and memo out summaries now show a single total.</li>
+            </ul>
         </div>
 
     </div>
