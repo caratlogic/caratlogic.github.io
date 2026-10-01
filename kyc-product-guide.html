@@ -390,6 +390,14 @@
         .s-red { background: #ffebee; color: #c62828; }
         .s-green { background: #e8f5e9; color: #2e7d32; }
 
+        .event-code {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            letter-spacing: 0.2px;
+            margin-top: 2px;
+        }
+
         kbd {
             font-family: inherit;
             font-size: 13px;
@@ -464,7 +472,7 @@
                 <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
             </div>
             <h1>KYC &mdash; Product Guide</h1>
-            <p class="subtitle">A step-by-step guide for new users. CaratLogic KYC collects and verifies information from anyone you work with: customers (KYC), suppliers (KYS), employees (KYE), vendors, partners and more. Learn how to build your own forms, send them out, review what comes back, and keep records current.</p>
+            <p class="subtitle">A step-by-step guide for new users. CaratLogic KYC collects and verifies information from anyone you work with: customers (KYC), suppliers (KYS), employees (KYE), vendors, partners and more. Learn how to build your own forms, send them out, review what comes back, keep records current, and see who did what in the Activity Log.</p>
             <div class="release-badge">
                 <span class="dot"></span>
                 Beginner's guide &middot; September 2026
@@ -483,9 +491,10 @@
                 <li><a href="#contact-side"><span>2</span>What your contact sees</a></li>
                 <li><a href="#review"><span>3</span>Review Submissions</a></li>
                 <li><a href="#forms"><span>4</span>Forms Management</a></li>
-                <li><a href="#settings"><span>5</span>Settings</a></li>
-                <li><a href="#templates"><span>6</span>Email Template Configuration</a></li>
-                <li><a href="#faq"><span>7</span>Common questions</a></li>
+                <li><a href="#activity-log"><span>5</span>Activity Log</a></li>
+                <li><a href="#settings"><span>6</span>Settings</a></li>
+                <li><a href="#templates"><span>7</span>Email Template Configuration</a></li>
+                <li><a href="#faq"><span>8</span>Common questions</a></li>
             </ul>
             <div class="highlight-box">
                 Screenshots come from our test environment, so names and numbers in them are sample data. Some screens may look slightly different in your account as the product is updated.
@@ -541,15 +550,15 @@
             <h3>First-time setup checklist</h3>
             <p>If you are an administrator setting up KYC for the first time, do these steps in order before sending your first form:</p>
             <ol class="steps">
-                <li><strong>Connect your email server</strong> in <kbd>Settings &rsaquo; Email Setup</kbd>, so invitations are sent from your company's address. <a href="#email-setup">See 5.2</a></li>
-                <li><strong>Add the people who should be alerted</strong> about new submissions in <kbd>Settings &rsaquo; KYC Submission Notifications</kbd>. <a href="#recipients">See 5.3</a></li>
-                <li><strong>Check the reminder settings</strong>. The defaults are weekly reminders and yearly renewal. <a href="#reminders">See 5.1</a></li>
+                <li><strong>Connect your email server</strong> in <kbd>Settings &rsaquo; Email Setup</kbd>, so invitations are sent from your company's address. <a href="#email-setup">See 6.2</a></li>
+                <li><strong>Add the people who should be alerted</strong> about new submissions in <kbd>Settings &rsaquo; KYC Submission Notifications</kbd>. <a href="#recipients">See 6.3</a></li>
+                <li><strong>Check the reminder settings</strong>. The defaults are weekly reminders and yearly renewal. <a href="#reminders">See 6.1</a></li>
                 <li><strong>Prepare your forms</strong> in Forms Management: one for each check you run, such as KYC for customers and KYS for suppliers. Publish them and set the one you use most as the default. <a href="#forms">See Section 4</a></li>
-                <li><strong>Adjust the email wording</strong> in Email Template Configuration if you want to. <a href="#templates">See Section 6</a></li>
+                <li><strong>Adjust the email wording</strong> in Email Template Configuration if you want to. <a href="#templates">See Section 7</a></li>
                 <li><strong>Add a contact and assign the form.</strong> <a href="#add-contact">See 1.4</a> and <a href="#assign">1.5</a></li>
             </ol>
             <div class="highlight-box">
-                Can't see a menu item, or are its buttons greyed out? Access is set per area (Dashboard, KYC Forms, Settings, Email Template Configuration) as <strong>No access</strong>, <strong>View only</strong> or <strong>Full access</strong>. Ask your administrator to change it.
+                Can't see a menu item, or are its buttons greyed out? Access is set per area (Dashboard, KYC Forms, Settings, Email Template Configuration) as <strong>No access</strong>, <strong>View only</strong> or <strong>Full access</strong>. Review Submissions and the Activity Log follow your Dashboard access. Ask your administrator to change it.
             </div>
         </div>
 
@@ -638,10 +647,11 @@
             <p>Before you can send a KYC form, the company must exist as a business contact.</p>
             <ol class="steps">
                 <li>Click <kbd>+ Add Business Contact</kbd> at the top right of the Dashboard.</li>
-                <li>Fill in the company, address, tax, currency and contact person details. Fields marked as required must be filled before you can save.</li>
-                <li>Choose the <strong>contact type</strong>: Supplier, Customer, Partner, Broker or Vendor. A contact can have more than one type. Customer is selected by default.</li>
+                <li>Fill in the <strong>Address Information</strong>, <strong>Company Details</strong> (including VAT, discount and currency) and <strong>Contact Information</strong> sections. Fields marked as required must be filled before you can save.</li>
                 <li>Enter a <strong>primary email</strong>. This is where the KYC invitation goes, and the contact uses it to verify themselves.</li>
-                <li>Save. The new contact appears in the list with status <span class="status s-grey">Not Required</span>.</li>
+                <li>In <strong>Additional Information</strong>, choose the <strong>contact type</strong>: Supplier, Customer, Partner, Broker or Vendor. A contact can have more than one type. Supplier is selected by default.</li>
+                <li>Leave <strong>KYC Status</strong> as <span class="status s-grey">Not Required</span>. It changes by itself as soon as you assign a form. Optionally choose who the contact was <strong>Referred By</strong> and add notes.</li>
+                <li>Save. The new contact appears in the list, and a <em>created business contact</em> entry is added to the <a href="#activity-log">Activity Log</a>.</li>
             </ol>
             <div class="highlight-box">
                 Adding a contact doesn't send them anything. Nothing reaches the contact until you assign a form.
@@ -657,7 +667,7 @@
             <h3>Contact actions and assigning a form</h3>
             <p>Click the <kbd>&middot;&middot;&middot;</kbd> menu at the end of a contact's row to see what you can do with that contact:</p>
             <ul class="feature-list">
-                <li><strong>View</strong>: open the contact's details.</li>
+                <li><strong>View</strong>: open the contact's details, including their own <a href="#contact-activity">Activity Log</a> tab.</li>
                 <li><strong>Edit</strong>: update the contact's details.</li>
                 <li><strong>Fill KYC</strong>: fill in and submit the form yourself on the contact's behalf, for example when they send the details by phone or on paper. It counts as a normal submission, so the usual emails and notifications are sent.</li>
                 <li><strong>Review KYC</strong>: open the contact's latest submission.</li>
@@ -811,7 +821,7 @@
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top:14px">For every action except Approve, a box appears where you can add a note. The note is included in the email, so write it for the contact.</p>
+            <p style="margin-top:14px">For every action except Approve, a box appears where you can add a note. The note is included in the email, so write it for the contact. Every decision is also recorded in the <a href="#activity-log">Activity Log</a> under your name, together with your note.</p>
             <div class="highlight-box">
                 Review Actions only appear when a submission is waiting for a decision (Submitted, Under Review, Info Required or Resubmitted), and only for users with full Dashboard access.
             </div>
@@ -993,15 +1003,158 @@
             </figure>
         </div>
 
-        <!-- 5. Settings -->
-        <div class="section-head" id="settings">
+        <!-- 5. Activity Log -->
+        <div class="section-head" id="activity-log">
             <div class="eyebrow">Section 5</div>
+            <h2>Activity Log</h2>
+            <p>The Activity Log is your audit trail. It records who did what, and when, for every business contact: contacts being added and edited, forms being sent, contacts verifying and submitting, reminders going out and every review decision. Entries are added automatically and can't be edited.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.1</div>
+            <h3>Two views of the same history</h3>
+            <p>You can see the Activity Log in two places. Both show the same entries, so anything that happens to a contact appears in both.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>View</th><th>Where to find it</th><th>Use it for</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Activity Log page</strong></td><td><kbd>Activity Log</kbd> in the left menu</td><td>Watching activity across all your business contacts, for example everything your team did this week</td></tr>
+                        <tr><td><strong>A contact's Activity Log tab</strong></td><td>Dashboard &rsaquo; <kbd>&middot;&middot;&middot;</kbd> &rsaquo; View, then the <kbd>Activity Log</kbd> tab</td><td>The complete history of one contact, for example before an audit or a renewal. <a href="#contact-activity">See 5.6</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">
+                Anyone with Dashboard access, including view-only access, can open the Activity Log. It is read-only, so entries can't be changed or removed from here.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image27.jpg" target="_blank"><img src="kyc-guide-images/image27.jpg" alt="Activity Log page with filters and entries grouped by day" loading="lazy"></a>
+                <figcaption>Activity Log page</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.2</div>
+            <h3>Reading an entry</h3>
+            <p>Entries are grouped by day. Each day starts with a header showing Today, Yesterday or the weekday, the full date and the number of events. Every entry shows:</p>
+            <ul class="feature-list">
+                <li><strong>The time</strong> it happened.</li>
+                <li><strong>An icon for the kind of activity</strong>: a person for contact changes, a document for forms and submissions, a bell for emails and reminders, a key for code verification and a shield for review decisions.</li>
+                <li><strong>A sentence saying who did what</strong>, for example <em>&ldquo;Priya assigned a KYC form to Acme Ltd&rdquo;</em>. Click the contact's name to open the contact.</li>
+                <li><strong>The status change</strong>, when the activity changed the KYC status, for example <span class="status s-grey">Not Required</span> &rarr; <span class="status s-orange">In Progress</span>.</li>
+                <li><strong>A short detail line</strong>, such as the form and version, the fields that were edited, or the document a reminder was about.</li>
+            </ul>
+            <h4>Who appears at the start of the sentence</h4>
+            <ul class="feature-list">
+                <li><strong>A team member</strong>, for anything done in KYC: adding or editing a contact, assigning a form, sending an invitation, a review decision, or submitting on a contact's behalf with Fill KYC.</li>
+                <li><strong>The contact</strong>, for what they did through their verification link: requesting and entering their code, and submitting the form.</li>
+                <li><strong>System</strong>, for automatic reminders. When System sends several in a row, they are folded into one line, such as <em>&ldquo;System sent 5 automatic entries&rdquo;</em>. Click <kbd>Show 5</kbd> to see each one.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.3</div>
+            <h3>What gets recorded</h3>
+            <p>These are the activities the log records. The small code under each name is how the activity is stored, which can help if you contact support.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Activity</th><th>Recorded when</th><th>Shown in the log as</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Contact created</strong><span class="event-code">CUSTOMER_CREATED</span></td><td>A business contact is added.</td><td>&ldquo;created business contact&rdquo;, with the contact name and types</td></tr>
+                        <tr><td><strong>Contact updated</strong><span class="event-code">CUSTOMER_UPDATED</span></td><td>Someone saves changes to a contact's details.</td><td>&ldquo;updated 2 fields on&rdquo;, with the names of the fields</td></tr>
+                        <tr><td><strong>Form assigned</strong><span class="event-code">FORM_ASSIGNED</span></td><td>A form is assigned to a contact, one at a time or in bulk.</td><td>&ldquo;assigned a KYC form to&rdquo;, with the form, version and status change</td></tr>
+                        <tr><td><strong>Invitation sent</strong><span class="event-code">KYC_EMAIL_SENT</span></td><td>The KYC invitation email is sent.</td><td>&ldquo;sent the KYC invite to&rdquo;, with the email address and form</td></tr>
+                        <tr><td><strong>KYC reminder</strong><span class="event-code">KYC_REMINDER_SENT</span></td><td>An automatic reminder goes to a contact who hasn't finished, or whose renewal is due.</td><td>&ldquo;System sent a KYC reminder to&rdquo;, with the reminder count (1st, 2nd and so on)</td></tr>
+                        <tr><td><strong>Document expiry reminder</strong><span class="event-code">EXPIRY_REMINDER_SENT</span></td><td>An automatic reminder about a Docs with Expiry upload that is about to expire or has expired.</td><td>&ldquo;System sent a document expiry reminder to&rdquo;, with the document name and expiry date</td></tr>
+                        <tr><td><strong>Code requested</strong><span class="event-code">OTP_REQUESTED</span></td><td>The contact asks for a one-time code.</td><td>&ldquo;requested an OTP&rdquo;, with a partly hidden email such as an***@example.com</td></tr>
+                        <tr><td><strong>Code verified</strong><span class="event-code">OTP_VERIFIED</span></td><td>The contact enters the correct code.</td><td>&ldquo;verified their OTP&rdquo;</td></tr>
+                        <tr><td><strong>Form submitted</strong><span class="event-code">FORM_SUBMITTED</span></td><td>The form is submitted, by the contact or by your team using Fill KYC.</td><td>&ldquo;submitted the KYC form for&rdquo;</td></tr>
+                        <tr><td><strong>Form resubmitted</strong><span class="event-code">FORM_RESUBMITTED</span></td><td>The contact sends an update after a reviewer chose Request Information.</td><td>&ldquo;resubmitted the KYC form for&rdquo;</td></tr>
+                        <tr><td><strong>Status changed</strong><span class="event-code">KYC_STATUS_CHANGED</span></td><td>A reviewer records a decision, or someone changes the KYC Status on the contact's record.</td><td>The decision itself: &ldquo;approved KYC for&rdquo;, &ldquo;conditionally approved KYC for&rdquo;, &ldquo;requested more information from&rdquo; or &ldquo;rejected KYC for&rdquo;. Decisions made for several submissions at once are marked <em>Bulk update</em>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.4</div>
+            <h3>Search and filters</h3>
+            <p>The bar at the top of the log narrows down what you see. Filters can be combined.</p>
+            <ul class="feature-list">
+                <li><strong>Search by user</strong>: type part of the name shown on an entry to see only what that person did. Contacts are found by their email address. Type <em>system</em> to see only automatic reminders.</li>
+                <li><strong>Business contact</strong> (Activity Log page only): pick one contact to see only their entries. Click <kbd>&times;</kbd> to clear it.</li>
+                <li><strong>KYC Status</strong>: show only activities that resulted in the statuses you pick, for example every approval.</li>
+                <li><strong>Action</strong>: <strong>Create</strong> shows contacts being added. <strong>Update</strong> shows everything else.</li>
+                <li><strong>From date</strong> and <strong>To date</strong>: both days are included in full.</li>
+                <li><strong>Newest first</strong> or <strong>Oldest first</strong>: change the order of the list.</li>
+                <li><strong>Refresh</strong> (the round-arrows button): the log doesn't update by itself, so click it to pick up new activity.</li>
+                <li><strong>Reset all</strong> appears once a filter is on, and clears every filter at once.</li>
+            </ul>
+            <p>The log loads in batches. Click <kbd>Load earlier activity</kbd> at the bottom to see more. When there is nothing left, it says you've reached the end of the activity log.</p>
+            <div class="warn-box">
+                While the <strong>KYC Status</strong> filter is on, activities that don't set a status are hidden: contact edits, code requests and verifications, and document expiry reminders. A banner above the list reminds you. Clear the filter to see them again.
+            </div>
+            <figure class="shot">
+                <a href="kyc-guide-images/image28.jpg" target="_blank"><img src="kyc-guide-images/image28.jpg" alt="Activity Log search bar with Business contact, KYC Status, Action, date and sort filters" loading="lazy"></a>
+                <figcaption>Activity Log search and filters</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.5</div>
+            <h3>Entry details</h3>
+            <p>Click the arrow at the right of an entry to expand it. Depending on the activity, you will see:</p>
+            <ul class="feature-list">
+                <li><strong>What changed</strong>: a table with each field's value <strong>Before</strong> (crossed out) and <strong>After</strong>. A form assignment shows the KYC status, form name and form version. A contact edit shows each field that was changed.</li>
+                <li><strong>Contact at the time</strong>: the contact's name, email, contact types and whether they were Active, exactly as they were when the activity happened. Later edits to the contact don't change it.</li>
+                <li><strong>Notes</strong>: the note the reviewer wrote with their decision.</li>
+                <li><strong>Ref</strong>: a reference code for the activity, with a copy button. Quote it if you contact support about an entry.</li>
+                <li><kbd>Open contact</kbd> goes to the contact's details. <kbd>View submission</kbd> opens the review screen for submissions and review decisions.</li>
+            </ul>
+            <figure class="shot">
+                <a href="kyc-guide-images/image29.jpg" target="_blank"><img src="kyc-guide-images/image29.jpg" alt="Expanded Activity Log entry showing What changed, Contact at the time, Ref and Open contact" loading="lazy"></a>
+                <figcaption>Expanded entry details</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card" id="contact-activity">
+            <div class="feature-number">5.6</div>
+            <h3>A contact's own Activity Log</h3>
+            <ol class="steps">
+                <li>On the Dashboard, open the <kbd>&middot;&middot;&middot;</kbd> menu on the contact's row and choose <strong>View</strong>.</li>
+                <li>Click the <kbd>Activity Log</kbd> tab next to Details.</li>
+            </ol>
+            <p>You see only this contact's history, with the same search, KYC Status, Action, date, sort, refresh and entry details as the main page. The Business contact filter isn't needed here, and entries leave out the contact's name because it's already at the top of the page, for example <em>&ldquo;Priya assigned a KYC form&rdquo;</em>.</p>
+            <figure class="shot">
+                <a href="kyc-guide-images/image30.jpg" target="_blank"><img src="kyc-guide-images/image30.jpg" alt="Business Contact Details page with the Activity Log tab open" loading="lazy"></a>
+                <figcaption>A contact's Activity Log tab</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">5.7</div>
+            <h3>Good to know</h3>
+            <ul class="feature-list">
+                <li><strong>Not recorded</strong>: deleting a contact, wrong codes entered by a contact, and changes to forms, settings or email templates.</li>
+                <li><strong>Shared with CaratLogic Inventory</strong>: business contacts are shared between the two products, so contacts created or edited in Inventory also appear here.</li>
+            </ul>
+            <div class="warn-box">
+                The history is shared too. If <strong>Business Contact</strong> logging is turned off in Inventory's <kbd>Audit Logging</kbd> settings, new KYC activity stops being recorded. Deleting Business Contact history there also removes these entries, and they can't be recovered.
+            </div>
+        </div>
+
+        <!-- 6. Settings -->
+        <div class="section-head" id="settings">
+            <div class="eyebrow">Section 6</div>
             <h2>Settings</h2>
             <p>Settings control automatic reminders, how often KYC must be renewed, which email server sends your emails, and who on your team is told about new submissions.</p>
         </div>
 
         <div class="feature-card" id="reminders">
-            <div class="feature-number">5.1</div>
+            <div class="feature-number">6.1</div>
             <h3>Reminder settings</h3>
             <ul class="feature-list">
                 <li><strong>KYC Mail Frequency</strong>: how often reminders are sent. The options are Weekly (default), Biweekly and Monthly.</li>
@@ -1025,7 +1178,7 @@
         </div>
 
         <div class="feature-card" id="email-setup">
-            <div class="feature-number">5.2</div>
+            <div class="feature-number">6.2</div>
             <h3>Email setup</h3>
             <p>Connect KYC to your company's email server (SMTP) so invitations and notifications come from your own address. You need these details from your IT team or email provider:</p>
             <ul class="feature-list">
@@ -1040,7 +1193,7 @@
         </div>
 
         <div class="feature-card" id="recipients">
-            <div class="feature-number">5.3</div>
+            <div class="feature-number">6.3</div>
             <h3>Submission notification recipients</h3>
             <p>List the colleagues who should get an email when a contact submits their KYC. The email names the contact and company, and it links straight to the review screen.</p>
             <ul class="feature-list">
@@ -1054,15 +1207,15 @@
             </figure>
         </div>
 
-        <!-- 6. Templates -->
+        <!-- 7. Templates -->
         <div class="section-head" id="templates">
-            <div class="eyebrow">Section 6</div>
+            <div class="eyebrow">Section 7</div>
             <h2>Email Template Configuration</h2>
             <p>Change the wording of the emails your contacts receive at each stage of KYC, and see a live preview as you type.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-number">6.1</div>
+            <div class="feature-number">7.1</div>
             <h3>Lifecycle email templates</h3>
             <p>Each template in the left menu belongs to one step of the KYC process:</p>
             <div class="table-wrap">
@@ -1084,7 +1237,7 @@
         </div>
 
         <div class="feature-card">
-            <div class="feature-number">6.2</div>
+            <div class="feature-number">7.2</div>
             <h3>Edit a template and preview it</h3>
             <p>Each template has four parts you can edit:</p>
             <ul class="feature-list">
@@ -1092,16 +1245,16 @@
                 <li><strong>Summary Heading</strong>: the large title at the top of the email.</li>
                 <li><strong>Message</strong> and <strong>Notes</strong>: the body text, with bold, italic, headings, lists, colours and highlights.</li>
             </ul>
-            <p>You don't need to type placeholders. The company name, dates, reviewer comments and button are added automatically, and the <strong>Email Preview</strong> on the right shows the finished email. Click <kbd>Save</kbd> to keep your changes, or <kbd>Reset to Defaults</kbd> to go back to the original wording.</p>
+            <p>You don't need to type placeholders. The company name, dates, reviewer comments and button are added automatically, and the <strong>Email Preview</strong> on the right shows the finished email, including your branding, the KYC details, the button and the footer. Click <kbd>Save</kbd> to keep your changes, or <kbd>Reset to Defaults</kbd> to go back to the original wording.</p>
             <figure class="shot">
                 <a href="kyc-guide-images/image26.jpg" target="_blank"><img src="kyc-guide-images/image26.jpg" alt="KYC Invitation template editor with live email preview" loading="lazy"></a>
                 <figcaption>Template editor and live preview</figcaption>
             </figure>
         </div>
 
-        <!-- 7. FAQ -->
+        <!-- 8. FAQ -->
         <div class="section-head" id="faq">
-            <div class="eyebrow">Section 7</div>
+            <div class="eyebrow">Section 8</div>
             <h2>Common questions</h2>
         </div>
 
@@ -1123,6 +1276,12 @@
 
             <h4>Nobody on my team was told about a new submission.</h4>
             <p>The notification bell always shows new submissions. Email alerts are only sent to addresses on the <a href="#recipients">KYC Submission Notification</a> list.</p>
+
+            <h4>Who changed this contact's details, and when?</h4>
+            <p>Open the contact's <a href="#contact-activity">Activity Log tab</a> and look for entries such as <em>&ldquo;updated 2 fields&rdquo;</em>. Each one names the person and the time, and the detail line lists the fields. Expand it to see each value before and after.</p>
+
+            <h4>The Activity Log isn't showing contact edits or code activity.</h4>
+            <p>The KYC Status filter is probably on. It only shows activities that set a status. Click <strong>Reset all</strong> to see everything again.</p>
 
             <h4>The buttons on a screen are greyed out.</h4>
             <p>You probably have view-only access to that area. Ask your administrator for full access.</p>
