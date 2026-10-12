@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .shot {
+            margin-top: 20px;
+        }
+
+        .shot a {
+            display: block;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fafbfa;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .shot figcaption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .feature-card code {
+            font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+            font-size: 12.5px;
+            background: #f0f7f3;
+            color: #1b5e20;
+            padding: 1px 6px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 16px;
+            font-size: 14px;
+        }
+
+        .rule-table th,
+        .rule-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e8ece8;
+            color: #444;
+        }
+
+        .rule-table th {
+            font-size: 12px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Inventory Search &mdash; Release Notes</h1>
+            <p class="subtitle">Gem and diamond inventory get two new ways to find stock: a filter row under every column, and a full-page Advanced Search with counts on every option. Filters show as chips you can remove one at a time, and you can save any combination as a search to use again.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                October 12, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Column Filters: Filter Right in the Table</h2>
+            <p><strong>Where:</strong> Gem Inventory or Diamond Inventory &rarr; <strong>Column filters</strong></p>
+            <p>Click <strong>Column filters</strong> to show a filter row under the table headers. Each column gets the right kind of filter for its data, and the list updates as you type or pick.</p>
+            <ul class="feature-list">
+                <li>The row is hidden until you open it, and it starts hidden each time the page loads. Hiding it doesn't remove your filters.</li>
+                <li>The button shows how many column filters are on, e.g. <strong>Hide column filters &nbsp;2</strong>. Each filtered column shows a small funnel icon in its header.</li>
+                <li>To remove every column filter at once, click the funnel icon at the left end of the row (<strong>Clear all column filters</strong>).</li>
+                <li>Columns that can't be filtered show an empty, dashed cell. On diamonds, Diamond Type is set by the <strong>Natural / Lab-Grown</strong> tab, and Growth Type only appears on Lab-Grown.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/column-filter-row.png" target="_blank"><img src="october-12-2026-images/column-filter-row.png" alt="Diamond Inventory with the column filter row open under the table headers" loading="lazy"></a>
+                <figcaption>The filter row on Diamond Inventory</figcaption>
+            </figure>
+
+            <h3>Pick from a list</h3>
+            <p>Columns such as Shape, Status, Stock Type, Gem Type, Color, Color Grade, Fancy Color, Clarity, Cut, Polish, Symmetry, Certificate Type, Origin Country, Supplier, Ownership and Warehouse show <strong>All</strong>. Click it to choose one or more values.</p>
+            <ul class="feature-list">
+                <li>Each value shows <strong>how many stones</strong> have it, highest first. Only values that exist in your inventory are listed.</li>
+                <li>Long lists have a search box (e.g. <strong>Search shapes</strong>) and a <strong>Clear</strong> link. Short lists show as pills.</li>
+                <li>Picking several values shows stones that match <strong>any</strong> of them. The cell then reads e.g. <strong>Round +1</strong>.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/column-filter-multi-select.png" target="_blank"><img src="october-12-2026-images/column-filter-multi-select.png" alt="Shape filter open with a search box and a count next to each shape" loading="lazy"></a>
+                <figcaption>Shape filter with counts</figcaption>
+            </figure>
+
+            <h3>Type a number or a rule</h3>
+            <p>Number columns (carats, prices, discounts, measurements, quantities, Depth %, Table %, Ratio and more) take a value or a rule. Click the box to see examples for that column, and click one to use it.</p>
+            <table class="rule-table">
+                <tr><th>Type</th><th>Shows stones with</th></tr>
+                <tr><td><code>0.3-5</code></td><td>0.3 ct to 5 ct</td></tr>
+                <tr><td><code>&gt;=0.3</code></td><td>0.3 ct or more</td></tr>
+                <tr><td><code>&lt;=5</code></td><td>5 ct or less</td></tr>
+                <tr><td><code>1</code></td><td>exactly 1 ct</td></tr>
+                <tr><td><code>&gt;0.3</code> / <code>&lt;5</code></td><td>more than 0.3 ct / less than 5 ct</td></tr>
+            </table>
+            <ul class="feature-list">
+                <li>You can use <strong>k</strong>, <strong>M</strong> and <strong>B</strong> for large amounts, e.g. <code>&lt;1.2M</code>. Spaces and thousands commas are ignored.</li>
+                <li>If the app can't read what you typed, it says so and suggests a format, e.g. <em>Try 1&ndash;3, &gt;1 or &lt;=3.</em></li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/column-filter-number-rules.png" target="_blank"><img src="october-12-2026-images/column-filter-number-rules.png" alt="Total Carat filter open showing example rules such as >0.3, 0.3–5 and <=5" loading="lazy"></a>
+                <figcaption>Rule examples on the Total Carat filter</figcaption>
+            </figure>
+
+            <h3>Paste a list of IDs</h3>
+            <p><strong>Stock ID</strong>, <strong>Caratlogic ID</strong> and <strong>Certificate #</strong> have a <strong>Paste IDs&hellip;</strong> box. Paste a list straight from Excel or an email.</p>
+            <ul class="feature-list">
+                <li>Commas, semicolons, spaces and new lines all split IDs. Duplicates are removed.</li>
+                <li>Each ID shows as a pill, with a total such as <strong>5 IDs</strong>. IDs that aren't in your inventory are simply not shown.</li>
+                <li>Stock IDs must match in full, in any letter case.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/column-filter-paste-ids.png" target="_blank"><img src="october-12-2026-images/column-filter-paste-ids.png" alt="Stock ID filter with five pasted IDs shown as pills and four matching diamonds in the list" loading="lazy"></a>
+                <figcaption>Five pasted Stock IDs, four found</figcaption>
+            </figure>
+
+            <h3>Other columns</h3>
+            <ul class="feature-list">
+                <li><strong>Text columns</strong> (e.g. Description, Notes, Member Comments, Purchase, Fluorescence Color) show <strong>Contains&hellip;</strong> and match any part of the text.</li>
+                <li><strong>Date columns</strong> (Created At / Date Added, Updated) show <strong>Any date</strong>. Pick <strong>Today</strong>, <strong>Last 7 days</strong>, <strong>Last 30 days</strong>, <strong>This month</strong> or <strong>This fiscal year</strong>, or set your own From and To dates.</li>
+                <li><strong>Active</strong> shows <strong>Any</strong>, <strong>Yes</strong> or <strong>No</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#127991;</div>
+            <span class="tag tag-new">New</span>
+            <h2>See Every Filter as a Chip</h2>
+            <p>As soon as a filter is on, a <strong>Filtered by</strong> row appears above the table. Each filter is a chip with the column name and its value, e.g. <strong>Shape: Round, Oval</strong> or <strong>Total Carat: 1&ndash;2</strong>.</p>
+            <ul class="feature-list">
+                <li>Click <strong>&times;</strong> on a chip to remove just that filter.</li>
+                <li><strong>Clear all</strong> removes every filter. It keeps what you typed in the search box; <strong>Reset all</strong> in the toolbar clears that too.</li>
+                <li><strong>Save search</strong> at the end of the row keeps this combination for later (see below).</li>
+                <li>Every way of filtering adds chips here: the column row, Advanced Search, the <strong>Ownership</strong> and <strong>Status</strong> buttons, and saved searches.</li>
+                <li>If nothing matches, you'll see <strong>No gems match these filters</strong> (or diamonds) and a <strong>Clear all filters</strong> button.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/filtered-by-chips.png" target="_blank"><img src="october-12-2026-images/filtered-by-chips.png" alt="Filtered by row with Shape: Round, Oval and Total Carat: 1–2 chips, Clear all and Save search" loading="lazy"></a>
+                <figcaption>Two filters combined: 438 matching diamonds</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128269;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Advanced Search, Redesigned</h2>
+            <p><strong>Where:</strong> Gem Inventory or Diamond Inventory &rarr; <strong>Advance Search</strong></p>
+            <p>Advance Search now opens a full page instead of a side panel. Filters are grouped into cards, every list shows how many stones have each value, and the button at the top tells you how many stones will match before you apply.</p>
+
+            <h3>How it works</h3>
+            <ul class="feature-list">
+                <li>Choose filters on any card. Your choices appear as chips at the top, and the button updates to show the result, e.g. <strong>Show 611 diamonds</strong>.</li>
+                <li>Nothing changes in your list until you click <strong>Show &hellip;</strong>. To leave without applying, click the back arrow or press <strong>Esc</strong>.</li>
+                <li>Each card you've used has a <strong>Clear</strong> link. <strong>Clear all</strong> at the top clears everything.</li>
+                <li>You can load a saved search from <strong>Saved searches</strong> at the top, change it, then apply.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/advanced-search.png" target="_blank"><img src="october-12-2026-images/advanced-search.png" alt="Advanced Search page for diamonds with Find by ID, Availability, Price, Carat, Shape and Color cards" loading="lazy"></a>
+                <figcaption>Advanced Search for diamonds</figcaption>
+            </figure>
+
+            <h3>The cards</h3>
+            <ul class="feature-list">
+                <li><strong>Find by ID</strong> &mdash; paste lists of <strong>Stock IDs</strong> and <strong>Certificate numbers</strong>.</li>
+                <li><strong>Availability</strong> &mdash; Status (with counts), Stock type (Single, Parcel, Set, Pair) and Ownership (Owned, Partner, Memo In).</li>
+                <li><strong>Price</strong> &mdash; switch between <strong>Selling</strong>, <strong>Cost</strong> and <strong>Retail</strong>, then set Price / ct, Total and Discount %. Diamonds also have Expense under Cost.</li>
+                <li><strong>Carat</strong> &mdash; choose whether to <strong>Weigh by</strong> <strong>Available</strong> or <strong>Total</strong> carats.</li>
+                <li><strong>Shape</strong>, <strong>Clarity</strong>, <strong>Treatment</strong>, <strong>Origin country</strong>, <strong>Lab</strong>, and <strong>Supplier &amp; purchase</strong> (Supplier, Purchase ID, Price code).</li>
+                <li><strong>Clarity</strong> is a range: click a start grade, then an end grade, e.g. <strong>VS1 &ndash; VS2</strong>. Grades follow the order set in your settings.</li>
+                <li>Every number has <strong>From</strong> and <strong>To</strong> boxes plus one-click <strong>Common sizes</strong> or <strong>Common ranges</strong>, such as <strong>1.00&ndash;1.49</strong> ct or a <strong>10&ndash;20</strong> discount. Click a selected one again to remove it.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/advanced-search-selected.png" target="_blank"><img src="october-12-2026-images/advanced-search-selected.png" alt="Advanced Search with In Stock, 1.00–1.49 carats, VS1–VS2 clarity and Excellent polish selected; header shows chips and Show 611 diamonds" loading="lazy"></a>
+                <figcaption>Filters chosen; the header shows the chips and the match count</figcaption>
+            </figure>
+
+            <h3>Diamonds</h3>
+            <ul class="feature-list">
+                <li><strong>Color</strong> has a <strong>White</strong> / <strong>Fancy</strong> switch: Color grade for white stones; Fancy color, Intensity and Overtone for fancy stones.</li>
+                <li>Extra cards for <strong>Cut &amp; finish</strong> (Cut, Polish, Symmetry) and <strong>Fluorescence</strong> (Strength, Color). <strong>Growth type</strong> appears on the Lab-Grown tab.</li>
+                <li>Results and counts follow the <strong>Natural / Lab-Grown</strong> tab you're on.</li>
+            </ul>
+
+            <h3>Gems</h3>
+            <ul class="feature-list">
+                <li>A <strong>Gem type</strong> card, a <strong>Color</strong> card with <strong>Intensity</strong>, and gem clarity grades such as Eye Clean and Slightly Included.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/advanced-search-gems.png" target="_blank"><img src="october-12-2026-images/advanced-search-gems.png" alt="Advanced Search for gems with the Gem type list open, Emerald and Aquamarine selected, and Show 437 gems" loading="lazy"></a>
+                <figcaption>Advanced Search for gems, choosing gem types</figcaption>
+            </figure>
+
+            <h3>More filters</h3>
+            <p>Less-used filters are tucked under <strong>More filters</strong> at the bottom of the page. The button lists what's inside.</p>
+            <ul class="feature-list">
+                <li><strong>Quantities</strong> &mdash; Quantity (diamonds), In stock, <strong>Reserved (ct)</strong> and <strong>Sold (ct)</strong></li>
+                <li><strong>Measurements (mm)</strong> &mdash; Length, Breadth, Depth</li>
+                <li><strong>Dates</strong> &mdash; Date added and Updated (Today, Last 7 days, Last 30 days, This month, This fiscal year, or your own dates), and Active</li>
+                <li><strong>Warehouse</strong> &mdash; Type and Warehouses</li>
+                <li><strong>Caratlogic ID</strong> &mdash; paste a list</li>
+                <li>Diamonds: <strong>Proportions</strong> (Depth %, Table %, Ratio) and <strong>Rapnet</strong> (Price / ct, Discount %)</li>
+                <li>Gems: <strong>Color detail</strong> (Modifiers, Color system, Color description)</li>
+                <li><strong>Notes</strong>, and your <strong>custom fields</strong> under <strong>Extra properties</strong></li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/advanced-search-more-filters.png" target="_blank"><img src="october-12-2026-images/advanced-search-more-filters.png" alt="More filters expanded showing Quantities, Measurements (mm) and Dates cards" loading="lazy"></a>
+                <figcaption>More filters</figcaption>
+            </figure>
+
+            <h3>Back in the list</h3>
+            <p>Advanced Search and the column filters share the same filters. After you click <strong>Show &hellip;</strong>, your choices appear as chips and in the matching column filters, so you can fine-tune them right in the table.</p>
+            <figure class="shot">
+                <a href="october-12-2026-images/advanced-search-results.png" target="_blank"><img src="october-12-2026-images/advanced-search-results.png" alt="Diamond list after applying Advanced Search, with chips and the Status and Available Carat column filters filled in" loading="lazy"></a>
+                <figcaption>Results: the same filters show as chips and in the column row</figcaption>
+            </figure>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128278;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Saved Searches</h2>
+            <p><strong>Where:</strong> <strong>Save search</strong> in the Filtered by row; <strong>Saved searches</strong> in the toolbar and on Advanced Search</p>
+            <p>Save any set of filters you use often, such as &ldquo;Round &amp; Oval 1&ndash;2 ct&rdquo;, and bring it back in one click.</p>
+
+            <h3>Save a search</h3>
+            <ul class="feature-list">
+                <li>Apply your filters, then click <strong>Save search</strong>. Give it a name (up to 100 characters). The dialog shows the filters being saved.</li>
+                <li>Your search box text is saved too. The page, sort order and the diamond Natural / Lab-Grown tab are not.</li>
+                <li>If the same filters are already saved, or the name is already used, you're asked before a second copy is created.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/save-search-dialog.png" target="_blank"><img src="october-12-2026-images/save-search-dialog.png" alt="Save search dialog with a Name field, the filters being saved, and a note about the 50-search limit" loading="lazy"></a>
+                <figcaption>Save search</figcaption>
+            </figure>
+
+            <h3>Use, rename and delete</h3>
+            <ul class="feature-list">
+                <li>Open <strong>Saved searches</strong> and click a search to apply it. It replaces your current filters.</li>
+                <li>Use <strong>Find a saved search</strong> to look up a search by its name or its filters.</li>
+                <li>Click the pencil to rename a search, or the bin to delete it. Deleting can't be undone. To change a search's filters, apply it, adjust, and save it again.</li>
+                <li>On Advanced Search, a saved search fills in the cards so you can adjust it before clicking <strong>Show &hellip;</strong>.</li>
+            </ul>
+            <figure class="shot">
+                <a href="october-12-2026-images/saved-searches-menu.png" target="_blank"><img src="october-12-2026-images/saved-searches-menu.png" alt="Saved searches menu with a search box and one saved search showing its filters, rename and delete buttons" loading="lazy"></a>
+                <figcaption>Saved searches menu</figcaption>
+            </figure>
+            <figure class="shot">
+                <a href="october-12-2026-images/delete-saved-search.png" target="_blank"><img src="october-12-2026-images/delete-saved-search.png" alt="Delete saved search confirmation dialog" loading="lazy"></a>
+                <figcaption>Deleting a saved search</figcaption>
+            </figure>
+            <div class="highlight-box">
+                Saved searches are private to you. Gems and diamonds each keep their own list of up to <strong>50</strong>. When you save a 51st, you're warned that your oldest saved search will be deleted.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128270;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>Search Box Now Matches Whole IDs</h2>
+            <p>The search box above the list now reads <strong>Search stock ID</strong>. It finds a stone by its full <strong>Stock ID</strong>, <strong>Caratlogic ID</strong> or <strong>certificate number</strong>, in any letter case. It also matches whole words in other stone details, such as a shape name.</p>
+            <ul class="feature-list">
+                <li>To find several stones at once, use <strong>Paste IDs&hellip;</strong> in the column filters or <strong>Find by ID</strong> in Advanced Search.</li>
+                <li>If nothing matches, you'll see <strong>No diamonds match your search</strong> (or gems).</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Part of an ID no longer finds a stone.</strong> Searching <strong>PO1147479</strong> finds that stone, but <strong>PO1147</strong> now finds nothing. Type the full ID, or paste a list of full IDs into the Stock ID column filter.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>Carat, Reserved, Sold and Supplier Filters</h2>
+            <ul class="feature-list">
+                <li><strong>Available Carat</strong> filters on available carats only. Before, the carat filter also counted reserved carats. To include them, filter on <strong>Total Carat</strong> (available + reserved), or choose <strong>Weigh by: Total</strong> in Advanced Search.</li>
+                <li><strong>Reserved</strong> and <strong>Sold</strong> are now filtered in <strong>carats</strong>, not number of stones.</li>
+                <li><strong>Supplier</strong> is now a multi-select showing supplier names and counts. It matches the stone's supplier, whether it came from a purchase order, a memo in, or was set directly on the stone. Only suppliers with stock are listed.</li>
+                <li>New for diamonds: filter by <strong>Origin Country</strong> and pick several <strong>Fancy Colors</strong> at once.</li>
+                <li>A minimum of <strong>0</strong> now works in number filters. Before, it was ignored.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128161;</div>
+            <span class="tag tag-enhanced">Good to Know</span>
+            <h2>How Filters Work Together</h2>
+            <ul class="feature-list">
+                <li><strong>Different filters narrow each other down.</strong> Shape: Round <em>and</em> Total Carat: 1&ndash;2 shows only round stones from 1 to 2 ct. Several values in one filter widen it: Round, Oval shows both.</li>
+                <li><strong>Ranges include both ends.</strong> 1&ndash;2 ct includes stones of exactly 1 ct and 2 ct.</li>
+                <li><strong>Counts show your whole inventory list.</strong> The number next to each option doesn't change as you add other filters.</li>
+                <li><strong>Export All</strong> exports only the stones that match your filters and search. <strong>Export Selected</strong> and bulk actions use the rows you've ticked.</li>
+                <li><strong>Filters stay while you work.</strong> They're kept when you open a stone and come back. Reloading the page or switching to Archive clears them, so save searches you'll need again.</li>
+                <li>On diamonds, switching between Natural and Lab-Grown keeps your filters, except Growth type, which only applies to Lab-Grown.</li>
+                <li>Column filters, Advanced Search and saved searches are on <strong>Gem Inventory</strong> and <strong>Diamond Inventory</strong>. Archive pages don't have them.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
