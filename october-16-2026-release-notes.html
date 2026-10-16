@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Memo Out &amp; Transactions &mdash; Release Notes</h1>
+            <p class="subtitle">This release lets you edit open memo outs, creates a new memo out PDF after every change and keeps every earlier version for download, lets one invoice bill items from several memo outs, and adds a Stock ID filter to line items across transactions.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                October 16, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#9999;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Edit a Memo Out</h2>
+            <p><strong>Where:</strong> Memo Out list &rarr; row actions menu &rarr; <strong>Edit Memo Out</strong>, or a memo out's details page &rarr; actions menu &rarr; <strong>Edit Memo Out</strong></p>
+            <p>You can now change a memo out after it has been created. The edit page looks like Create Memo Out, and the <strong>Memo Out Summary</strong> card updates the totals as you type.</p>
+
+            <h3>What you can change</h3>
+            <ul class="feature-list">
+                <li><strong>Carats</strong>, <strong>Quantity</strong> and <strong>Rate</strong> on any line that is still out</li>
+                <li>Service names and amounts</li>
+                <li><strong>Return Date</strong>, <strong>Customer Discount (%)</strong> and <strong>Shipping Cost</strong></li>
+                <li><strong>Customer Notes</strong> and <strong>Additional Notes</strong></li>
+            </ul>
+            <p>Click <strong>Save changes</strong>. You'll see e.g. <strong>Memo out updated &middot; PDF v2 generated</strong> and go back to the memo out.</p>
+
+            <h3>Stock limits</h3>
+            <ul class="feature-list">
+                <li>You can raise carats or quantity only by what that stone still has in stock. If you go over, the field shows e.g. <em>Only 1.25 left in stock.</em></li>
+                <li>Lowering carats or quantity puts the difference back in stock.</li>
+                <li>The stone's status updates to match. It shows <strong>Memo Out</strong> only when all of its carats are on memo, and <strong>In Stock</strong> otherwise.</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>&#9888; What can't be edited.</strong> Returned and cancelled memo outs can't be edited. Lines that are fully returned or invoiced, and cancelled services, are shown but locked. You can't add or remove lines or services in an edit. If the memo out changes while you're editing (for example, a line is returned), you're asked to reload and try again.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-new">New</span>
+            <h2>A New Memo Out PDF After Every Change</h2>
+            <p>The memo out PDF is now regenerated whenever the memo out changes, so the PDF always matches what is on the memo. Each PDF shows its version under the memo details, e.g. <strong>Revision: v2</strong>.</p>
+            <ul class="feature-list">
+                <li>A new version is created when you <strong>edit</strong> the memo out, <strong>return</strong> some or all items, or <strong>invoice</strong> items from it.</li>
+                <li>New memo outs start at <strong>v1</strong>. On memo outs created before this release, the existing PDF counts as v1 and the next change creates v2.</li>
+                <li>Emails and shared PDF links always use the latest version.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128228;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Download Earlier Memo Out PDFs</h2>
+            <p><strong>Where:</strong> Memo out details page &rarr; <strong>Download</strong>, or Memo Out list &rarr; row actions menu &rarr; PDF</p>
+            <p>Every PDF version of a memo out is kept. The download menu lists the current PDF with a <strong>Latest</strong> badge, then <strong>Previous versions</strong>, newest first, each with its version number.</p>
+            <ul class="feature-list">
+                <li>Downloaded files include the version in their name, e.g. <strong>MO-26-0142-v3.pdf</strong>.</li>
+                <li>Memo outs with a single-line PDF keep both PDFs for every version, e.g. <strong>MO-26-0142-single-line-v3.pdf</strong>.</li>
+                <li>A memo out that has never changed has only one PDF, and the menu looks the same as before.</li>
+            </ul>
+            <div class="highlight-box">You can always send a customer the exact memo they received earlier, even after the memo out has been edited, returned or invoiced.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#129534;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Invoice Items From Several Memo Outs</h2>
+            <p><strong>Where:</strong> Create Invoice &rarr; Items &rarr; <strong>Add memo items</strong></p>
+            <p>You can now bill items from several of a customer's memo outs on one invoice. Before, an invoice could only be created from one memo out at a time.</p>
+
+            <h3>How it works</h3>
+            <ul class="feature-list">
+                <li>Choose the customer first. <strong>Add memo items</strong> then lists that customer's open memo outs.</li>
+                <li>Use <strong>Filter by stock ID or memo ID</strong> to find items. Tick single lines, or select every line on a memo at once. A memo's services can be added too.</li>
+                <li>Click <strong>Add to invoice</strong>. You can add items from more memo outs at any time, and mix them with stones picked from inventory.</li>
+                <li>Carats, quantity and rate on a memo line can be changed, up to what is still out on that memo.</li>
+                <li>Each memo line shows where it came from, e.g. <strong>From MO-26-0142</strong>, on the invoice review, details and edit pages.</li>
+                <li>When the invoice is created, each memo out it billed from is updated and gets a new PDF version.</li>
+            </ul>
+
+            <h3>Good to know</h3>
+            <ul class="feature-list">
+                <li>Lines already on the invoice are greyed out with the reason <strong>Already on this invoice</strong>. On a single-line invoice, lines of the other item type are greyed out too.</li>
+                <li>Changing the customer removes any memo lines you've added, since they belong to the previous customer's memos.</li>
+                <li><strong>Add memo items</strong> is available on invoices only. Proforma invoices and draft invoices don't have it.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128269;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Filter Line Items by Stock ID</h2>
+            <p>Line item tables now have a <strong>Filter by stock ID</strong> box in their header. Type all or part of a stock ID (not case-sensitive) and the list narrows as you type. If nothing matches, you'll see e.g. <strong>No items match stock ID &ldquo;PO1147&rdquo;.</strong></p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Document</th><th>Pages</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Invoice</td><td>Create, review, details</td></tr>
+                        <tr><td class="label">Proforma Invoice</td><td>Create, details</td></tr>
+                        <tr><td class="label">Quotation</td><td>Create, details</td></tr>
+                        <tr><td class="label">Credit Note</td><td>Create, details</td></tr>
+                        <tr><td class="label">Memo Out</td><td>Create, edit, details, and the return and convert-to-invoice dialog</td></tr>
+                        <tr><td class="label">Memo Out Returns</td><td>Details</td></tr>
+                        <tr><td class="label">Memo In</td><td>Details, and Create Memo In Return</td></tr>
+                        <tr><td class="label">Memo In Returns</td><td>Details</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">The filter appears once a document has two or more items. It only changes what you see; it doesn't remove items from the document.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>All Line Items Shown in Full</h2>
+            <p>Line items on details and review pages no longer sit in a fixed-height box with its own scroll bar. Every item is now listed in full, and the whole page scrolls as one.</p>
+            <ul class="feature-list">
+                <li>Applies to <strong>Invoice</strong>, <strong>Proforma Invoice</strong>, <strong>Quotation</strong>, <strong>Credit Note</strong> and <strong>Memo Out</strong> details, and the invoice review page.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
