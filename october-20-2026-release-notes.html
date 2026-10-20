@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Brokerage Management &amp; Polish Zloty &mdash; Release Notes</h1>
+            <p class="subtitle">This release lets you track the brokerage you owe your brokers. Give each broker a default rate and a bank account, create a brokerage debit note with an invoice or later from Transactions, and the debit note stays in step when the invoice changes. Polish Zloty (PLN) is also now available as a currency.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                October 20, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128100;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Brokerage Rate on Broker Contacts</h2>
+            <p><strong>Where:</strong> Business Contacts &rarr; <strong>Add Business Contact</strong> or <strong>Edit Business Contact</strong></p>
+            <p>When a contact's <strong>Contact Type</strong> includes <strong>Broker</strong>, the Broker field is replaced by <strong>Brokerage (%)</strong>. This is the broker's default rate for their debit notes, and it can be changed on each debit note.</p>
+            <ul class="feature-list">
+                <li>Enter a rate from 0 to 100, up to two decimals. Leaving it empty saves <strong>0%</strong>.</li>
+                <li>A broker needs at least one bank account, since brokerage is paid into it. Adding the Broker type starts an empty bank account for you to fill in.</li>
+                <li>Adding the Broker type clears any broker assigned to the contact, because a broker can't have a broker of their own.</li>
+                <li>The contact's details page shows <strong>Brokerage (%)</strong> for brokers.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Broker type is locked once saved.</strong> After a contact is saved as a broker, <strong>Broker</strong> can't be removed from its contact types. The chip is greyed out and shows <em>Broker can't be removed once a contact is saved as a broker.</em> Other contact types can still be changed.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#127974;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Bank Accounts on Business Contacts</h2>
+            <p><strong>Where:</strong> Add or Edit Business Contact &rarr; <strong>Add Bank Account</strong></p>
+            <p>Any business contact can now hold up to 20 bank accounts. For brokers at least one is required; for other contacts they are optional.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Account Holder Name</td><td>Required</td></tr>
+                        <tr><td class="label">Bank Name</td><td>Required</td></tr>
+                        <tr><td class="label">Account Currency</td><td>Required. Starts as the contact's currency.</td></tr>
+                        <tr><td class="label">Account / IBAN Number</td><td>Required. Letters and digits only.</td></tr>
+                        <tr><td class="label">Routing Number</td><td>Optional. Shown for USD accounts only.</td></tr>
+                        <tr><td class="label">IFSC Code</td><td>Optional. Shown for INR accounts only, e.g. HDFC0001234.</td></tr>
+                        <tr><td class="label">SWIFT / BIC Code</td><td>Optional. 8 or 11 characters, e.g. HDFCINBB.</td></tr>
+                        <tr><td class="label">Correspondence Bank Name and SWIFT Code</td><td>Optional</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>The contact's details page has a new <strong>Bank Accounts</strong> card. Account numbers are shown masked, e.g. <strong>XXXXX5678</strong>.</li>
+                <li>Account numbers are stored encrypted.</li>
+                <li>Removing an account asks you to confirm, and takes effect when you save the contact.</li>
+            </ul>
+            <div class="highlight-box"><strong>Country</strong> is now required on every business contact.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#129309;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Create a Brokerage Debit Note With an Invoice</h2>
+            <p><strong>Where:</strong> Create Invoice &rarr; Invoice Details &rarr; <strong>Create brokerage debit note</strong></p>
+            <p>When the invoice's customer has a broker, a <strong>Create brokerage debit note</strong> block appears under the Invoice Summary. It is switched on when the broker has a bank account. The invoice and its debit note are saved together.</p>
+
+            <h3>What you fill in</h3>
+            <ul class="feature-list">
+                <li><strong>Broker</strong> is filled in from the customer and can't be changed here.</li>
+                <li><strong>Brokerage (%)</strong> starts at the broker's default, e.g. <em>Broker's default is 2.00%</em>.</li>
+                <li><strong>Calculated on</strong> is the subtotal less discount, before tax.</li>
+                <li><strong>Pay into</strong> lists the broker's bank accounts. The account in the invoice currency is picked first.</li>
+                <li><strong>Debit Note Template</strong> sets the PDF layout.</li>
+                <li><strong>Brokerage payable</strong> updates as you change the items, discount or rate.</li>
+            </ul>
+            <p>Review &amp; confirm shows a <strong>Brokerage debit note</strong> card with the broker, rate, account and amount. After saving you'll see e.g. <strong>Debit note DBN-26-0007 created</strong>.</p>
+
+            <h3>Good to know</h3>
+            <ul class="feature-list">
+                <li>If the broker has no bank account, an amber notice says so, with an <strong>Add bank account</strong> button that opens the broker in a new tab. When you come back, the block picks up the new account.</li>
+                <li>Switch it off to create the invoice without a debit note. You can add one later from <strong>Transactions &rarr; Debit Notes</strong>.</li>
+                <li>Proforma invoices don't have this block. It's offered when a proforma is converted to an invoice.</li>
+                <li>If the debit note can't be created, the invoice isn't saved either, so you never end up with one without the other.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#129534;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Create a Debit Note for an Existing Invoice</h2>
+            <p><strong>Where:</strong> Transactions &rarr; Debit Notes &rarr; <strong>Create Debit Note</strong>, or an invoice's details page &rarr; actions menu &rarr; <strong>Create debit note</strong></p>
+            <p>Create a brokerage debit note for an invoice that was saved without one. Opening it from an invoice picks that invoice for you.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Step</th><th>What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">1. Invoice</td><td>Lists final invoices that have a broker. Shows the customer, status, invoice date, total and items.</td></tr>
+                        <tr><td class="label">2. Broker</td><td>Shows the broker's details. Set <strong>Brokerage (%)</strong> and the <strong>Pay into</strong> account.</td></tr>
+                        <tr><td class="label">3. Debit Note PDF Template</td><td>Choose the PDF layout.</td></tr>
+                        <tr><td class="label">4. Brokerage Summary</td><td>Invoice subtotal, discount, calculated on, brokerage and <strong>Brokerage payable</strong>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Click <strong>Create Debit Note</strong>. The <strong>Create debit note?</strong> dialog shows the amount and the broker's contact name, email, mobile, tax ID, address and Pay into account before you confirm.</p>
+            <div class="warning-box">
+                <strong>&#9888; One active debit note per invoice.</strong> If the invoice already has one, you'll see <strong>Debit note already exists</strong> with a link to it, e.g. <strong>View DBN-26-0007</strong>. Cancel it first to create a new one. On the invoice's details page, the menu item reads <strong>View debit note DBN-26-0007</strong> instead.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Debit Notes Tab</h2>
+            <p><strong>Where:</strong> Transactions &rarr; <strong>Debit Notes</strong></p>
+            <p>A new tab lists every brokerage debit note, newest first.</p>
+            <ul class="feature-list">
+                <li>Columns: <strong>Debit Note #</strong>, <strong>Broker</strong>, <strong>Invoice #</strong>, <strong>Customer</strong>, <strong>Rate</strong>, <strong>Brokerage</strong>, <strong>Status</strong> and <strong>Created At</strong>.</li>
+                <li>Search by debit note number, invoice number, broker or customer.</li>
+                <li>Filter by status: <strong>All status</strong>, <strong>Active</strong> or <strong>Cancelled</strong>.</li>
+                <li>Row actions: <strong>View Details</strong>, <strong>View PDF</strong>, <strong>Share PDF</strong> and <strong>Cancel Debit Note</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Debit Note Details and PDF</h2>
+            <p><strong>Where:</strong> Transactions &rarr; Debit Notes &rarr; open a debit note</p>
+            <p>The details page leads with <strong>Brokerage payable</strong>, e.g. <em>2.00% of $9,500.00 on invoice INV-26-0142</em>, followed by the created date, invoice, customer, rate and currency.</p>
+            <ul class="feature-list">
+                <li>The <strong>Broker</strong> card shows the broker's email, phone, GSTIN or VAT number, address and the Pay into account, with a <strong>View contact</strong> link.</li>
+                <li>The <strong>Breakdown</strong> card shows invoice subtotal, discount, calculated on and brokerage.</li>
+                <li>Download, print, view or share the PDF from the page header and actions menu.</li>
+            </ul>
+
+            <h3>What the PDF shows</h3>
+            <ul class="feature-list">
+                <li>Debit note number and date, the reference invoice and its date, and the customer.</li>
+                <li>The broker's name, address and GSTIN in the <strong>To:</strong> block.</li>
+                <li>One line, e.g. <em>Brokerage on invoice INV-26-0142 to Luxury Jewelers Inc.</em>, with Calculated On, Rate and Amount.</li>
+                <li>A <strong>Pay Into</strong> block with the broker's bank, account name, account number, IFSC or SWIFT, and currency.</li>
+                <li><strong>Brokerage Payable</strong> as the total.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Debit Notes Follow the Invoice</h2>
+            <h3>How brokerage is worked out</h3>
+            <p>Brokerage is the rate applied to the invoice subtotal less discount. Tax and shipping are not included. For example, a $10,000.00 subtotal with a 5% discount is calculated on $9,500.00, and at 2.00% the brokerage payable is <strong>$190.00</strong>.</p>
+
+            <h3>When the invoice changes</h3>
+            <ul class="feature-list">
+                <li><strong>Editing the invoice</strong> recalculates its active debit note at the same rate. A new debit note PDF is created only when the amount changes, so a tax or shipping change leaves it alone.</li>
+                <li><strong>Cancelling the invoice</strong> cancels its active debit note too.</li>
+            </ul>
+
+            <h3>Cancelling a debit note</h3>
+            <p>Choose <strong>Cancel Debit Note</strong> from the list or the details page. The debit note stays on record as <strong>Cancelled</strong>, and you can then create a new one for the same invoice.</p>
+            <div class="highlight-box">Debit notes are in your base currency, the same as the invoice's stored amounts.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Debit Note Settings</h2>
+            <p>Debit notes have their own PDF template, email, email notification and numbering, set up the same way as other documents.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Where</th><th>What you can set</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Template Configurations &rarr; Debit Notes</td><td>The debit note PDF layout, header and footer. <strong>Show Pay Into (broker bank)</strong> turns the broker's bank block on or off. The brokerage line's columns are fixed.</td></tr>
+                        <tr><td class="label">Email Template Configuration &rarr; Debit Notes</td><td>The <strong>Greeting</strong>, <strong>Summary Heading</strong>, <strong>Message</strong> and <strong>Notes</strong> in debit note emails. The default heading is <em>Your Brokerage Debit Note Summary</em>.</td></tr>
+                        <tr><td class="label">Email Notifications &rarr; Debit Note Emails</td><td><strong>Debit Note Created</strong> emails the broker automatically when a debit note is created. Off by default.</td></tr>
+                        <tr><td class="label">Document Numbering &rarr; Debit Note</td><td>The numbering format. The default is <strong>DBN-%y-(4)</strong>, e.g. DBN-26-0001.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#128065;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>Broker Shown on Documents</h2>
+            <ul class="feature-list">
+                <li><strong>Show Broker</strong> under Template Configurations &rarr; Invoices lets you hide the <em>Broker: name</em> line printed under the customer on invoice PDFs. It's on by default, so invoices print as before.</li>
+                <li>The customer details card on Create Invoice, Create Quotation, Create Memo Out and Create Credit Note now shows the customer's <strong>Contact type</strong>, and their <strong>Broker</strong> when they have one.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#128177;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Polish Zloty (PLN)</h2>
+            <p>Polish Zloty (<strong>PLN</strong>, symbol <strong>z&#322;</strong>) is now available wherever you choose a currency.</p>
+            <ul class="feature-list">
+                <li>Invoice, Quotation, Memo Out and Credit Note currency, and the conversion currency shown on the invoice PDF.</li>
+                <li>A business contact's currency, and the currency of their bank accounts.</li>
+                <li>The payment currency on Purchase Management and Memo In.</li>
+                <li>PLN amounts show with the z&#322; symbol in the app and in emails. PDFs show the currency code, e.g. <strong>PLN 1,250.00</strong>.</li>
+                <li>Converted amounts now round half-cents the same way in the app and on PDFs, for PLN and every other currency.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Exchange rate.</strong> PLN isn't in Exchange Rate Configuration yet, so its rate is taken from live market rates. You can still type your own rate on the document. PLN can't be chosen as your company's base currency.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
