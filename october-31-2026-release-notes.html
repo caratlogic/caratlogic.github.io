@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>KSeF E-Invoicing for Poland &mdash; Release Notes</h1>
+            <p class="subtitle">CaratLogic now connects directly to KSeF, Poland's National e-Invoice System (Krajowy System e-Faktur). Polish companies can submit invoices and credit note corrections to KSeF from CaratLogic, get the KSeF number, verification QR and official receipt (UPO) back, email the verified PDF to the buyer, and pull the purchase invoices issued to them into a new KSeF Inbox.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                October 31, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128273;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Connect CaratLogic to KSeF</h2>
+            <p><strong>Where:</strong> App Integrations &rarr; <strong>KSeF Config</strong> (admins only, for companies in Poland)</p>
+            <p>KSeF is Poland's national e-invoicing system. CaratLogic connects to it directly with your company's KSeF token. It doesn't go through Peppol or onFact.</p>
+
+            <h3>Before you start</h3>
+            <ul class="feature-list">
+                <li>Sign in to KSeF as your company and create a <strong>KSeF system token</strong>.</li>
+                <li>Give the token permission to issue invoices (<strong>InvoiceWrite</strong>). If you'll use the KSeF Inbox, also give it permission to view invoices (<strong>InvoiceRead</strong>).</li>
+                <li>KSeF fixes a token's permissions when it's created. If a token is missing a permission, create a new token in KSeF.</li>
+            </ul>
+
+            <h3>Connect to KSeF</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Seller NIP</td><td>Required. Your company's 10-digit NIP, filled in from your company profile. The check digit is verified as you type. If it doesn't match the NIP in your company profile, a note tells you.</td></tr>
+                        <tr><td class="label">KSeF Token</td><td>Required. Stored encrypted and never shown again. Use the eye icon to check what you typed.</td></tr>
+                        <tr><td class="label">Polish VAT Status</td><td><strong>Active VAT payer</strong> or <strong>VAT exempt</strong>, with an optional <strong>Effective From</strong> date. Set to Active VAT payer when your company profile says you're VAT registered. Invoices can be submitted only when this is Active VAT payer.</td></tr>
+                        <tr><td class="label">VAT-UE Status</td><td><strong>Registered</strong> or <strong>Not registered</strong>, with an optional <strong>Effective From</strong> date.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Click <strong>Connect</strong>. CaratLogic checks the token with KSeF before saving it. A <strong>Connecting to KSeF</strong> message stays up while KSeF confirms, which can take up to a minute and a half. When it succeeds you'll see <strong>Connected to KSeF</strong>.</p>
+
+            <h3>The KSeF Connection card</h3>
+            <ul class="feature-list">
+                <li>The header badge shows <strong>Connected</strong>, <strong>Not connected</strong>, <strong>Reconnect required</strong> or <strong>Error</strong>.</li>
+                <li>Once connected, the card shows <strong>Deployment</strong> (the KSeF environment your CaratLogic site uses), <strong>Seller NIP</strong>, <strong>Polish VAT status</strong> (e.g. <em>Active VAT payer since 01 Jan 2026</em>), <strong>VAT-UE status</strong>, <strong>Last authenticated</strong> and <strong>Session valid until</strong>.</li>
+                <li>If KSeF stops accepting the authorization, the badge changes to <strong>Reconnect required</strong>. Enter a valid token under <strong>Reconnect to KSeF</strong> and click <strong>Reconnect</strong>.</li>
+                <li>Reconnecting with a different NIP turns both KSeF capabilities off until an admin turns them on again.</li>
+                <li><strong>Disconnect</strong> asks you to confirm, then removes the token from CaratLogic. The token stays valid in KSeF, so revoke it there if you no longer need it.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Connected doesn't prove the token can issue invoices.</strong> It means KSeF accepted the token for your company. The token's permissions are checked when you first submit an invoice, so if KSeF refuses that submission, check the token's permissions in KSeF.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-new">New</span>
+            <h2>KSeF Capabilities</h2>
+            <p><strong>Where:</strong> App Integrations &rarr; KSeF Config &rarr; <strong>KSeF Capabilities</strong></p>
+            <p>Choose what CaratLogic does with your KSeF connection. Sending invoices and retrieving received invoices are turned on separately.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Switch</th><th>What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Submit invoices to KSeF</td><td>Invoices and credit note corrections can be submitted from their detail pages and from the Invoices and Credit Notes lists.</td></tr>
+                        <tr><td class="label">Retrieve received invoices</td><td>Purchase invoices issued to your company are retrieved into the KSeF Inbox.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>Both switches are off by default. They stay off and greyed out until the KSeF connection succeeds.</li>
+                <li>If KSeF isn't enabled yet on your CaratLogic site, the switch shows <strong>Turned off for this deployment</strong>.</li>
+                <li>Each change is confirmed, e.g. <strong>Submit invoices to KSeF turned on</strong>.</li>
+            </ul>
+            <div class="highlight-box">KSeF is being enabled for Polish companies in stages. If a switch says Turned off for this deployment, contact CaratLogic support.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128100;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>NIP on Polish Business Contacts</h2>
+            <p><strong>Where:</strong> Business Contacts &rarr; <strong>Add Business Contact</strong> or <strong>Edit Business Contact</strong>, with Country set to Poland</p>
+            <p>For contacts in Poland, the <strong>VAT Number</strong> and <strong>VAT %</strong> fields are replaced by <strong>NIP</strong> and an <strong>Active VAT payer</strong> switch.</p>
+            <ul class="feature-list">
+                <li><strong>NIP</strong> takes exactly 10 digits. Spaces and dashes are removed as you type or paste.</li>
+                <li>The NIP check digit is verified, and a number made of one repeated digit, such as 1111111111, is rejected with <em>This NIP is not valid. Please check the digits</em>.</li>
+                <li>Turn on <strong>Active VAT payer</strong> when the contact is a VAT payer (czynny podatnik VAT). NIP is then required: <em>NIP is required for an active VAT payer</em>.</li>
+                <li>VAT % is no longer asked for Polish contacts. Polish VAT comes from Poland's VAT rate table.</li>
+                <li>When you change a contact's country, tax numbers that belonged to the old country (GSTIN, PAN or NIP) are removed when you save.</li>
+            </ul>
+            <div class="highlight-box">To submit an invoice to KSeF, the buyer needs a valid NIP with <strong>Active VAT payer</strong> turned on.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128228;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Submit an Invoice to KSeF</h2>
+            <p><strong>Where:</strong> Transactions &rarr; Invoices &rarr; open an invoice &rarr; <strong>KSeF</strong> card, or the invoice's row actions menu</p>
+            <p>Once your company has connected KSeF, final invoices show a <strong>KSeF</strong> card. Click <strong>Submit to KSeF</strong>. The <strong>Submit invoice to KSeF?</strong> dialog shows the invoice summary and reminds you that <em>the invoice can't be cancelled while KSeF processes it or after acceptance</em>. Click <strong>Submit</strong>.</p>
+            <ul class="feature-list">
+                <li>CaratLogic sends KSeF a structured invoice (FA(3) XML) built from the invoice, and checks it against KSeF's official FA(3) format first. KSeF receives the structured invoice, not the PDF.</li>
+                <li>Your CaratLogic invoice number stays the invoice number. KSeF assigns its own <strong>KSeF number</strong> when it accepts the invoice, and both are shown.</li>
+                <li>The card shows <strong>Invoice number</strong>, <strong>KSeF number</strong> (<em>Assigned on acceptance</em> until then), <strong>Submitted</strong>, <strong>Accepted</strong> or <strong>Rejected</strong>, <strong>Last checked</strong> and <strong>Attempt</strong>, with the KSeF status in the header.</li>
+                <li>If the invoice can't be submitted yet, the card says why, e.g. <em>Submitting to KSeF needs the Polish VAT status set to Active VAT payer in KSeF Config.</em></li>
+            </ul>
+
+            <h3>What KSeF submission supports in this release</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Requirement</th><th>Details</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Seller</td><td>Connected to KSeF, with Polish VAT Status set to Active VAT payer.</td></tr>
+                        <tr><td class="label">Buyer</td><td>A business contact in Poland with a valid NIP, Active VAT payer turned on, a company or contact name, and a street address, postal code and city.</td></tr>
+                        <tr><td class="label">Currency</td><td>PLN</td></tr>
+                        <tr><td class="label">VAT</td><td>Poland's standard 23% rate on every line.</td></tr>
+                        <tr><td class="label">Invoice</td><td>A final, active invoice (not a draft or cancelled) with at least one line that has a description, quantity and price.</td></tr>
+                        <tr><td class="label">Adjustments</td><td>No discount, shipping or miscellaneous charges on the invoice.</td></tr>
+                        <tr><td class="label">Credit notes</td><td>Not fully credited before it was sent. <em>Fully credited invoices are not sent to KSeF.</em></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="warning-box">
+                <strong>&#9888; Not supported yet.</strong> Invoices in other currencies, reduced, zero or exempt VAT, reverse charge, sales to buyers outside Poland, sales to consumers, invoices with a discount or shipping, and KSeF offline issuing. CaratLogic refuses these with the reason, and the invoice stays as it is.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128260;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Follow the KSeF Status</h2>
+            <p>KSeF checks each invoice before it accepts it. The status badge on the KSeF card shows where it is and what to do next.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Status</th><th>What it means</th><th>What to do</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Not submitted</td><td>Never sent to KSeF.</td><td><strong>Submit to KSeF</strong></td></tr>
+                        <tr><td class="label">Queued</td><td>Prepared, but not confirmed as sent.</td><td><strong>Reconcile</strong> to continue it.</td></tr>
+                        <tr><td class="label">Submitted / Processing</td><td>KSeF is checking the invoice.</td><td>Wait. The card updates by itself.</td></tr>
+                        <tr><td class="label">Accepted</td><td>KSeF accepted the invoice and assigned a KSeF number.</td><td>Download the UPO and send the invoice to the buyer.</td></tr>
+                        <tr><td class="label">Rejected</td><td>KSeF rejected the invoice. Its reason and code are shown. There's no KSeF number.</td><td>Correct the invoice, then <strong>Submit again</strong>.</td></tr>
+                        <tr><td class="label">Failed</td><td>The submission ended without acceptance.</td><td>Correct the invoice, then <strong>Submit again</strong>.</td></tr>
+                        <tr><td class="label">Submission uncertain</td><td>KSeF hasn't confirmed whether it received the invoice.</td><td><strong>Reconcile</strong>. Don't submit it again.</td></tr>
+                        <tr><td class="label">Authorization required</td><td>KSeF refused the saved authorization.</td><td>An admin reconnects in KSeF Config, then <strong>Reconcile</strong>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>While KSeF is processing, the card checks the status every 15 seconds for up to two minutes. If KSeF takes longer, you'll see <strong>KSeF is taking longer than usual</strong> and a <strong>Check status</strong> button.</li>
+                <li>CaratLogic also checks unfinished submissions in the background every five minutes, so statuses update even when no one has the invoice open.</li>
+                <li><strong>Reconcile</strong> looks up the saved submission in KSeF instead of sending the invoice again, so a slow or dropped connection never creates a second legal invoice.</li>
+                <li>Each new submission after a rejection counts as a new <strong>Attempt</strong>. Earlier attempts stay in the KSeF Submissions log.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Invoices are locked while in KSeF.</strong> While an invoice is Queued, Submitted, Processing, Submission uncertain or Authorization required, and once it's Accepted, it can't be edited or cancelled. After Rejected or Failed it can be edited again. To change an accepted invoice, create a credit note and submit it as a KSeF correction.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-new">New</span>
+            <h2>KSeF Verification PDF and Official Receipt (UPO)</h2>
+            <p><strong>Where:</strong> Invoice details &rarr; <strong>KSeF</strong> card, after the invoice is accepted</p>
+            <h3>The verified PDF</h3>
+            <ul class="feature-list">
+                <li>When KSeF accepts the invoice, CaratLogic regenerates the invoice PDF. The CaratLogic QR code is replaced by the <strong>KSeF verification QR</strong>, with the KSeF number printed below it. Scanning the QR opens KSeF's verification page for the invoice.</li>
+                <li>The PDF is built from a copy of the invoice saved when it was submitted, so it always matches what KSeF accepted.</li>
+                <li>If the PDF couldn't be regenerated, the card shows <strong>PDF without KSeF verification</strong>. Click <strong>Regenerate KSeF PDF</strong>. This never sends the invoice to KSeF again.</li>
+            </ul>
+            <h3>The UPO</h3>
+            <ul class="feature-list">
+                <li>The UPO (Urz&#281;dowe Po&#347;wiadczenie Odbioru) is KSeF's official receipt for the invoice. Click <strong>Download UPO</strong> to save it as an XML file, e.g. <strong>UPO-INV-26-0142.xml</strong>.</li>
+                <li>If KSeF hasn't provided the UPO yet, the card shows <strong>Official receipt (UPO) not retrieved yet</strong>. Click <strong>Check status</strong> to try again.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#9993;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Send the KSeF Invoice to Your Buyer</h2>
+            <p><strong>Where:</strong> Invoice details &rarr; KSeF card &rarr; <strong>Buyer delivery</strong></p>
+            <p>Once the invoice is accepted and its KSeF PDF is ready, click <strong>Send to buyer</strong>. The <strong>Send KSeF invoice to buyer</strong> dialog starts with the customer's email, and you can add more recipients. The buyer receives your usual invoice email with the KSeF-verified PDF and its KSeF number.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Delivery status</th><th>What it means</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Not sent</td><td>No email has been sent yet.</td></tr>
+                        <tr><td class="label">Sending</td><td>The email is on its way.</td></tr>
+                        <tr><td class="label">Sent</td><td>The email was sent. It can't be sent again from here.</td></tr>
+                        <tr><td class="label">Failed</td><td>The email wasn't sent. The reason is shown, and you can click <strong>Send again</strong>.</td></tr>
+                        <tr><td class="label">Uncertain</td><td>The connection dropped after the email was handed over, so it may have arrived.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>The panel shows the <strong>Recipients</strong>, <strong>Last attempt</strong>, when it was <strong>Sent</strong>, and a history of every delivery attempt.</li>
+                <li>Buyer delivery is tracked separately from KSeF. A failed email never changes the KSeF status or sends the invoice to KSeF again.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Uncertain deliveries need a check.</strong> The card shows <strong>Delivery needs operator review</strong>. The email can't be sent again from CaratLogic, so confirm with the buyer whether it arrived.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>KSeF Actions in the Invoices List</h2>
+            <p><strong>Where:</strong> Transactions &rarr; Invoices &rarr; row actions menu</p>
+            <p>Each invoice's actions menu has a KSeF group with the actions that apply to it right now.</p>
+            <ul class="feature-list">
+                <li><strong>Submit to KSeF</strong>, <strong>Check KSeF status</strong>, <strong>Reconcile with KSeF</strong>, <strong>Download UPO</strong> and <strong>Regenerate KSeF PDF</strong>.</li>
+                <li>The group appears only when KSeF is connected and <strong>Submit invoices to KSeF</strong> is on. Draft invoices don't have it.</li>
+                <li>For an invoice not yet in KSeF whose credit notes take back its full amount, <strong>Submit to KSeF</strong> is greyed out with <em>Fully credited invoices are not sent to KSeF.</em> The same applies on the invoice's KSeF card.</li>
+                <li>Results appear as messages, e.g. <strong>KSeF accepted the invoice</strong> with its KSeF number, or <strong>KSeF result not confirmed yet</strong> with <em>Don't submit it again</em>.</li>
+                <li><strong>Send to buyer</strong> is on the invoice's details page.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#129534;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Submit a Credit Note as a KSeF Correction</h2>
+            <p><strong>Where:</strong> Transactions &rarr; Credit Notes &rarr; open a credit note &rarr; <strong>KSeF correction</strong> card, or the credit note's row actions menu &rarr; <strong>Submit correction</strong></p>
+            <p>In KSeF, a credit note is recorded as a correction to the original invoice. Submitting it links it to the original invoice's KSeF number.</p>
+
+            <h3>Which credit notes can be submitted</h3>
+            <ul class="feature-list">
+                <li>The credit note is linked to one original invoice that KSeF has already accepted. Otherwise you'll see e.g. <em>The original invoice INV-26-0142 must be accepted by KSeF first.</em></li>
+                <li>It's in PLN, for a business contact in Poland with a valid NIP and Active VAT payer turned on.</li>
+                <li>Its lines are at Poland's 23% VAT, with no discount or shipping adjustments.</li>
+            </ul>
+
+            <h3>What you fill in</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Correction reason</td><td>Required. Up to 256 characters, with a counter.</td></tr>
+                        <tr><td class="label">Correction effect type</td><td>Required. <strong>Type 1</strong>: takes effect on the date of the original invoice. <strong>Type 2</strong>: takes effect on the date this correction is issued. <strong>Type 3</strong>: takes effect on another date, including different dates per line.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Click <strong>Submit</strong> in the <strong>Submit correction to KSeF?</strong> dialog.</p>
+
+            <h3>The KSeF correction card</h3>
+            <ul class="feature-list">
+                <li>Shows <strong>Credit note number</strong>, <strong>Original invoice KSeF number</strong>, the correction's own <strong>KSeF number</strong>, <strong>Submitted</strong>, <strong>Accepted</strong> and <strong>Attempt</strong>, with the same statuses as invoices.</li>
+                <li>Actions: <strong>Check status</strong>, <strong>View PDF</strong>, <strong>Download UPO</strong>, and <strong>Submit again</strong> after a rejection. The reason and effect type you entered are kept for the next attempt.</li>
+                <li>When KSeF accepts the correction, the credit note PDF is regenerated with its KSeF number and verification QR.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; The credit note's effects are already applied.</strong> Its balance, inventory and wallet effects are applied when the credit note is created, and they stay if KSeF rejects the correction.
+            </div>
+            <div class="highlight-box">Confirm the correction effect type with your Polish tax adviser before you submit.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-new">New</span>
+            <h2>KSeF Submissions Log</h2>
+            <p><strong>Where:</strong> App Integrations &rarr; KSeF Config &rarr; <strong>KSeF Submissions</strong></p>
+            <p>Every invoice and credit note correction sent to KSeF, newest first.</p>
+            <ul class="feature-list">
+                <li>Columns: <strong>Document</strong>, <strong>KSeF status</strong> (with the buyer delivery status under it), <strong>KSeF number</strong> and <strong>Submitted</strong>.</li>
+                <li>Filter by <strong>Status</strong>, and show 10, 20 or 50 rows per page. The log shows the latest 100 submissions.</li>
+                <li>Click a row to open its details: the error code and message, KSeF number, Submitted, Accepted, Rejected, Last checked, Send attempts, UPO (<strong>Retrieved</strong> or <strong>Not retrieved</strong>), Buyer delivery, Operation reference, Session reference and the status history.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">11</div>
+            <div class="feature-icon">&#128229;</div>
+            <span class="tag tag-new">New</span>
+            <h2>KSeF Inbox for Received Invoices</h2>
+            <p><strong>Where:</strong> Financial Operations &rarr; <strong>KSeF Inbox</strong></p>
+            <p>Purchase invoices that suppliers issue to your company in KSeF can now be pulled into CaratLogic for review.</p>
+
+            <h3>Retrieving invoices</h3>
+            <ul class="feature-list">
+                <li>The <strong>Retrieval from KSeF</strong> card shows the sync status (<strong>Not started</strong>, <strong>Preparing</strong>, <strong>In progress</strong>, <strong>Completed</strong> or <strong>Failed</strong>), with <strong>Company NIP</strong>, <strong>Retrieved up to</strong>, <strong>Last sync</strong>, <strong>Active export</strong> and <strong>KSeF retry after</strong>.</li>
+                <li>For the first sync, pick <strong>Retrieve invoices from</strong> (today or earlier) and click <strong>Start sync</strong>. After that, click <strong>Sync now</strong> to fetch new invoices from where the last sync stopped.</li>
+                <li>KSeF prepares received invoices as an export. While it does, you'll see <strong>KSeF is preparing the export</strong>, the button reads <strong>Continue sync</strong>, and the page keeps checking by itself.</li>
+                <li>When it finishes you'll see e.g. <strong>Retrieved 12 received invoices</strong>. If more are waiting, sync again to continue.</li>
+                <li>If KSeF asks CaratLogic to wait, the sync button is disabled until the time shown in <strong>KSeF retry after</strong>.</li>
+                <li>Retrieval needs <strong>Retrieve received invoices</strong> turned on, a working KSeF connection, and a token with permission to view invoices. Only admins can sync. Everyone with access can view the inbox.</li>
+            </ul>
+
+            <h3>Received Invoices</h3>
+            <ul class="feature-list">
+                <li>Columns: <strong>Invoice</strong> (with its KSeF number), <strong>Seller</strong> (with its NIP), <strong>Issued</strong>, <strong>Gross</strong> and <strong>Review</strong> (<strong>New</strong> or <strong>Reviewed</strong>). Filter by <strong>Review status</strong>.</li>
+                <li>Row actions: <strong>Mark reviewed</strong> and <strong>Download XML</strong>, which saves the original invoice from KSeF, e.g. <strong>KSeF-&lt;KSeF number&gt;.xml</strong>.</li>
+                <li>Click a row to see the KSeF number, Invoice number, Gross amount, Seller, Seller NIP, Buyer NIP, Issue date, Received in KSeF, Retrieved and Reviewed.</li>
+                <li>Syncing again never creates duplicates. Each invoice is kept once, by its KSeF number.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Review only.</strong> Marking an invoice reviewed doesn't create a purchase, supplier balance, inventory or payment in CaratLogic. Record those the way you do today.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">12</div>
+            <div class="feature-icon">&#128177;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>Polish VAT and NIP on Documents</h2>
+            <ul class="feature-list">
+                <li>Invoices for companies in Poland use Poland's standard VAT rate of <strong>23%</strong> for gems, diamonds, jewellery and services, line by line. A different rate entered on the document isn't applied. Companies in other EU countries work as before.</li>
+                <li>On PDFs, a Polish company's tax number in the header is labelled <strong>NIP</strong> and shown as 10 digits, without the PL prefix.</li>
+                <li>A Polish buyer's tax number is also labelled <strong>NIP</strong>. Belgian and other buyers keep the VAT label, and Indian companies keep GSTIN.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">13</div>
+            <div class="feature-icon">&#128269;</div>
+            <span class="tag tag-enhanced">Changed</span>
+            <h2>Also in This Release</h2>
+            <ul class="feature-list">
+                <li><strong>Search by tax number.</strong> The search on Invoices and Proformas now reads <em>Search by Invoice #, Customer, Email, ID, Stock ID, Tax #...</em> It matches the invoice's tax number, the customer's VAT number, tax ID, NIP or GSTIN, and the KSeF number. What you type stays in the search box.</li>
+                <li><strong>Peppol and onFact for Belgium only.</strong> Peppol and onFact settings and actions now appear only for companies in Belgium.</li>
+                <li><strong>Invoice PDF tax total.</strong> The tax total under the line items table now adds up only the lines in the table, so it no longer includes shipping tax. Discounts on cancelled miscellaneous lines are no longer counted.</li>
+                <li><strong>Exchange rate field.</strong> When the exchange rate can't be changed, its field now looks like the form's other disabled fields.</li>
+                <li><strong>Credit note details.</strong> The Reference invoice card no longer appears twice.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
