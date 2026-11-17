@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Two-Step Verification &amp; Add by IGI Certificate &mdash; Release Notes</h1>
+            <p class="subtitle">This release adds two-step verification to your CaratLogic sign-in. Protect your account with a code from an authenticator app, keep backup codes for a lost phone, and, as an admin, require it for everyone in your organization. You can also add a diamond or gem from its IGI report number, with the form filled in from the report and the certificate PDF attached.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                November 17, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#128272;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Two-Step Verification</h2>
+            <p><strong>Where:</strong> Sidebar &rarr; <strong>Security</strong></p>
+            <p>Two-step verification adds a second check when you sign in. After your password, you enter a 6-digit code from an authenticator app on your phone. The app shows a new code every 30 seconds, so someone who learns your password still can't sign in without your phone.</p>
+            <ul class="feature-list">
+                <li>It protects your sign-in to every CaratLogic application, since they all use the same account.</li>
+                <li>Every user can turn it on for their own account. It is off by default.</li>
+                <li>Admins can require it for the whole organization (see <strong>05</strong>).</li>
+                <li>Use any free authenticator app. Google Authenticator and Microsoft Authenticator are linked on the setup screen. Authy, 1Password and other authenticator apps work too.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#128241;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Set Up Two-Step Verification</h2>
+            <p><strong>Where:</strong> Security &rarr; <strong>Your Two-Step Verification</strong> &rarr; <strong>Set up</strong></p>
+            <p>Setup takes about a minute and is written for people who have never used an authenticator app.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Step</th><th>What you do</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">1. Install an app</td><td>Install a free authenticator app on your phone. iPhone and Android store links are shown for Google Authenticator and Microsoft Authenticator.</td></tr>
+                        <tr><td class="label">2. Scan the QR code</td><td>In the app, tap <strong>+</strong> or <strong>Add account</strong>, choose <strong>Scan a QR code</strong> and point your camera at the screen. Can't scan it? Copy the <strong>setup key</strong> shown next to the QR code into the app instead. Setting up on your phone? Tap <strong>Open in authenticator app</strong>.</td></tr>
+                        <tr><td class="label">3. Enter the code</td><td>Click <strong>Next: enter the code</strong>, type the 6-digit code the app shows for CaratLogic, and click <strong>Verify and turn on</strong>.</td></tr>
+                        <tr><td class="label">4. Save your backup codes</td><td>You get 10 backup codes, e.g. <strong>ABCDE-FGHIJ</strong>. Copy them or click <strong>Download .txt</strong>, tick <strong>I've saved these codes somewhere safe</strong>, then click <strong>Done</strong>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>Each step has a <strong>Having trouble?</strong> section that answers the common problems, such as a QR code the app can't read or a code that isn't accepted.</li>
+                <li>Two-step verification is only turned on once a code from the new app is accepted, so a scan that didn't work never locks you out.</li>
+                <li>You'll get an email confirming that two-step verification is on.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Backup codes are shown only once.</strong> Each code lets you sign in once without your phone. Keep them somewhere safe, away from your phone.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128273;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Signing In With Two-Step Verification</h2>
+            <p>After you enter your username and password, a <strong>Two-step verification</strong> screen asks for the 6-digit code from your authenticator app. The code is checked as soon as you type the sixth digit.</p>
+            <ul class="feature-list">
+                <li>Lost your phone? Click <strong>Use a backup code instead</strong> and enter one of your backup codes. Each backup code works once.</li>
+                <li><strong>Back to login</strong> returns to the password screen.</li>
+                <li>Finish within 10 minutes of entering your password. After that you'll see <em>Your sign-in timed out. Please log in again.</em></li>
+                <li>If a code isn't accepted, type the one showing right now, and check that your phone's date and time update automatically.</li>
+                <li>Resetting a forgotten password doesn't skip this step. After setting a new password, you sign in and enter your code as usual.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Too many incorrect codes.</strong> After 5 incorrect codes in a row, two-step verification is locked for 15 minutes and you'll see <em>Too many incorrect codes. Try again in 15 minutes.</em>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#9881;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Manage Your Two-Step Verification</h2>
+            <p><strong>Where:</strong> Security &rarr; <strong>Your Two-Step Verification</strong></p>
+            <p>Once it's on, the card shows your status and three actions. Each one first asks for a code from your authenticator app, or a backup code, to confirm it's you.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Row</th><th>What it shows</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Authenticator app</td><td>The date it was set up, e.g. <em>Configured on Nov 17, 2026</em></td><td><strong>Change device</strong>: scan a new QR code with your new phone. The old app stops working, and you get new backup codes.</td></tr>
+                        <tr><td class="label">Backup codes</td><td>How many are left, e.g. <em>7 of 10 remaining</em></td><td><strong>Regenerate</strong>: get 10 new codes. Your existing backup codes stop working.</td></tr>
+                        <tr><td class="label">Disable two-step verification</td><td><em>You will sign in with your password only.</em></td><td><strong>Disable</strong>: turn it off. Not available when your organization requires it.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>A badge on the card shows your status: <strong>Enabled</strong>, <strong>Disabled</strong>, or <strong>Pending setup</strong> when your organization requires it and you haven't set it up yet.</p>
+            <div class="highlight-box">Moved to a new phone and no longer have the old one? Use <strong>Change device</strong> with a backup code.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128101;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Require Two-Step Verification for Your Organization</h2>
+            <p><strong>Where:</strong> Security &rarr; <strong>Organization-Wide Two-Step Verification</strong> (admins only)</p>
+            <p>Turn on the switch to require two-step verification for every user in your organization, including admins. The <strong>Require two-step verification for all users?</strong> dialog tells you how many users haven't set it up yet before you confirm.</p>
+            <ul class="feature-list">
+                <li>The card shows how many active users have set it up, e.g. <strong>8 of 12 users enrolled</strong>, with a progress bar. <strong>View users</strong> opens the Users list so you can see who hasn't.</li>
+                <li>You don't need to set it up yourself first. Like everyone else, you'll be asked at your next sign-in.</li>
+                <li>Users who haven't set it up are asked to do so at their next sign-in (see <strong>06</strong>).</li>
+                <li>While it's required, users can't disable their own two-step verification.</li>
+                <li>Turn the switch off to make it optional again. Users who already set it up keep it.</li>
+            </ul>
+            <div class="highlight-box"><strong>Existing sessions remain active.</strong> Users who are signed in when you turn it on are asked for a code when their session expires, within 6 hours.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128737;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Setup at Sign-In When It's Required</h2>
+            <p>When your organization requires two-step verification and you haven't set it up, the screen after your password is <strong>Set up two-step verification</strong>, marked <strong>Required by your organization</strong>.</p>
+            <ul class="feature-list">
+                <li>Follow the same steps as on the Security page: install an app, scan the QR code, then enter the code and click <strong>Verify and continue</strong>.</li>
+                <li>Save your backup codes on the <strong>Save your backup codes</strong> screen, then click <strong>Continue</strong> to finish signing in.</li>
+                <li>From then on, you sign in with your password and a code.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Two-Step Status and Reset on the Users List</h2>
+            <p><strong>Where:</strong> Role Management &rarr; <strong>Users</strong> (admins only)</p>
+            <ul class="feature-list">
+                <li>A new <strong>Two-Step</strong> column shows each user's status: <strong>Enabled</strong>, <strong>Disabled</strong>, or <strong>Pending setup</strong> when your organization requires it.</li>
+                <li>A new row action, <strong>Reset two-step verification</strong>, helps a user who lost their phone. It's available for users who have it on. You can't reset your own; use the Security page instead.</li>
+                <li>The <strong>Reset two-step verification</strong> dialog explains that the user's authenticator app and backup codes will stop working. If your organization requires it, they set up a new app at their next sign-in. If not, they sign in with their password until they turn it on again.</li>
+                <li>The user is emailed to let them know.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#9993;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Security Emails and Account Recovery</h2>
+            <h3>Security emails</h3>
+            <p>You get an email whenever your two-step verification changes, so a change you didn't make gets noticed.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Email</th><th>Sent when</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Two-step verification is on</td><td>You finish setup</td></tr>
+                        <tr><td class="label">Two-step verification moved to a new phone</td><td>You use <strong>Change device</strong></td></tr>
+                        <tr><td class="label">New backup codes created</td><td>You use <strong>Regenerate</strong></td></tr>
+                        <tr><td class="label">Two-step verification is off</td><td>You disable it</td></tr>
+                        <tr><td class="label">Two-step verification was reset</td><td>An admin in your organization, or CaratLogic support, resets it for you</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Lost your phone?</h3>
+            <ul class="feature-list">
+                <li><strong>Have a backup code:</strong> sign in with it, then use <strong>Change device</strong> on the Security page to set up your new phone.</li>
+                <li><strong>No backup codes:</strong> ask an admin in your organization to reset your two-step verification.</li>
+                <li><strong>You're the only admin:</strong> contact CaratLogic support. When support resets an account, the reason is included in the email to the user, and the organization's other admins are emailed too.</li>
+            </ul>
+            <div class="highlight-box">CaratLogic will never ask you for a code from your authenticator app.</div>
+            <div class="warning-box">
+                <strong>&#9888; Email verification codes.</strong> A code sent by email, for example to reset your password, now stops working after 5 incorrect attempts. Request a new code to try again.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Add a Diamond or Gem by IGI Certificate</h2>
+            <p><strong>Where:</strong> Diamond Inventory &rarr; <strong>Add Diamond</strong> &rarr; <strong>Add by certificate</strong>, or Gem Inventory &rarr; <strong>Add Gem</strong> &rarr; <strong>Add by certificate</strong></p>
+            <p>The <strong>Add Diamond</strong> and <strong>Add Gem</strong> buttons now open a menu. <strong>Add manually</strong> opens the usual form. <strong>Add by certificate</strong> fetches the stone's details from its IGI report.</p>
+            <ul class="feature-list">
+                <li>In the <strong>Add diamond by certificate</strong> or <strong>Add gem by certificate</strong> dialog, choose <strong>IGI</strong> as the <strong>Lab</strong> and enter the <strong>Report / certificate number</strong>, e.g. <em>161497209</em>.</li>
+                <li>Report numbers are 4 to 30 letters, digits or dashes.</li>
+                <li>Click <strong>Continue</strong>. CaratLogic checks the report with IGI, then opens the Add Diamond or Add Gem form with the details filled in.</li>
+                <li>Natural diamonds, lab-grown diamonds and colored stones are supported.</li>
+            </ul>
+            <div class="highlight-box">Nothing is added to your inventory until you review the form and save it.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#128221;</div>
+            <span class="tag tag-new">New</span>
+            <h2>What's Filled In From the IGI Report</h2>
+            <p>Only the fields the report includes are filled in. Grades are matched to the values and abbreviations in your settings, so the form uses your own wording.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Stone</th><th>Fields filled in</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Diamond</td><td><strong>Diamond Type</strong> (Natural or Lab Grown, with growth type CVD or HPHT when the report states it), shape, carat weight, color grade or fancy color and intensity, clarity, cut, polish, symmetry, fluorescence intensity and color, measurements, table %, depth %, crown height and angle, pavilion depth and angle, girdle, culet, origin and laser inscription</td></tr>
+                        <tr><td class="label">Gem</td><td>Gem type (from the report's variety or species), carat weight, shape, color, color modifier, color description, origin and measurements</td></tr>
+                        <tr><td class="label">Certificate 1</td><td>Certificate type <strong>IGI</strong>, the report number, the issue date, the report's comments and the IGI certificate PDF</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>How IGI wording is matched</h3>
+            <ul class="feature-list">
+                <li><em>ROUND BRILLIANT</em> becomes <strong>Round</strong>, <em>SQUARE MODIFIED BRILLIANT</em> becomes <strong>Princess</strong>, and <em>EMERALD CUT</em> becomes <strong>Emerald</strong>.</li>
+                <li>IGI's <em>IDEAL</em> cut and <em>EXC</em> polish or symmetry match your <strong>Ideal</strong> and <strong>Excellent</strong> values.</li>
+                <li><em>FANCY INTENSE YELLOW</em> becomes fancy color <strong>Yellow</strong> with intensity <strong>Fancy Intense</strong>.</li>
+                <li>A gem color such as <em>Reddish Pink</em> becomes color <strong>Pink</strong> with modifier <strong>Reddish</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">11</div>
+            <div class="feature-icon">&#9989;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Review and Save</h2>
+            <p>When the form opens, a notice lists anything you need to check before saving. None of these stop you from saving.</p>
+            <ul class="feature-list">
+                <li><strong>A value that doesn't match your settings</strong>, e.g. <em>"OLD MINE BRILLIANT" does not match any shape value in your settings. Pick one before saving.</em></li>
+                <li><strong>A field the report doesn't have</strong>, e.g. <em>The lab report has no carat weight. Enter it before saving.</em></li>
+                <li><strong>A gem type that isn't in your settings</strong>, e.g. <em>Select the gem type before saving.</em></li>
+                <li><strong>No certificate PDF</strong>, when IGI has none or it couldn't be downloaded. Upload it yourself on the certificate.</li>
+                <li><strong>A certificate number already in your inventory</strong>, e.g. <em>This certificate number is already on D1001.</em></li>
+            </ul>
+
+            <h3>The IGI certificate is locked</h3>
+            <p>Certificate 1 keeps the IGI details exactly as the report has them. Its type, number, issue date and comments can't be edited, and it can't be removed. Its PDF can't be replaced, but if no PDF was attached you can upload one. You can still add more certificates.</p>
+
+            <h3>Saving</h3>
+            <p>Fill in the rest, such as Stock ID, price and ownership, and save as usual. The IGI certificate PDF is saved with the stock.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">12</div>
+            <div class="feature-icon">&#9888;</div>
+            <span class="tag tag-new">New</span>
+            <h2>When a Certificate Can't Be Added</h2>
+            <p>If the check fails, a message explains why and the dialog stays open so you can correct the number.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Situation</th><th>Message</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">No report for the number</td><td><em>No IGI report was found for report number 161497209. Check the number and try again.</em></td></tr>
+                        <tr><td class="label">Gem report in Diamond Inventory</td><td><em>This certificate is for a gemstone and cannot be added to Diamond Inventory.</em></td></tr>
+                        <tr><td class="label">Diamond report in Gem Inventory</td><td><em>This certificate is for a diamond and cannot be added to Gem Inventory.</em></td></tr>
+                        <tr><td class="label">IGI is busy</td><td><em>IGI is receiving too many requests right now. Please try again in a few minutes.</em></td></tr>
+                        <tr><td class="label">IGI is unavailable</td><td><em>Could not get a valid response from IGI. Please try again later.</em></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">IGI reports for colored stones and jewellery go to Gem Inventory. Reports for diamonds go to Diamond Inventory.</div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
