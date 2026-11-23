@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaratLogic - Release Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #2e7d32 100%);
+            padding: 40px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #f5f7f5;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo-row img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        .release-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -10px auto 60px;
+            padding: 0 30px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid #e8ece8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.08);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 36px;
+            height: 36px;
+            background: #f0f7f3;
+            color: #2e7d32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 20px 0 4px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: #2e7d32;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .feature-list li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        .tag-new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .tag-enhanced {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f7f3, #e8f5e9);
+            border-left: 3px solid #2e7d32;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 3px solid #f57c00;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #6d4c00;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .footer .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e8ece8;
+            max-width: 200px;
+            margin: 16px auto;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e8ece8;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef1ee;
+            vertical-align: top;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        thead th {
+            background: #f0f7f3;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #2e7d32;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.label {
+            font-weight: 600;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-number {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-row">
+                <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic">
+            </div>
+            <h1>Hold Inventory &mdash; Release Notes</h1>
+            <p class="subtitle">This release adds Hold, a way to set stones aside for a customer or anyone else without creating a memo out or invoice. Held carats stay in your shop, but nobody can invoice them, memo them out or hold them again until you convert the hold into a memo out or invoice, release it, or it runs out. A hold lasts from 1 to 30 days, or until you release it.</p>
+            <div class="release-badge">
+                <span class="dot"></span>
+                November 22, 2026
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">&#9203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Hold Inventory</h2>
+            <p><strong>Where:</strong> Sidebar &rarr; Financial Operations &rarr; <strong>Hold</strong></p>
+            <p>When a customer asks you to keep a stone for them, put it on hold. The held carats are reserved for that hold, so they can't be sold, memoed out or put on another hold by mistake.</p>
+            <ul class="feature-list">
+                <li>Each hold gets its own number, e.g. <strong>HL-0001</strong>.</li>
+                <li>Hold stones for a <strong>customer</strong>, or for <strong>someone else</strong> by name, such as a broker or a colleague.</li>
+                <li>Hold a whole stone, or part of the carats of a parcel or set.</li>
+                <li>Make a hold <strong>temporary</strong> (1 to 30 days) or <strong>permanent</strong> (until you release it).</li>
+                <li>When the customer decides, convert the hold into a <strong>memo out</strong> or an <strong>invoice</strong>, or release it so the carats go back to stock.</li>
+                <li>Up to 500 stones can be on one hold.</li>
+            </ul>
+            <div class="highlight-box">Held stones are still in your shop. They count as available stock and show in a new <strong>On Hold</strong> column on your inventory lists (see <strong>10</strong>).</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">&#10133;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Create a Hold</h2>
+            <p><strong>Where:</strong> Hold &rarr; <strong>+ Hold</strong>, or from your inventory (see <strong>03</strong>)</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Step</th><th>What you do</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">1. Customer</td><td>Choose <strong>Customer</strong> and search for the customer, or click <strong>Add new customer</strong>. Or choose <strong>Someone else</strong> and type a name or reference in <strong>Hold for</strong> (up to 200 characters).</td></tr>
+                        <tr><td class="label">2. Items</td><td>Pick stones under <strong>Gems</strong> and <strong>Diamonds</strong>. Only stones with free carats are listed. For a parcel or set, <strong>Carats to hold</strong> starts at all its free carats; lower it to hold only part, and enter the number of pieces in <strong>Qty</strong> if you like. Single and pair stones are held whole.</td></tr>
+                        <tr><td class="label">3. Hold Duration</td><td>Leave <strong>Permanent hold</strong> off and enter <strong>Duration (days)</strong>, from 1 to 30. The date it lasts until is shown below, e.g. <em>Held until 25 Nov, 2026</em>. Or turn <strong>Permanent hold</strong> on: it <em>stays on hold until released or converted</em>.</td></tr>
+                        <tr><td class="label">4. Additional Notes</td><td>Optional notes for the hold.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Click <strong>Submit &amp; review</strong>. The <strong>Review &amp; Confirm Hold</strong> page shows the customer, the line items with their quantity and carats, the hold type, duration and held-until date, and your notes. Click <strong>Edit</strong> on any section to go back to it, or <strong>Confirm &amp; Create Hold</strong> to create the hold.</p>
+            <ul class="feature-list">
+                <li>Carats to hold must be above 0 and no more than the stone's free carats, e.g. <em>Only 1.25 ct available</em>.</li>
+                <li>A stone can be added once per hold. Adding it again shows <em>Item already added</em>.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">&#128142;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Hold Stones From Your Inventory</h2>
+            <p>You can start a hold from the stones you're looking at. <strong>Create Hold</strong> opens with those stones already added.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>From</th><th>How</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Inventory list</td><td>On Diamond Inventory or Gem Inventory, select stones, then <strong>Operations</strong> &rarr; <strong>Create Hold</strong>. Up to 500 stones at a time.</td></tr>
+                        <tr><td class="label">A row</td><td>Open a stone's row actions and choose <strong>Hold</strong>.</td></tr>
+                        <tr><td class="label">Stone details</td><td>On a diamond's or gem's details page, choose <strong>Create Hold</strong>, next to Create Invoice and Create Memo.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">Stones with no free carats are left out, since there's nothing left to hold.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">&#128197;</div>
+            <span class="tag tag-new">New</span>
+            <h2>How Long a Hold Lasts</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th></th><th>Temporary hold</th><th>Permanent hold</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Duration</td><td>1 to 30 days</td><td><em>Not applicable</em></td></tr>
+                        <tr><td class="label">Held until</td><td>The end of the day that is the hold date plus the duration. A 3-day hold placed on 18 Nov is held until the end of 21 Nov.</td><td><em>Until released</em></td></tr>
+                        <tr><td class="label">When it ends</td><td>Released automatically. The held carats go back to stock.</td><td>Never ends on its own. Release or convert it when you're done.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>Days are counted in your organization's timezone, so a hold ends at midnight where you are.</li>
+                <li>A hold always lasts at least the number of days you chose, measured in full 24-hour days.</li>
+                <li>Holds are released automatically within the hour after they end. Until then, the hold list marks them <strong>Overdue</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">&#128203;</div>
+            <span class="tag tag-new">New</span>
+            <h2>The Hold List</h2>
+            <p><strong>Where:</strong> Sidebar &rarr; <strong>Hold</strong></p>
+            <p>The list shows your holds that are still on hold. Use the status filter to see others.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Column</th><th>What it shows</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Hold #</td><td>The hold number. Click it to open the hold.</td></tr>
+                        <tr><td class="label">Held for</td><td>The customer, or the name you entered, labelled <strong>Someone else</strong></td></tr>
+                        <tr><td class="label">Items / Carats</td><td>The number of stones and the total carats put on hold</td></tr>
+                        <tr><td class="label">Type</td><td><strong>Temporary</strong> or <strong>Permanent</strong></td></tr>
+                        <tr><td class="label">Duration</td><td>e.g. <em>7 days</em>, or <em>Not applicable</em> for a permanent hold</td></tr>
+                        <tr><td class="label">Hold date / Held until</td><td>When the hold was made and when it ends, or <em>Until released</em>. An <strong>Overdue</strong> badge shows on a hold that has ended but hasn't been released yet.</td></tr>
+                        <tr><td class="label">Status</td><td><strong>On hold</strong>, <strong>Released</strong>, <strong>Memo out</strong> or <strong>Invoiced</strong> (see below)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li><strong>Search</strong> by hold number, customer, email, stock ID, or the name on a Someone else hold.</li>
+                <li><strong>Filter</strong> by status, and sort by <strong>Hold #</strong>, <strong>Hold date</strong> or <strong>Held until</strong>. <strong>Reset all</strong> clears your search, filter and sorting.</li>
+                <li>Row actions: <strong>View</strong>, and for holds still on hold, <strong>Edit</strong>, <strong>Convert to Memo Out</strong>, <strong>Convert to Invoice</strong> and <strong>Release all</strong>.</li>
+            </ul>
+
+            <h3>Hold statuses</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Status</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">On hold</td><td>Some carats are still held.</td></tr>
+                        <tr><td class="label">Invoiced</td><td>Nothing is held any more, and some of it was invoiced.</td></tr>
+                        <tr><td class="label">Memo out</td><td>Nothing is held any more, and some of it went on a memo out but none was invoiced.</td></tr>
+                        <tr><td class="label">Released</td><td>Everything went back to stock, by you or when the hold ended.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">&#128269;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Hold Details</h2>
+            <p><strong>Where:</strong> Hold &rarr; click a <strong>Hold #</strong></p>
+            <ul class="feature-list">
+                <li><strong>Carats on hold</strong> at the top, with a bar showing how much was <strong>Released</strong>, went on a <strong>Memo out</strong>, was <strong>Invoiced</strong>, and is <strong>Still on hold</strong>, e.g. <em>60% settled &middot; 5.00 ct held</em>.</li>
+                <li>The hold date, held-until date, duration, type and number of items.</li>
+                <li>The customer's details, including address and tax number, or the name the hold is for.</li>
+                <li><strong>Held items</strong>: each stone with its own status, quantity and carats. <strong>Converted to</strong> lists the memo outs and invoices that took part of it, with the carats each took, e.g. <em>INV-0042 &middot; 1.50 ct</em>. A stone that was partly converted shows what's still held, e.g. <em>0.75 left</em>.</li>
+                <li>Your notes.</li>
+            </ul>
+            <p>Tick stones that are still on hold and open <strong>Action</strong> to <strong>Convert to Memo Out</strong>, <strong>Convert to Invoice</strong>, <strong>Release selected</strong> or <strong>Remove selected</strong>.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">07</div>
+            <div class="feature-icon">&#128196;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Convert a Hold to a Memo Out or Invoice</h2>
+            <p>When the customer decides, turn the hold into a memo out or invoice. Create Memo Out or Create Invoice opens with the hold's customer and stones already filled in.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Convert</th><th>How</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">The whole hold</td><td>Choose <strong>Convert to Memo Out</strong> or <strong>Convert to Invoice</strong> from the hold list or the hold's menu. Every stone still on hold is added at its held carats.</td></tr>
+                        <tr><td class="label">Some stones</td><td>On Hold Details, tick the stones, then <strong>Action</strong> &rarr; <strong>Convert to Memo Out</strong> or <strong>Convert to Invoice</strong>. In the dialog, enter the carats to convert for each parcel or set; it starts at the held carats. Single and pair stones are <em>Converted whole</em>. Click <strong>Continue</strong>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="feature-list">
+                <li>On the memo out or invoice, a stone's line can use its held carats plus any free carats it has.</li>
+                <li>Save the memo out or invoice as usual. The carats it takes come off the hold, and the document is listed under <strong>Converted to</strong> on the hold.</li>
+                <li>Convert less than a stone's held carats, and the rest <em>stays on hold for this customer</em>. You can convert it later, or release it.</li>
+                <li>Once nothing is left on hold, the hold closes as <strong>Invoiced</strong> or <strong>Memo out</strong>.</li>
+            </ul>
+            <div class="warning-box">
+                <strong>&#9888; Only customer holds can be converted.</strong> The memo out or invoice must be for the hold's customer. A hold for someone else can be edited or released, but not converted.
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">08</div>
+            <div class="feature-icon">&#9999;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Edit a Hold</h2>
+            <p><strong>Where:</strong> Hold &rarr; <strong>Edit</strong> on a hold's row, or in its menu on Hold Details</p>
+            <p>Edit Hold opens as a full page, for holds that are still on hold.</p>
+            <ul class="feature-list">
+                <li><strong>Customer:</strong> who the hold is for can't be changed (<em>Customer cannot be edited</em>).</li>
+                <li><strong>Items:</strong> add more stones, the same way as on Create Hold. Remove a stone that's still fully on hold; it's marked <em>Will be removed</em> until you save. A stone can only be on a hold once (<em>This stone is already on this hold</em>).</li>
+                <li><strong>Duration:</strong> enter a new duration, or switch <strong>Permanent hold</strong> on or off. A permanent hold made temporary starts at 1 day.</li>
+                <li><strong>Notes:</strong> change your notes.</li>
+            </ul>
+            <p>Click <strong>Save changes</strong>. You'll see <em>Hold updated</em>.</p>
+            <div class="highlight-box"><strong>A new duration counts from the day you save it</strong>, not from the original hold date. Changing a hold to 2 days on 20 Nov holds it until the end of 22 Nov. Saving only notes or items leaves the end date as it is.</div>
+            <div class="warning-box">
+                <strong>&#9888; An ended hold needs a new duration before you add stones.</strong> If you add stones to a hold that has ended but isn't released yet, you'll see <em>This hold has expired. Set a new duration to add items.</em>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">09</div>
+            <div class="feature-icon">&#8617;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Release a Hold</h2>
+            <p>Release puts held carats back into stock, ready to sell.</p>
+            <ul class="feature-list">
+                <li><strong>Release all</strong>, on the hold list or Hold Details, releases every stone still on hold.</li>
+                <li><strong>Release selected</strong>, on Hold Details, releases only the stones you ticked.</li>
+                <li>The dialog lists each stone with the carats going back, e.g. <em>3 items &middot; 4.20 ct back to stock</em>.</li>
+            </ul>
+
+            <h3>Release or remove?</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th></th><th>Release selected</th><th>Remove selected</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Carats</td><td>Go back to stock</td><td>Go back to stock</td></tr>
+                        <tr><td class="label">The stone on the hold</td><td>Stays on the hold as <strong>Released</strong>, as a record</td><td>Is deleted from the hold, as if it was never added</td></tr>
+                        <tr><td class="label">Use it for</td><td>A customer who no longer wants a stone</td><td>A stone added by mistake</td></tr>
+                        <tr><td class="label">Available for</td><td>Any stone still on hold</td><td>Stones still fully on hold, with nothing converted</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">A hold must keep at least one stone. To clear a hold completely, release it.</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">10</div>
+            <div class="feature-icon">&#128202;</div>
+            <span class="tag tag-enhanced">Enhanced</span>
+            <h2>Held Stones Across Your Inventory</h2>
+            <p>Held stones are still in your shop, so they count as available stock everywhere, with the held carats shown on their own.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>Where</th><th>What changed</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Inventory lists</td><td>A new <strong>On Hold</strong> column on Diamond Inventory and Gem Inventory, shown by default and sortable. Available carats include held carats. Excel exports include On Hold too.</td></tr>
+                        <tr><td class="label">Stone status</td><td>A stone whose every free carat is held shows <strong>On Hold</strong>. Holds set and clear this status, so it can't be changed by hand when editing the stone.</td></tr>
+                        <tr><td class="label">Stone details</td><td>Available carats include held carats, and the carat breakdown shows <strong>On Hold</strong>, without counting them twice in total carats.</td></tr>
+                        <tr><td class="label">Tally</td><td>On hold carats are counted on their own, next to available and reserved, in the on-record, counted and difference columns.</td></tr>
+                        <tr><td class="label">Layouts</td><td>Held carats count in layout totals, with an <strong>On Hold</strong> figure.</td></tr>
+                        <tr><td class="label">Dashboard</td><td><strong>On Hold</strong> appears in the stock status charts.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">11</div>
+            <div class="feature-icon">&#128683;</div>
+            <span class="tag tag-new">New</span>
+            <h2>Held Carats Are Protected</h2>
+            <p>While carats are on hold, only that hold can use them. Everywhere else, CaratLogic tells you why a stone can't be used.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>When you</th><th>What happens</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="label">Create an invoice, memo out or proforma from a stone</td><td>If every carat is on hold, a <strong>Can't create invoice</strong> dialog explains that <em>all carats of this stone are on hold</em>. Convert or release the hold first.</td></tr>
+                        <tr><td class="label">Create an invoice or memo out for selected stones</td><td>Stones with every carat on hold are left out and listed under <strong>All carats are on hold</strong>, e.g. <em>2 stones will be left out</em>. You choose a customer for the rest.</td></tr>
+                        <tr><td class="label">Pick a stone on an invoice or memo out</td><td>A stone fully on hold is shown but can't be picked: <em>Can't be invoiced</em> or <em>Can't be memoed out</em>. A stone partly on hold can be picked, with a warning, e.g. <em>Stock ID G1001: 0.50 of 2.00 ct are on hold. Only 1.50 ct can be invoiced.</em></td></tr>
+                        <tr><td class="label">Delete or archive a stone</td><td>Not allowed while carats are on hold: <em>Cannot delete: carats are on hold. Release or convert the hold first</em>. Held stones are left out of bulk archive.</td></tr>
+                        <tr><td class="label">Split or merge a parcel</td><td>Not allowed while any of its carats are on hold.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">Converting a hold is the exception: on the memo out or invoice it creates, the hold's stones can use their held carats (see <strong>07</strong>).</div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <img src="https://inventory.caratlogic.com/caratlogic_logo.svg" alt="CaratLogic" class="footer-logo">
+        <div class="divider"></div>
+        <p><a href="index.html">&larr; All Release Notes</a></p>
+        <p>&copy; 2026 CaratLogic Inc. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
